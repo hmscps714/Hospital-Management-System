@@ -1,14 +1,16 @@
-import React from 'react'
-import Button from '@mui/material/Button'
+import React from "react";
+import Button from "@mui/material/Button";
 
 interface TestProps {
-  name: string
-  heightInCm: number
+  name: string;
+  heightInCm: number;
 }
 
-const Test = (props: TestProps) => {
-  return <div>
-    <h1>Hello Worlddfgfgfgfg</h1>
-    <Button variant="contained">Hello Button</Button>
-  </div>
-}
+export const Test = (props: TestProps) => {
+  return (
+    <div>
+      <h1>Hello Worlddfgfgfgfg</h1>
+      <Button variant="contained">Hello Button</Button>
+    </div>
+  );
+};
