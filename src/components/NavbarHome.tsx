@@ -12,7 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useRouter } from "next/router";
 
-const pages: { name: string; href: string }[] = [
+const pages = [
   { name: "About", href: "/about" },
   { name: "Login", href: "/login" },
 ];
