@@ -1,12 +1,9 @@
 import React from "react";
-import Button from "@mui/material/Button";
+import { ThemeProvider } from "@mui/material";
+import theme from "src/config/theme";
 
 export const Login = () => {
-  return (
-    <div>
-      <Button variant="contained">Login</Button>
-    </div>
-  );
+  return <ThemeProvider theme={theme}></ThemeProvider>;
 };
 
 export default Login;
