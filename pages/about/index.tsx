@@ -1,11 +1,13 @@
 import React from "react";
-import Button from "@mui/material/Button";
+import { ThemeProvider } from "@mui/material";
+import theme from "src/config/theme";
+import NavbarHome from "src/components/NavbarHome";
 
 export const Login = () => {
   return (
-    <div>
-      <Button variant="contained">Login</Button>
-    </div>
+    <ThemeProvider theme={theme}>
+      <NavbarHome />
+    </ThemeProvider>
   );
 };
 
