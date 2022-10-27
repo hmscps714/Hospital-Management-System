@@ -10,10 +10,13 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import Image from "next/image";
 import { useRouter } from "next/router";
 
 const pages = [
-  { name: "About", href: "/about" },
+  { name: "Home", href: "" },
+  { name: "Our Staff", href: "" },
+  { name: "About us", href: "/about" },
   { name: "Login", href: "/login" },
 ];
 
@@ -33,8 +36,8 @@ export const NavbarHome = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Typography
+          {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
+          {/* <Typography
             variant="h6"
             noWrap
             component="a"
@@ -42,16 +45,22 @@ export const NavbarHome = () => {
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
+              // fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
             }}
           >
-            HMS
-          </Typography>
-
+            MedSuite
+          </Typography> */}
+          <Image
+            src="/logo.png"
+            alt="MedSuite logo"
+            width="150px"
+            height="80px"
+            objectFit="contain"
+          />
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -109,7 +118,9 @@ export const NavbarHome = () => {
           >
             HMS
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, justifyContent: "flex-end" }}
+          >
             {pages.map(({ name, href }, index) => (
               <Button
                 key={index}
