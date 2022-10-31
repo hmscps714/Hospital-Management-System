@@ -1,8 +1,135 @@
-.box1 {
-    height: 785px;
-    left: 400px;
-    position: absolute;
-    top: 62px;
-    width: 799px;
-    background-color: black;
+@import url("https://fonts.googleapis.com/css?family=Inter:400,700,800");
+
+/* GENERAL */
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Inter;
+    margin-top:1.2em;
+    font-size: 1.5em;
+}
+
+.h5 {
+    z-index: 1;
+    color: rgb(248, 42, 42);
+    font-family: Inter;
+}
+
+.h4 {
+    z-index: 1;
+    font-family: Inter;
+    font-size: 0.9em;
+}
+
+.btnSub {
+    font-family: Inter;
+    background-color: #72B292;
+    color:white;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+.btnRes {
+    font-family: Inter;
+    background-color: #B27272;
+    color:white;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+.btnRes:hover {
+    font-family: Inter;
+    background-color: #976262;
+    color:white;
+}
+
+.btnAlign {
+    margin-left: 50%;
+}
+
+/* SPECIFIC */
+.picture {
+    z-index: 1;
+    display: block;
+    height: 100%;
+    width: 15%;
+    float: left;
+    margin: 0.5em 1em 2em 2em;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    font-family: Inter;
+}
+
+.mainDetails {
+    z-index: 1;
+    display: block;
+    height: auto;
+    width: 45%;
+    float: left;
+    margin: 0.5em 1em 2em 1em;
+    padding: 1.5em 1.5em 1.5em 1.5em;
+    background-color:white;
+    border: 2px solid #AAD0BD;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+.otherDetails {
+    z-index: 1;
+    display: block;
+    height: auto;
+    width: 30%;
+    float: left;
+    margin: 0.5em 2em 2em 1em;
+    padding: 1.5em 1.5em 1.5em 1.5em;
+    background-color:white;
+    border: 2px solid #AAD0BD;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+.info {
+    display: block;
+    height: 10em;
+    width: 70%;
+    float: left;
+    border: 0.5px solid #AAD0BD;
+}
+
+.imageUpload {
+    padding-top: 1em;
+    display: block;
+    height: 40em;
+    width: 35%;
+    float: left;
+    margin-left: 1em;
+    text-align: center;
+}
+
+.wave {
+    margin-top: -20%;
+}
+
+.waveBack {
+    background-color: #A3B7B0;
+}
+
