@@ -29,7 +29,7 @@ export interface Practitioner {
     planNumber?: number;
     planExpiryDate?: Date;
   };
-  doctorSpecialty?: string;
+  fieldSpecialty: string;
 }
 
 export interface Patient {
@@ -82,4 +82,11 @@ export interface Patient {
 export interface Login {
   email: string;
   password: string;
+}
+
+export interface InventoryItem {
+  name: string;
+  stock: number;
+  id: string;
+  price: number;
 }
