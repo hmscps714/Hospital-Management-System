@@ -70,3 +70,13 @@ export const signOutPractitioner = async (): Promise<boolean> => {
     return false;
   }
 };
+
+export const signOutPatient = async (): Promise<boolean> => {
+  try {
+    await signOut(auth);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
