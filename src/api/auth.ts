@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "src/api/init";
 import { Login, Practitioner, Patient } from "src/config/interfaces";
@@ -54,6 +54,26 @@ export const signInPatient = async (loginObject: Login): Promise<boolean> => {
     const { email, password } = loginObject;
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
 
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const signOutPractitioner = async (): Promise<boolean> => {
+  try {
+    await signOut(auth);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const signOutPatient = async (): Promise<boolean> => {
+  try {
+    await signOut(auth);
     return true;
   } catch (error) {
     console.error(error);
