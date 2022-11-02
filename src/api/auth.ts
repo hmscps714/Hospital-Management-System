@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "src/api/init";
 import { Login, Practitioner, Patient } from "src/config/interfaces";
@@ -23,7 +23,7 @@ export const registerPractitioner = async (practitioner: Practitioner): Promise<
 export const signInPractitioner = async (loginObject: Login): Promise<boolean> => {
   try {
     const { email, password } = loginObject;
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    await signInWithEmailAndPassword(auth, email, password);
 
     return true;
   } catch (error) {
@@ -52,8 +52,18 @@ export const registerPatient = async (patient: Patient): Promise<boolean> => {
 export const signInPatient = async (loginObject: Login): Promise<boolean> => {
   try {
     const { email, password } = loginObject;
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    await signInWithEmailAndPassword(auth, email, password);
 
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const signOutUser = async (): Promise<boolean> => {
+  try {
+    await signOut(auth);
     return true;
   } catch (error) {
     console.error(error);
