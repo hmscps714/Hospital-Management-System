@@ -4,42 +4,6 @@ import styles from "./patientRegisterForm.module.css";
 import Image from 'next/image';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { registerPatient } from "src/api/auth";
-import { Patient } from "src/config/interfaces";
-
-export const Test = () => {
-  const patient: Patient = {
-    basicInformation: {
-      firstName: document.querySelector('#fname').value,
-      lastName: document.querySelector('#lame').value,
-      dob: document.querySelector('#dob').value,
-      healthCardNumber: document.querySelector('#hcn').value,
-      gender: document.querySelector('#gen').value,
-    },
-    personalContactInformation: {
-      email: "bobsmith@test.com",
-      password: new Date("12/24/2000").toLocaleDateString("en-US"),
-      phoneNumber: "123-456-7890",
-      homeAddress: "350 victoria st",
-    },
-    emergencyContactInformation: {
-      name: "john",
-      relationshipToPatient: "sugar daddy",
-      phoneNumber: "911",
-      email: "john@pornhub.com",
-    },
-    physicianInformation: {
-      physicianName: "johnny sins",
-      clinicName: "redtube",
-      clinicAddress: "idk",
-      clinicPhone: "987-654-3210",
-    },
-  };
-
-  async function asdf() {
-    await registerPatient(patient);
-    console.log("finished registering patient");
-  }
 
 const pages = [
   { name: "Forms", href: "/forms" },
@@ -81,32 +45,32 @@ export const Forms = () => {
                   <br></br>
                 <h4 className={styles.h4}>Personal Contact Information</h4>
                   <label className={styles.font}>Email</label>
-                  <input id="gen" className={styles.input9}/>
+                  <input id="pemail" className={styles.input9}/>
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Number</label>
-                  <input id="gen" className={styles.input}/>
+                  <input id="pnumber" className={styles.input}/>
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Adress</label>
-                  <input id="gen" className={styles.input7}/>
+                  <input id="paddress" className={styles.input7}/>
                   <br></br>
                   <br></br>
                 <h4 className={styles.h4}>Emergency Contact Information</h4>
                   <label className={styles.font}>Email</label>
-                  <input id="gen" className={styles.input9}/>
+                  <input id="eemail" className={styles.input9}/>
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Number</label>
-                  <input id="gen" className={styles.input}/>
+                  <input id="enumber" className={styles.input}/>
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Adress</label>
-                  <input id="gen" className={styles.input7}/>
+                  <input id="eaddress" className={styles.input7}/>
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Relationship</label>
-                  <input id="gen" className={styles.input2}/>
+                  <input id="erelationship" className={styles.input2}/>
                   <br></br>
                   <br></br>    
                 <h5 className={styles.h5}>* mandatory field</h5>
@@ -127,23 +91,23 @@ export const Forms = () => {
         <div className={styles.otherDetails}>
             <h4 className={styles.h4}>Family Physician Inforamtion</h4>
                 <label className={styles.font}> Physician Name </label>
-                <input className={styles.input1} />
+                <input  id="physname" className={styles.input1} />
                 <br></br>
                 <br></br>
                 <label className={styles.font}> Clinic Name </label>
-                <input className={styles.input2} />
+                <input  id="clicname" className={styles.input2} />
                 <br></br>
                 <br></br>
                 <label className={styles.font}> Clinic Address </label>
-                <input className={styles.input3} />
+                <input  id="clicaddress" className={styles.input3} />
                 <br></br>
                 <br></br>
                 <label className={styles.font}> Clinic Phone </label>
-                <input className={styles.input2} />
+                <input  id="clicphone" className={styles.input2} />
                 <br></br>
                 <br></br>
                 <label className={styles.font}> Clinic Email </label>
-                <input className={styles.input4} />
+                <input  id="clicemail" className={styles.input4} />
                 <br></br>
                 <br></br>
             <h4 className={styles.h4}>Preferred Pharmacy</h4>
