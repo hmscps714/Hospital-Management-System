@@ -49,11 +49,11 @@ export const Forms = () => {
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Number</label>
-                  <input className={styles.input}/>
+                  <input className={styles.input12}/>
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Adress</label>
-                  <input className={styles.input7}/>
+                  <input className={styles.input11}/>
                   <br></br>
                   <br></br>
                 <h4 className={styles.h4}>Emergency Contact Information</h4>
@@ -62,11 +62,11 @@ export const Forms = () => {
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Number</label>
-                  <input className={styles.input}/>
+                  <input className={styles.input12}/>
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Adress</label>
-                  <input className={styles.input7}/>
+                  <input className={styles.input11}/>
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Relationship</label>
@@ -89,46 +89,22 @@ export const Forms = () => {
             </div>
         </div>
         <div className={styles.otherDetails}>
-            <h4 className={styles.h4}>Family Physician Inforamtion</h4>
-                <label className={styles.font}> Physician Name </label>
+            <h4 className={styles.h4}>Log-in Details</h4>
+                <label className={styles.font}> Username </label>
                 <input className={styles.input1} />
                 <br></br>
                 <br></br>
-                <label className={styles.font}> Clinic Name </label>
-                <input className={styles.input2} />
+                <label className={styles.font}> Password </label>
+                <input className={styles.input1} />
                 <br></br>
                 <br></br>
-                <label className={styles.font}> Clinic Address </label>
+            <h4 className={styles.h4}>Department </h4>
+                <label className={styles.font}>Specialty </label>
                 <input className={styles.input3} />
                 <br></br>
                 <br></br>
-                <label className={styles.font}> Clinic Phone </label>
-                <input className={styles.input2} />
-                <br></br>
-                <br></br>
-                <label className={styles.font}> Clinic Email </label>
+                <label className={styles.font}>Floor </label>
                 <input className={styles.input4} />
-                <br></br>
-                <br></br>
-            <h4 className={styles.h4}>Preferred Pharmacy</h4>
-                <label className={styles.font}>Name </label>
-                <input className={styles.input5} />
-                <br></br>
-                <br></br>
-                <label className={styles.font}>Phone </label>
-                <input className={styles.input5} />
-                <br></br>
-                <br></br>
-                <label className={styles.font}>Fax </label>
-                <input className={styles.input6} />
-                <br></br>
-                <br></br>
-                <label className={styles.font}>Address </label>
-                <input className={styles.input7} />
-                <br></br>
-                <br></br>
-                <label className={styles.font}>Email </label>
-                <input className={styles.input8} />
                 <br></br>
                 <br></br>
                 <br></br>
