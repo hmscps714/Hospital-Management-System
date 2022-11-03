@@ -12,7 +12,6 @@ export interface Practitioner {
   };
   personalContactInformation: {
     email: string;
-    password: string;
     phoneNumber: string;
     homeAddress: string;
   };
@@ -46,7 +45,6 @@ export interface Patient {
   };
   personalContactInformation: {
     email: string;
-    password: string;
     phoneNumber: string;
     homeAddress: string;
   };

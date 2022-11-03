@@ -10,7 +10,6 @@ export const patient: Patient = {
   },
   personalContactInformation: {
     email: "bobsmith@test.com",
-    password: new Date("12/24/2000").toLocaleDateString("en-US"),
     phoneNumber: "123-456-7890",
     homeAddress: "350 victoria st",
   },
@@ -38,7 +37,6 @@ export const patient2: Patient = {
   },
   personalContactInformation: {
     email: "jaredfogle@subway.com",
-    password: new Date("04/20/1969").toLocaleDateString("en-US"),
     phoneNumber: "416-967-1111",
     homeAddress: "prison",
   },
