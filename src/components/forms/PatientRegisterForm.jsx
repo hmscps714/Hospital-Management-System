@@ -4,6 +4,42 @@ import styles from "./patientRegisterForm.module.css";
 import Image from 'next/image';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import { registerPatient } from "src/api/auth";
+import { Patient } from "src/config/interfaces";
+
+export const Test = () => {
+  const patient: Patient = {
+    basicInformation: {
+      firstName: document.querySelector('#fname').value,
+      lastName: document.querySelector('#lame').value,
+      dob: document.querySelector('#dob').value,
+      healthCardNumber: document.querySelector('#hcn').value,
+      gender: document.querySelector('#gen').value,
+    },
+    personalContactInformation: {
+      email: "bobsmith@test.com",
+      password: new Date("12/24/2000").toLocaleDateString("en-US"),
+      phoneNumber: "123-456-7890",
+      homeAddress: "350 victoria st",
+    },
+    emergencyContactInformation: {
+      name: "john",
+      relationshipToPatient: "sugar daddy",
+      phoneNumber: "911",
+      email: "john@pornhub.com",
+    },
+    physicianInformation: {
+      physicianName: "johnny sins",
+      clinicName: "redtube",
+      clinicAddress: "idk",
+      clinicPhone: "987-654-3210",
+    },
+  };
+
+  async function asdf() {
+    await registerPatient(patient);
+    console.log("finished registering patient");
+  }
 
 const pages = [
   { name: "Forms", href: "/forms" },
@@ -23,54 +59,54 @@ export const Forms = () => {
             <div className={styles.center}>
               <div className={styles.info}>
                 <h4 className={styles.h4}>Basic information</h4>
-                  <label htmlFor="name" className={styles.font}> First Name <label className={styles.red}>*</label> </label>
-                  <input className={styles.input2} id="name" name="name" type="text" autocomplete="name" required/>
+                  <label htmlFor="fname" className={styles.font}> First Name <label className={styles.red}>*</label> </label>
+                  <input className={styles.input2} id="fname" name="fname" type="text" autocomplete="fname" required/>
                   <br></br>
                   <br></br>
-                  <label htmlFor="name" className={styles.font}> Last Name <label className={styles.red}>*</label> </label>
-                  <input className={styles.input2} id="name" name="name" type="text" autocomplete="name" required/>
+                  <label htmlFor="lname" className={styles.font}> Last Name <label className={styles.red}>*</label> </label>
+                  <input className={styles.input2} id="lname" name="lname" type="text" autocomplete="lname" required/>
                   <br></br>
                   <br></br>
-                  <label htmlFor="name" className={styles.font}> Date of Birth <label className={styles.red}>*</label> </label>
-                  <input className={styles.input3} id="name" name="name" type="text" autocomplete="name" required/>
+                  <label htmlFor="dob" className={styles.font}> Date of Birth <label className={styles.red}>*</label> </label>
+                  <input className={styles.input3} id="dob" name="dob" type="text" autocomplete="dob" required/>
                   <br></br>
                   <br></br>
-                  <label htmlFor="name" className={styles.font}> Health Card Number <label className={styles.red}>*</label> </label>
-                  <input className={styles.input10} id="name" name="name" type="text" autocomplete="name" required/>
+                  <label htmlFor="hcn" className={styles.font}> Health Card Number <label className={styles.red}>*</label> </label>
+                  <input className={styles.input10} id="hcn" name="hcn" type="text" autocomplete="hcn" required/>
                   <br></br>
                   <br></br>
-                  <label htmlFor="name" className={styles.font}> Gender <label className={styles.red}>*</label> </label>
-                  <input className={styles.input} id="name" name="name" type="text" autocomplete="name" required/>
+                  <label htmlFor="gen" className={styles.font}> Gender <label className={styles.red}>*</label> </label>
+                  <input className={styles.input} id="gen" name="gen" type="text" autocomplete="gen" required/>
                   <br></br>
                   <br></br>
                 <h4 className={styles.h4}>Personal Contact Information</h4>
                   <label className={styles.font}>Email</label>
-                  <input className={styles.input9}/>
+                  <input id="gen" className={styles.input9}/>
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Number</label>
-                  <input className={styles.input}/>
+                  <input id="gen" className={styles.input}/>
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Adress</label>
-                  <input className={styles.input7}/>
+                  <input id="gen" className={styles.input7}/>
                   <br></br>
                   <br></br>
                 <h4 className={styles.h4}>Emergency Contact Information</h4>
                   <label className={styles.font}>Email</label>
-                  <input className={styles.input9}/>
+                  <input id="gen" className={styles.input9}/>
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Number</label>
-                  <input className={styles.input}/>
+                  <input id="gen" className={styles.input}/>
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Adress</label>
-                  <input className={styles.input7}/>
+                  <input id="gen" className={styles.input7}/>
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Relationship</label>
-                  <input className={styles.input2}/>
+                  <input id="gen" className={styles.input2}/>
                   <br></br>
                   <br></br>    
                 <h5 className={styles.h5}>* mandatory field</h5>
