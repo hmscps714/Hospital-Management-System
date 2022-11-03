@@ -3,9 +3,12 @@ import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "src/api/init";
 import { Login, Practitioner, Patient } from "src/config/interfaces";
 
-export const registerPractitioner = async (practitioner: Practitioner): Promise<boolean> => {
+export const registerPractitioner = async (
+  loginObject: Login,
+  practitioner: Practitioner
+): Promise<boolean> => {
   try {
-    const { email, password } = practitioner.personalContactInformation;
+    const { email, password } = loginObject;
 
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
@@ -32,9 +35,9 @@ export const signInPractitioner = async (loginObject: Login): Promise<boolean> =
   }
 };
 
-export const registerPatient = async (patient: Patient): Promise<boolean> => {
+export const registerPatient = async (loginObject: Login, patient: Patient): Promise<boolean> => {
   try {
-    const { email, password } = patient.personalContactInformation;
+    const { email, password } = loginObject;
 
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
