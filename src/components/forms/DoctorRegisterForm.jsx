@@ -21,56 +21,56 @@ export const Forms = () => {
         </div>
         <div className={styles.mainDetails}>
             <div className={styles.center}>
-              <div className={styles.info}>
+            <div className={styles.info}>
                 <h4 className={styles.h4}>Basic information</h4>
-                  <label htmlFor="name" className={styles.font}> First Name <label className={styles.red}>*</label> </label>
-                  <input className={styles.input2} id="name" name="name" type="text" autocomplete="name" required/>
+                  <label htmlFor="fname" className={styles.font}> First Name <label className={styles.red}>*</label> </label>
+                  <input className={styles.input2} id="fname" name="fname" type="text" autocomplete="fname" required/>
                   <br></br>
                   <br></br>
-                  <label htmlFor="name" className={styles.font}> Last Name <label className={styles.red}>*</label> </label>
-                  <input className={styles.input2} id="name" name="name" type="text" autocomplete="name" required/>
+                  <label htmlFor="lname" className={styles.font}> Last Name <label className={styles.red}>*</label> </label>
+                  <input className={styles.input2} id="lname" name="lname" type="text" autocomplete="lname" required/>
                   <br></br>
                   <br></br>
-                  <label htmlFor="name" className={styles.font}> Date of Birth <label className={styles.red}>*</label> </label>
-                  <input className={styles.input3} id="name" name="name" type="text" autocomplete="name" required/>
+                  <label htmlFor="dob" className={styles.font}> Date of Birth <label className={styles.red}>*</label> </label>
+                  <input className={styles.input3} id="dob" name="dob" type="text" autocomplete="dob" required/>
                   <br></br>
                   <br></br>
-                  <label htmlFor="name" className={styles.font}> Health Card Number <label className={styles.red}>*</label> </label>
-                  <input className={styles.input10} id="name" name="name" type="text" autocomplete="name" required/>
+                  <label htmlFor="hcn" className={styles.font}> Health Card Number <label className={styles.red}>*</label> </label>
+                  <input className={styles.input10} id="hcn" name="hcn" type="text" autocomplete="hcn" required/>
                   <br></br>
                   <br></br>
-                  <label htmlFor="name" className={styles.font}> Gender <label className={styles.red}>*</label> </label>
-                  <input className={styles.input} id="name" name="name" type="text" autocomplete="name" required/>
+                  <label htmlFor="gen" className={styles.font}> Gender <label className={styles.red}>*</label> </label>
+                  <input className={styles.input} id="gen" name="gen" type="text" autocomplete="gen" required/>
                   <br></br>
                   <br></br>
                 <h4 className={styles.h4}>Personal Contact Information</h4>
                   <label className={styles.font}>Email</label>
-                  <input className={styles.input9}/>
+                  <input id="pemail" className={styles.input9}/>
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Number</label>
-                  <input className={styles.input12}/>
+                  <input id="pnumber" className={styles.input12}/>
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Adress</label>
-                  <input className={styles.input11}/>
+                  <input id="paddress" className={styles.input11}/>
                   <br></br>
                   <br></br>
                 <h4 className={styles.h4}>Emergency Contact Information</h4>
                   <label className={styles.font}>Email</label>
-                  <input className={styles.input9}/>
+                  <input id="eemail" className={styles.input9}/>
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Number</label>
-                  <input className={styles.input12}/>
+                  <input id="enumber" className={styles.input12}/>
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Adress</label>
-                  <input className={styles.input11}/>
+                  <input id="eaddress" className={styles.input11}/>
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Relationship</label>
-                  <input className={styles.input2}/>
+                  <input id="erelationship" className={styles.input2}/>
                   <br></br>
                   <br></br>    
                 <h5 className={styles.h5}>* mandatory field</h5>
