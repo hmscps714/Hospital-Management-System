@@ -23,7 +23,7 @@ export const registerPractitioner = async (practitioner: Practitioner): Promise<
 export const signInPractitioner = async (loginObject: Login): Promise<boolean> => {
   try {
     const { email, password } = loginObject;
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    await signInWithEmailAndPassword(auth, email, password);
 
     return true;
   } catch (error) {
@@ -52,7 +52,7 @@ export const registerPatient = async (patient: Patient): Promise<boolean> => {
 export const signInPatient = async (loginObject: Login): Promise<boolean> => {
   try {
     const { email, password } = loginObject;
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    await signInWithEmailAndPassword(auth, email, password);
 
     return true;
   } catch (error) {
@@ -61,17 +61,7 @@ export const signInPatient = async (loginObject: Login): Promise<boolean> => {
   }
 };
 
-export const signOutPractitioner = async (): Promise<boolean> => {
-  try {
-    await signOut(auth);
-    return true;
-  } catch (error) {
-    console.error(error);
-    return false;
-  }
-};
-
-export const signOutPatient = async (): Promise<boolean> => {
+export const signOutUser = async (): Promise<boolean> => {
   try {
     await signOut(auth);
     return true;
