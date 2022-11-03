@@ -49,11 +49,11 @@ export const Forms = () => {
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Number</label>
-                  <input id="pnumber" className={styles.input}/>
+                  <input id="pnumber" className={styles.input12}/>
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Adress</label>
-                  <input id="paddress" className={styles.input7}/>
+                  <input id="paddress" className={styles.input11}/>
                   <br></br>
                   <br></br>
                 <h4 className={styles.h4}>Emergency Contact Information</h4>
@@ -62,11 +62,11 @@ export const Forms = () => {
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Number</label>
-                  <input id="enumber" className={styles.input}/>
+                  <input id="enumber" className={styles.input12}/>
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Adress</label>
-                  <input id="eaddress" className={styles.input7}/>
+                  <input id="eaddress" className={styles.input11}/>
                   <br></br>
                   <br></br>
                   <label className={styles.font}>Relationship</label>
