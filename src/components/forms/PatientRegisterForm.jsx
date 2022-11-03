@@ -22,11 +22,61 @@ export const Forms = () => {
         <div className={styles.mainDetails}>
             <div className={styles.center}>
               <div className={styles.info}>
+                <h4 className={styles.h4}>Basic information</h4>
+                  <label htmlFor="name" className={styles.font}> First Name <label className={styles.red}>*</label> </label>
+                  <input className={styles.input2} id="name" name="name" type="text" autocomplete="name" required/>
+                  <br></br>
+                  <br></br>
+                  <label htmlFor="name" className={styles.font}> Last Name <label className={styles.red}>*</label> </label>
+                  <input className={styles.input2} id="name" name="name" type="text" autocomplete="name" required/>
+                  <br></br>
+                  <br></br>
+                  <label htmlFor="name" className={styles.font}> Date of Birth <label className={styles.red}>*</label> </label>
+                  <input className={styles.input3} id="name" name="name" type="text" autocomplete="name" required/>
+                  <br></br>
+                  <br></br>
+                  <label htmlFor="name" className={styles.font}> Health Card Number <label className={styles.red}>*</label> </label>
+                  <input className={styles.input10} id="name" name="name" type="text" autocomplete="name" required/>
+                  <br></br>
+                  <br></br>
+                  <label htmlFor="name" className={styles.font}> Gender <label className={styles.red}>*</label> </label>
+                  <input className={styles.input} id="name" name="name" type="text" autocomplete="name" required/>
+                  <br></br>
+                  <br></br>
+                <h4 className={styles.h4}>Personal Contact Information</h4>
+                  <label className={styles.font}>Email</label>
+                  <input className={styles.input9}/>
+                  <br></br>
+                  <br></br>
+                  <label className={styles.font}>Number</label>
+                  <input className={styles.input}/>
+                  <br></br>
+                  <br></br>
+                  <label className={styles.font}>Adress</label>
+                  <input className={styles.input7}/>
+                  <br></br>
+                  <br></br>
+                <h4 className={styles.h4}>Emergency Contact Information</h4>
+                  <label className={styles.font}>Email</label>
+                  <input className={styles.input9}/>
+                  <br></br>
+                  <br></br>
+                  <label className={styles.font}>Number</label>
+                  <input className={styles.input}/>
+                  <br></br>
+                  <br></br>
+                  <label className={styles.font}>Adress</label>
+                  <input className={styles.input7}/>
+                  <br></br>
+                  <br></br>
+                  <label className={styles.font}>Relationship</label>
+                  <input className={styles.input2}/>
+                  <br></br>
+                  <br></br>    
                 <h5 className={styles.h5}>* mandatory field</h5>
-
               </div>
               <div className={styles.imageUpload}>
-                <Image src="/forms/ddu.webp" width="260%" height="180%"></Image>
+                <Image src="/forms/ddu.webp" width="283%" height="190%"></Image>
                 <h4 className={styles.h4}>Max. Size: 5MB</h4>
                 <h4 className={styles.h4}>Allowed Types: JPG, PNG, GIF, JPEG</h4>
                 <div className={styles.center}>
@@ -39,7 +89,50 @@ export const Forms = () => {
             </div>
         </div>
         <div className={styles.otherDetails}>
-
+            <h4 className={styles.h4}>Family Physician Inforamtion</h4>
+                <label className={styles.font}> Physician Name </label>
+                <input className={styles.input1} />
+                <br></br>
+                <br></br>
+                <label className={styles.font}> Clinic Name </label>
+                <input className={styles.input2} />
+                <br></br>
+                <br></br>
+                <label className={styles.font}> Clinic Address </label>
+                <input className={styles.input3} />
+                <br></br>
+                <br></br>
+                <label className={styles.font}> Clinic Phone </label>
+                <input className={styles.input2} />
+                <br></br>
+                <br></br>
+                <label className={styles.font}> Clinic Email </label>
+                <input className={styles.input4} />
+                <br></br>
+                <br></br>
+            <h4 className={styles.h4}>Preferred Pharmacy</h4>
+                <label className={styles.font}>Name </label>
+                <input className={styles.input5} />
+                <br></br>
+                <br></br>
+                <label className={styles.font}>Phone </label>
+                <input className={styles.input5} />
+                <br></br>
+                <br></br>
+                <label className={styles.font}>Fax </label>
+                <input className={styles.input6} />
+                <br></br>
+                <br></br>
+                <label className={styles.font}>Address </label>
+                <input className={styles.input7} />
+                <br></br>
+                <br></br>
+                <label className={styles.font}>Email </label>
+                <input className={styles.input8} />
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
           <div className={styles.btnAlign}>
             <Stack spacing={2} direction="row">
               <Button className={styles.btnSub} variant="contained">Submit</Button>

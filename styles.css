@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css?family=Inter:400,700,800");
+
 body {
   margin: 0 auto;
   overflow: auto;
