@@ -8,7 +8,7 @@ export const PatientList = () => {
     return (
       <ThemeProvider theme={theme}>
         <NavbarHome />
-        <h1>Patients Lists</h1>
+        <h1>Doctor Lists</h1>
         <Table />
       </ThemeProvider>
       
@@ -16,4 +16,3 @@ export const PatientList = () => {
   };
   
   export default PatientList;
-  

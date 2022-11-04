@@ -4,6 +4,7 @@ import MOCK_DATA from './MOCK_DATA.json'
 import { COLUMNS } from './columns'
 import styles from './Table.module.css'
 
+
 export const Table = () => {
 
     const columns = useMemo (() => COLUMNS, [])
@@ -14,6 +15,7 @@ export const Table = () => {
         data
     })
 
+
     //Destructure
     const { 
         getTableProps, 
@@ -22,6 +24,7 @@ export const Table = () => {
         rows, 
         prepareRow, 
     } = tableInstance
+
 
     //table structure    
     return (
@@ -49,7 +52,7 @@ export const Table = () => {
                     rows.map(row => {
                         prepareRow(row)
                         return (
-                            <tr {...row.getRowProps()}>
+                            <tr {...row.getRowProps()} className={styles.tr}>
                                 {
                                     //access to individual cells in the rows
                                     row.cells.map((cell) => {
