@@ -5,15 +5,15 @@ import NavbarHome from "src/components/NavbarHome";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-import { Patient } from "src/config/interfaces";
-import { DetailedPatientInfo } from "src/components/PatientInfo/DetailedPatientInfo";
+import { Practitioner } from "src/config/interfaces";
+import { DetailedPractitionerInfo } from "src/components/PractitionerInfo/DetailedPractitionerInfo";
 //import { signInPatient, signInPractitioner } from "src/api/auth";
-import styles from "./patient-info.module.css";
+import styles from "./practitioner-info.module.css";
 
-export const PatientInfo = () => {
+export const PractitionerInfo = () => {
   const router = useRouter();
 
-  const dummy_patient: Patient = {
+  const dummy_practitioner: Practitioner = {
     basicInformation: {
       firstName: "bob",
       lastName: "smith",
@@ -33,41 +33,32 @@ export const PatientInfo = () => {
       phoneNumber: "911",
       email: "john@pornhub.com",
     },
-    physicianInformation: {
-      physicianName: "johnny sins",
-      clinicName: "redtube",
-      clinicAddress: "idk",
-      clinicPhone: "987-654-3210",
-    },
+    fieldSpecialty: "Registered Nurse",
   };
 
-  const { patientID } = router.query;
+  const { practitionerID } = router.query;
 
   useEffect(() => {
-    if (!patientID) {
+    if (!practitionerID) {
       return;
     }
     // const fetchSomethingById = async () => {
     //   const response = await fetch(`/api/something/${patientID}`);
     // };
     // fetchSomethingById();
-    console.log(patientID);
-  }, [patientID]);
+    console.log(practitionerID);
+  }, [practitionerID]);
 
   // console.log(patientID);
   return (
     <ThemeProvider theme={theme}>
       <NavbarHome />
-      <h1 className={styles.Title}>Patient's Information {patientID}</h1>
+      <h1 className={styles.Title}>Practitioner's Information {practitionerID}</h1>
       <div>
-        <DetailedPatientInfo patientData={dummy_patient}></DetailedPatientInfo>
-        <div className={styles.Appointment}>
-          <h2>Appointment information</h2>
-          WIP
-        </div>
+        <DetailedPractitionerInfo practitionerData={dummy_practitioner}></DetailedPractitionerInfo>
       </div>
     </ThemeProvider>
   );
 };
 
-export default PatientInfo;
+export default PractitionerInfo;

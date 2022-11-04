@@ -1,17 +1,17 @@
 import React from "react";
 import { Patient } from "src/config/interfaces";
 import moment from "moment";
-import styles from "./DetailedPatientInfo.module.css";
+import styles from "./DetailedPractitionerInfo.module.css";
+import { style } from "@mui/system";
 
-export const DetailedPatientInfo = ({ patientData }) => {
+export const DetailedPractitionerInfo = ({ practitionerData }) => {
   const {
     basicInformation,
     personalContactInformation,
     emergencyContactInformation,
-    physicianInformation,
-    pharmacy = {},
     insurance = {},
-  } = patientData;
+    fieldSpecialty = "None",
+  } = practitionerData;
 
   const {
     firstName = "None",
@@ -33,22 +33,6 @@ export const DetailedPatientInfo = ({ patientData }) => {
     phoneNumber: ePhone = "None",
     email: eEmail = "None",
   } = emergencyContactInformation;
-
-  const {
-    physicianName = "None",
-    clinicName = "None",
-    clinicAddress = "None",
-    clinicPhone = "None",
-    clinicEmail = "None",
-  } = physicianInformation;
-
-  const {
-    name: pName = "None",
-    phone: pPhone = "None",
-    fax: pFax = "None",
-    email: pEmail = "None",
-    address: pAddress = "None",
-  } = pharmacy;
 
   const {
     memberName = "None",
@@ -93,24 +77,6 @@ export const DetailedPatientInfo = ({ patientData }) => {
         </ul>
       </div>
       <div className={styles.Card}>
-        <h2>Physician Information</h2>
-        <ul>
-          <li>Physician name: {physicianName}</li>
-          <li>Clinic name: {clinicName}</li>
-          <li>Clinic address: {clinicAddress}</li>
-          <li>Clinic phone: {clinicPhone}</li>
-          <li>Clinic email: {clinicEmail}</li>
-        </ul>
-
-        <h2>Pharmacy Information</h2>
-        <ul>
-          <li>Name: {pName}</li>
-          <li>Phone: {pPhone}</li>
-          <li>Fax: {pFax}</li>
-          <li>Email: {pEmail}</li>
-          <li>Address: {pAddress}</li>
-        </ul>
-
         <h2>Insurance Information</h2>
         <ul>
           <li>Member name: {memberName}</li>
@@ -121,6 +87,11 @@ export const DetailedPatientInfo = ({ patientData }) => {
             Plan expiry date:
             {planExpiryDate ? moment(planExpiryDate).format("YYYY-MM-DD").toString() : "None"}
           </li>
+        </ul>
+
+        <h2>Field information</h2>
+        <ul>
+          <li>Field specialty: {fieldSpecialty}</li>
         </ul>
       </div>
     </div>
