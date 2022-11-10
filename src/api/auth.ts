@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "src/api/init";
 import { Login, Practitioner, Patient } from "src/config/interfaces";
 
@@ -72,4 +72,22 @@ export const signOutUser = async (): Promise<boolean> => {
     console.error(error);
     return false;
   }
+};
+
+export const userIsPatient = async (): Promise<boolean> => {
+  const user = auth.currentUser;
+
+  if (user === null) return false;
+
+  const querySnapshot = await getDoc(doc(db, "patient", user.uid));
+  return querySnapshot.exists();
+};
+
+export const userIsPractitioner = async (): Promise<boolean> => {
+  const user = auth.currentUser;
+
+  if (user === null) return false;
+
+  const querySnapshot = await getDoc(doc(db, "practitioner", user.uid));
+  return querySnapshot.exists();
 };
