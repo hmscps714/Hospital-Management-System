@@ -62,3 +62,5 @@ export const NursesList = () => {
     </ThemeProvider>
   );
 };
+
+export default NursesList;

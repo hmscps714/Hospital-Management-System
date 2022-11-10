@@ -19,6 +19,8 @@ export const Table = ({ tableData, routePath }) => {
   const columns = useMemo(() => columnsFromData, []);
   const data = useMemo(() => tableData, []);
 
+  const initialState = { hiddenColumns: ["uid"] };
+
   const tableInstance = useTable({
     columns,
     data,

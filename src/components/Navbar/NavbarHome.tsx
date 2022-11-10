@@ -14,8 +14,8 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 const pages = [
-  { name: "Home", href: "" },
-  { name: "Our Staff", href: "" },
+  { name: "Home", href: "/" },
+  { name: "Our Staff", href: "/" },
   { name: "About us", href: "/about" },
   { name: "Login", href: "/login" },
 ];
@@ -60,6 +60,8 @@ export const NavbarHome = () => {
             width="150px"
             height="80px"
             objectFit="contain"
+            onClick={() => router.push("/")}
+            style={{cursor: "pointer"}}
           />
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
