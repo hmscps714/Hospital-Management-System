@@ -1,0 +1,23 @@
+.Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Title {
+  text-align: center;
+}
+
+.Appointment {
+  border: 1px solid #aad0bd;
+  border-radius: 30px;
+  margin: 30px 40px;
+  height: 300px;
+  padding: 20px;
+}
+
+.Appointment h2 {
+  text-decoration: underline;
+  text-decoration-color: #aad0bd;
+}

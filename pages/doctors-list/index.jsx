@@ -1,7 +1,8 @@
 import React from "react";
 import { ThemeProvider } from "@mui/material";
 import theme from "src/config/theme";
-import NavbarHome from "src/components/NavbarHome";
+import NavbarHome from "src/components/Navbar/NavbarHome";
+import Table from "src/components/Tables/Table.js";
 import FilteringTable from "../../src/components/Tables/FilteringTable";
 import  MainTable from "../../src/components/Tables/MainTable";
 
@@ -16,5 +17,3 @@ export const DoctorsList = () => {
       
     );
   };
-  
-  export default DoctorsList;
