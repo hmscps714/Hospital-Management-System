@@ -4,7 +4,7 @@ import theme from "src/config/theme";
 import NavbarHome from "src/components/NavbarHome";
 import Table from 'src/components/Tables/Table.js'
 
-export const PatientList = () => {
+export const NurseList = () => {
     return (
       <ThemeProvider theme={theme}>
         <NavbarHome />
@@ -15,4 +15,4 @@ export const PatientList = () => {
     );
   };
   
-  export default PatientList;
+  export default NurseList;

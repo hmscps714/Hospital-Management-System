@@ -1,12 +1,12 @@
 import React, { useMemo } from "react";
-import { useTable, useGlobalFilter } from 'react-table'
+import { useTable, usePagination, useGlobalFilter } from 'react-table'
 import MOCK_DATA from './MOCK_DATA.json'
 import { COLUMNS } from './columns'
 import styles from './Table.module.css'
 import { GlobalFilter } from "./GlobalFilter";
 
 
-export const Table = () => {
+export const MainTable = () => {
 
     const columns = useMemo (() => COLUMNS, [])
     const data = useMemo (() => MOCK_DATA, [])
@@ -16,17 +16,22 @@ export const Table = () => {
         getTableProps, 
         getTableBodyProps, 
         headerGroups, 
-        rows, 
-        prepareRow, 
+        page,
+        nextPage,
+        previousPage,
         state,
-        setGlobalFilter,
+        setGlobalFilter, 
+        prepareRow, 
     } =  useTable({
         columns,
         data
-    })
+    }, usePagination)
+
+    const { globalFilter } = state
 
     //table structure    
     return (
+        <>
         <table {...getTableProps} className={styles.tables}>
             <thead>
                 {headerGroups.map((headerGroup) => (
@@ -48,7 +53,7 @@ export const Table = () => {
             <tbody {...getTableBodyProps()}>
                 {
                     //access to each row
-                    rows.map(row => {
+                    page.map(row => {
                         prepareRow(row)
                         return (
                             <tr {...row.getRowProps()} className={styles.tr}>
@@ -66,7 +71,12 @@ export const Table = () => {
                 }
             </tbody>
         </table>
+        <div>
+            <button onClick={() => previousPage()}>Previous</button>
+            <button onClick={() => nextPage()}>Next</button>
+        </div>
+        </>
     )
 }
 
-export default Table;
+export default MainTable;

@@ -2,11 +2,11 @@ import React, { useMemo } from "react";
 import { useTable, useGlobalFilter } from 'react-table'
 import MOCK_DATA from './MOCK_DATA.json'
 import { COLUMNS } from './columns'
-import styles from './Table.module.css'
 import { GlobalFilter } from "./GlobalFilter";
+import styles from './Table.module.css'
 
 
-export const Table = () => {
+export const FilteringTable = () => {
 
     const columns = useMemo (() => COLUMNS, [])
     const data = useMemo (() => MOCK_DATA, [])
@@ -22,11 +22,16 @@ export const Table = () => {
         setGlobalFilter,
     } =  useTable({
         columns,
-        data
-    })
+        data,
+    }, useGlobalFilter)
+
+    const { globalFilter } = state
+
 
     //table structure    
     return (
+        <>
+        <GlobalFilter filter ={globalFilter} setFilter={setGlobalFilter} />
         <table {...getTableProps} className={styles.tables}>
             <thead>
                 {headerGroups.map((headerGroup) => (
@@ -66,7 +71,8 @@ export const Table = () => {
                 }
             </tbody>
         </table>
+        </>
     )
 }
 
-export default Table;
+export default FilteringTable;
