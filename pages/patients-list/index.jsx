@@ -1,11 +1,11 @@
 import React from "react";
 import { ThemeProvider } from "@mui/material";
 import theme from "src/config/theme";
-import NavbarHome from "src/components/NavbarHome";
-import Table from 'src/components/Tables/Table.js';
+import NavbarHome from "src/components/Navbar/NavbarHome";
+import Table from "src/components/Tables/Table.js";
 import { useState, useEffect } from "react";
 import { getAllPatients } from "src/api/db";
-import { CustomLoader } from "../../src/components/CustomLoader/CustomLoader";
+import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 
 
 export const PatientList = () => {
@@ -43,11 +43,16 @@ export const PatientList = () => {
         return patientData['emergencyContactInformation']['phoneNumber']
       }
 
+      const getUID = (patientData) => {
+        return patientData['uid']
+      }
+
       return patientList.map(p => {
         const patientObj = {
           "name": getName(p),
           "email": getEmail(p),
-          "phone": getPhone(p)
+          "phone": getPhone(p),
+          "uid": getUID(p)
         }
         return patientObj
       })

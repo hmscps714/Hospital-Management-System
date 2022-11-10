@@ -19,7 +19,10 @@
 
 .tr:nth-child(even){background-color: #f2f2f2;}
 
-.tr:hover {background-color: #ddd;}
+.tr:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
 
 
 .th {
@@ -28,4 +31,5 @@
     text-align: center;
     background-color: #AAD0BD;
     color: black;
+    cursor: default;
 }

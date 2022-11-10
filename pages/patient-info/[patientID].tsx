@@ -9,6 +9,8 @@ import { DetailedPatientInfo } from "src/components/PatientInfo/DetailedPatientI
 import styles from "./patient-info.module.css";
 import { getPatient } from "src/api/db";
 
+import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
+
 export const PatientInfo = () => {
   const router = useRouter();
   const { patientID } = router.query;
@@ -33,7 +35,7 @@ export const PatientInfo = () => {
       <NavbarHome />
       <h1 className={styles.Title}>Patient's Information {patientID}</h1>
       <div>
-        {patient ? <DetailedPatientInfo patientData={patient} /> : <h6>loading</h6>}
+        {patient ? <DetailedPatientInfo patientData={patient} /> : <CustomLoader/>}
         <div className={styles.Appointment}>
           <h2>Appointment information</h2>
           WIP
