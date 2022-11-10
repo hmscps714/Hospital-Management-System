@@ -29,7 +29,7 @@ export interface Practitioner {
     planExpiryDate?: Date;
   };
   fieldSpecialty: string;
-  uid: string;
+  uid?: string;
 }
 
 export interface Patient {
@@ -76,7 +76,7 @@ export interface Patient {
     planNumber?: number;
     planExpiryDate?: Date;
   };
-  uid: string;
+  uid?: string;
 }
 
 export interface Login {

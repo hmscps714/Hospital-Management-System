@@ -14,6 +14,8 @@ export const registerPractitioner = async (
     const user = userCredential.user;
     const { uid } = user;
 
+    practitioner.uid = uid;
+
     await setDoc(doc(db, "practitioner", uid), practitioner);
 
     return true;
@@ -42,6 +44,8 @@ export const registerPatient = async (loginObject: Login, patient: Patient): Pro
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
     const { uid } = user;
+
+    patient.uid = uid;
 
     await setDoc(doc(db, "patient", uid), patient);
 
