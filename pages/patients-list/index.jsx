@@ -1,6 +1,7 @@
 import React from "react";
 import { ThemeProvider } from "@mui/material";
 import theme from "src/config/theme";
+
 import NavbarHome from "src/components/Navbar/NavbarHome";
 import Table from "src/components/Tables/Table.js";
 import { useState, useEffect } from "react";
@@ -64,6 +65,7 @@ export const PatientList = () => {
         <h1 style={{textAlign: "center"}}>Patients List</h1>
         {patientList ?  <Table tableData={extractInfo()}/>  : <CustomLoader/>}
         {console.log(patientList)}
+
       </ThemeProvider>
       
     );

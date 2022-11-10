@@ -1,9 +1,11 @@
 import React, { useMemo } from "react";
+
 import { useTable } from "react-table";
 import MOCK_DATA from "./MOCK_DATA.json";
 import { COLUMNS } from "./columns";
 import styles from "./Table.module.css";
 import { useRouter } from "next/router";
+
 
 export const Table = ({ tableData }) => {
   const router = useRouter();
@@ -17,6 +19,7 @@ export const Table = ({ tableData }) => {
 
   const columns = useMemo(() => columnsFromData, []);
   const data = useMemo(() => tableData, []);
+
 
   const tableInstance = useTable({
     columns,
