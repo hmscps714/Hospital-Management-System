@@ -27,3 +27,9 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #4e6e48; 
 }
+
+.errorMessage {
+  color: red;
+  text-align: center;
+  font-size: 1.5rem;
+}

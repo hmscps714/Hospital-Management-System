@@ -5,12 +5,17 @@ import { userIsPractitioner } from "src/api/auth";
 
 export const getPatient = async (uid: string): Promise<Patient | null> => {
   const querySnapshot = await getDoc(doc(db, "patient", uid));
-  return querySnapshot.data() as Patient;
+  if (querySnapshot.exists()) return querySnapshot.data() as Patient;
+  else return Promise.reject(new Error("Patient with the provided uid does not exist in database"));
 };
 
 export const getPractitioner = async (uid: string): Promise<Practitioner | null> => {
   const querySnapshot = await getDoc(doc(db, "practitioner", uid));
-  return querySnapshot.data() as Practitioner;
+  if (querySnapshot.exists()) return querySnapshot.data() as Practitioner;
+  else
+    return Promise.reject(
+      new Error("Practitioner with the provided uid does not exist in database")
+    );
 };
 
 export const getCurrentPatient = async (): Promise<Patient | null> => {
@@ -31,7 +36,8 @@ export const getCurrentPractitioner = async (): Promise<Practitioner | null> => 
 
 export const getAllPatients = async (): Promise<Patient[]> => {
   const querySnapshot = await getDocs(collection(db, "patient"));
-  return querySnapshot.docs.map((doc) => doc.data() as Patient);
+  if (!querySnapshot.empty) return querySnapshot.docs.map((doc) => doc.data() as Patient);
+  else return Promise.reject(new Error("Patients list cannot be retrieved"));
 };
 
 export const getAllPractitioners = async (): Promise<Practitioner[]> => {
@@ -41,16 +47,16 @@ export const getAllPractitioners = async (): Promise<Practitioner[]> => {
 
 export const getAllDoctors = async (): Promise<Practitioner[]> => {
   const q = query(collection(db, "practitioner"), where("fieldSpecialty", "!=", "nurse"));
-
   const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map((doc) => doc.data() as Practitioner);
+  if (!querySnapshot.empty) return querySnapshot.docs.map((doc) => doc.data() as Practitioner);
+  else return Promise.reject(new Error("Doctors list cannot be retrieved"));
 };
 
 export const getAllNurses = async (): Promise<Practitioner[]> => {
   const q = query(collection(db, "practitioner"), where("fieldSpecialty", "==", "nurse"));
-
   const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map((doc) => doc.data() as Practitioner);
+  if (!querySnapshot.empty) return querySnapshot.docs.map((doc) => doc.data() as Practitioner);
+  else return Promise.reject(new Error("Nurses list cannot be retrieved"));
 };
 
 export const makePrescription = async (prescription: Prescription): Promise<boolean> => {

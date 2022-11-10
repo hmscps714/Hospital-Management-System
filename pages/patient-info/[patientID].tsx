@@ -16,30 +16,42 @@ export const PatientInfo = () => {
   const { patientID } = router.query;
 
   const [patient, setPatient] = useState<Patient>(null);
-
-  const getAndSetPatient = async () => {
-    const p = await getPatient(patientID as string);
-    setPatient(p);
-  };
+  const [err, setErr] = useState<Error>(null);
+  // const getAndSetPatient = async () => {
+  //   const p = await getPatient(patientID as string);
+  //   console.log(p)
+  //   setPatient(p);
+  // };
 
   useEffect(() => {
     if (!patientID) {
       return;
     }
 
-    getAndSetPatient();
+    getPatient(patientID as string)
+    .then(p => setPatient(p))
+    .catch(e => 
+    {
+      console.error(e);
+      setErr(e)
+    })
+    // getAndSetPatient();
   }, [patientID]);
 
   return (
     <ThemeProvider theme={theme}>
       <NavbarHome />
-      <h1 className={styles.Title}>Patient's Information {patientID}</h1>
+      <h1 className={styles.Title}>Patient Information</h1>
       <div>
-        {patient ? <DetailedPatientInfo patientData={patient} /> : <CustomLoader/>}
-        <div className={styles.Appointment}>
+        {err ? <div className="errorMessage">{err.toString()}</div>: (patient && !err) ?
+        <div>
+          <DetailedPatientInfo patientData={patient} /> 
+          <div className={styles.Appointment}>
           <h2>Appointment information</h2>
-          WIP
+            WIP
+          </div>
         </div>
+        : <CustomLoader/>}        
       </div>
     </ThemeProvider>
   );

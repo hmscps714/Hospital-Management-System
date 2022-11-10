@@ -8,40 +8,33 @@ import { useState, useEffect } from "react";
 import { getAllPatients } from "src/api/db";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 
-
 export const PatientList = () => {
-    const [patientList, setPatientList] = useState(null)
-
-    // const getAndSetPatientList = async () => {
-    //   const l = await getAllPatients();
-    //   setPatientList(l);
-    // }
+    const [patientList, setPatientList] = useState(null);
+    const [err, setErr] = useState(null);
 
     useEffect(() => {
       if (!patientList) {
-        getAllPatients().then(x => setPatientList(x)).catch(e => console.log(e))
+        getAllPatients()
+        .then(x => setPatientList(x))
+        .catch(e => {
+          console.error(e);
+          setErr(e)
+        })
       }
     }, [patientList])
 
     const extractInfo = () => {
-      // const columns = Object.keys(patientList).map((key, id)=>{
-      //   return {
-      //     Header: key,
-      //     accessor: key
-      //   }
-      // })
-
       const getName = (patientData) => {
         const basicInfo = patientData['basicInformation']
         return basicInfo['firstName'] + " " + basicInfo['lastName']
       }
 
       const getEmail = (patientData) => {
-        return patientData['emergencyContactInformation']['email']
+        return patientData['personalContactInformation']['email']
       }
 
       const getPhone = (patientData) => {
-        return patientData['emergencyContactInformation']['phoneNumber']
+        return patientData['personalContactInformation']['phoneNumber']
       }
 
       const getUID = (patientData) => {
@@ -63,9 +56,7 @@ export const PatientList = () => {
       <ThemeProvider theme={theme}>
         <NavbarHome />
         <h1 style={{textAlign: "center"}}>Patients List</h1>
-        {patientList ?  <Table tableData={extractInfo()}/>  : <CustomLoader/>}
-        {console.log(patientList)}
-
+        { err ? <div className="errorMessage" >{err.toString()}</div> : patientList ?  <Table tableData={extractInfo()} routePath={'/patient-info/'} />  : <CustomLoader/>}
       </ThemeProvider>
       
     );

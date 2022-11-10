@@ -6,8 +6,7 @@ import { COLUMNS } from "./columns";
 import styles from "./Table.module.css";
 import { useRouter } from "next/router";
 
-
-export const Table = ({ tableData }) => {
+export const Table = ({ tableData, routePath }) => {
   const router = useRouter();
 
   const columnsFromData = Object.keys(tableData[0]).map((key, id) => {
@@ -20,10 +19,10 @@ export const Table = ({ tableData }) => {
   const columns = useMemo(() => columnsFromData, []);
   const data = useMemo(() => tableData, []);
 
-
   const tableInstance = useTable({
     columns,
     data,
+    initialState,
   });
 
   //Destructure
@@ -56,7 +55,7 @@ export const Table = ({ tableData }) => {
               <tr
                 {...row.getRowProps()}
                 className={styles.tr}
-                onClick={() => router.push("/patient-info/" + row.values["uid"])}
+                onClick={() => router.push(routePath + row.values["uid"])}
               >
                 {
                   //access to individual cells in the rows
