@@ -1,7 +1,6 @@
 import React from "react";
 import { ThemeProvider } from "@mui/material";
 import theme from "src/config/theme";
-
 import NavbarHome from "src/components/Navbar/NavbarHome";
 import Table from "src/components/Tables/Table.js";
 import { useState, useEffect } from "react";
