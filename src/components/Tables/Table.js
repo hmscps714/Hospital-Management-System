@@ -1,10 +1,10 @@
 import React, { useMemo } from "react";
-
-import { useTable } from "react-table";
+import { useTable, usePagination, useGlobalFilter } from "react-table";
 import MOCK_DATA from "./MOCK_DATA.json";
 import { COLUMNS } from "./columns";
 import styles from "./Table.module.css";
 import { useRouter } from "next/router";
+import { GlobalFilter } from "./GlobalFilter";
 
 export const Table = ({ tableData, routePath }) => {
   const router = useRouter();
@@ -21,17 +21,35 @@ export const Table = ({ tableData, routePath }) => {
 
   const initialState = { hiddenColumns: ["uid"] };
 
-  const tableInstance = useTable({
+  useTable({
     columns,
     data,
     initialState,
   });
 
   //Destructure
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = tableInstance;
+  const { 
+    getTableProps, 
+    getTableBodyProps, 
+    headerGroups, 
+    page,
+    nextPage,
+    previousPage,
+    state,
+    setGlobalFilter, 
+    prepareRow,  
+   } = useTable({
+    columns,
+    data,
+    initialState,
+  }, useGlobalFilter, usePagination);
+
+  const { globalFilter } = state
 
   //table structure
   return (
+    <> 
+    <GlobalFilter filter ={globalFilter} setFilter={setGlobalFilter} />
     <table {...getTableProps} className={styles.tables}>
       <thead>
         {headerGroups.map((headerGroup) => (
@@ -51,7 +69,7 @@ export const Table = ({ tableData, routePath }) => {
       <tbody {...getTableBodyProps()}>
         {
           //access to each row
-          rows.map((row) => {
+          page.map((row) => {
             prepareRow(row);
             return (
               <tr
@@ -75,6 +93,11 @@ export const Table = ({ tableData, routePath }) => {
         }
       </tbody>
     </table>
+    <div>
+        <button onClick={() => previousPage()}>Previous</button>
+        <button onClick={() => nextPage()}>Next</button>
+      </div>
+    </>
   );
 };
 

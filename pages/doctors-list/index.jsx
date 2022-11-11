@@ -2,16 +2,15 @@ import React from "react";
 import { ThemeProvider } from "@mui/material";
 import theme from "src/config/theme";
 import NavbarHome from "src/components/Navbar/NavbarHome";
-import Table from "src/components/Tables/Table.js";
+import Table from "src/components/Tables/Table";
 import { useState, useEffect } from "react";
 import { getAllDoctors } from "src/api/db";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 
-
-
 export const DoctorsList = () => {
 
-  const [doctorsList, setdoctorsList] = useState(null)
+  const [doctorsList, setdoctorsList] = useState(null);
+  const [err, setErr] = useState(null);
 
   // const getAndSetdoctorsList = async () => {
   //   const l = await getAllDocto();
@@ -20,7 +19,14 @@ export const DoctorsList = () => {
 
   useEffect(() => {
     if (!doctorsList) {
-      getAllDoctors().then(x => setdoctorsList(x)).catch(e => console.log(e))
+      getAllDoctors()
+      .then(x => {
+        setdoctorsList(x);
+      })
+      .catch(e => {
+        console.error(e);
+        setErr(e);
+      })
     }
   }, [doctorsList])
 
@@ -32,21 +38,29 @@ export const DoctorsList = () => {
     //   }
     // })
 
-    const getName = (patientData) => {
-      const basicInfo = patientData['basicInformation']
+    const getName = (doctorData
+    ) => {
+      const basicInfo = doctorData
+    ['basicInformation']
       return basicInfo['firstName'] + " " + basicInfo['lastName']
     }
 
-    const getEmail = (patientData) => {
-      return patientData['emergencyContactInformation']['email']
+    const getEmail = (doctorData
+    ) => {
+      return doctorData
+    ['emergencyContactInformation']['email']
     }
 
-    const getPhone = (patientData) => {
-      return patientData['emergencyContactInformation']['phoneNumber']
+    const getPhone = (doctorData
+    ) => {
+      return doctorData
+    ['emergencyContactInformation']['phoneNumber']
     }
 
-    const getUID = (patientData) => {
-      return patientData['uid']
+    const getUID = (doctorData
+    ) => {
+      return doctorData
+    ['uid']
     }
 
     return doctorsList.map(p => {
@@ -65,7 +79,8 @@ export const DoctorsList = () => {
       <ThemeProvider theme={theme}>
         <NavbarHome />
         <h1 style={{textAlign: "center"}}>Doctors List</h1>
-        {doctorsList ?  <Table tableData={extractInfo()}/>  : <CustomLoader/>}
+        { err ? <div className="errorMessage">{err.toString()}</div>: doctorsList ? <Table
+         tableData={extractInfo()} routePath={'/practitioner-info/'} /> : <CustomLoader/>}
         {console.log(doctorsList)}
 
       </ThemeProvider>
