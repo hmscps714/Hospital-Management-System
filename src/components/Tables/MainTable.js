@@ -25,13 +25,14 @@ export const MainTable = () => {
     } =  useTable({
         columns,
         data
-    }, usePagination)
+    }, useGlobalFilter, usePagination)
 
     const { globalFilter } = state
 
     //table structure    
     return (
         <>
+        <GlobalFilter filter ={globalFilter} setFilter={setGlobalFilter} />
         <table {...getTableProps} className={styles.tables}>
             <thead>
                 {headerGroups.map((headerGroup) => (
