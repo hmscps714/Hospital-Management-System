@@ -12,7 +12,6 @@ export interface Practitioner {
   };
   personalContactInformation: {
     email: string;
-    password: string;
     phoneNumber: string;
     homeAddress: string;
   };
@@ -30,6 +29,7 @@ export interface Practitioner {
     planExpiryDate?: Date;
   };
   fieldSpecialty: string;
+  uid?: string;
 }
 
 export interface Patient {
@@ -46,7 +46,6 @@ export interface Patient {
   };
   personalContactInformation: {
     email: string;
-    password: string;
     phoneNumber: string;
     homeAddress: string;
   };
@@ -77,6 +76,7 @@ export interface Patient {
     planNumber?: number;
     planExpiryDate?: Date;
   };
+  uid?: string;
 }
 
 export interface Login {
@@ -89,4 +89,12 @@ export interface InventoryItem {
   stock: number;
   id: string;
   price: number;
+}
+
+export interface Prescription {
+  patientId: string;
+  practitionerId: string;
+  name: string;
+  quantity: number;
+  timestamp: Date;
 }

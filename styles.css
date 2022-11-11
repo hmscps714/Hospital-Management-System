@@ -1,3 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css?family=Inter:400,700,800");
+
 body {
   margin: 0 auto;
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 1em;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #a4b3a1; 
+  border-radius: 2em;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4e6e48; 
 }
