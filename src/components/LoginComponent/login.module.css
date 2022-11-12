@@ -1,9 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@200&display=swap");
-
-.password {
-  color: white;
-}
-
 .Login {
   background-image: linear-gradient(to bottom, rgba(35, 83, 71, 0.78), rgba(35, 83, 71, 0.78)),
     url("/login_bg.jpg");
@@ -12,7 +6,6 @@
   min-height: 100%;
   background-size: cover;
   background-position: center;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,61 +13,11 @@
 
 .LoginBox {
   justify-content: center;
-  width: 350px;
-  height: 375px;
   background-color: #235347;
+  background-color: white;
   opacity: 0.78;
-  padding: 20px;
+  padding: 30px;
   border-radius: 50px;
   border: solid rgb(255, 255, 255);
   border-width: 5px 5px;
-}
-
-.LoginHeader {
-  font-family: "Lexend Deca", sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: xx-large;
-  font-weight: bolder;
-  color: white;
-  margin-top: 50px;
-}
-
-.inputs {
-  padding: 20px;
-}
-
-.Username {
-  margin-left: 18px;
-  width: 250px;
-  height: 35px;
-  border-radius: 6px;
-  border-width: 1;
-  margin-bottom: 20px;
-}
-
-.Password {
-  margin-left: 18px;
-  width: 250px;
-  height: 35px;
-  border-radius: 6px;
-  border-width: 1;
-}
-
-.login_button {
-  font-family: "Lexend Deca", sans-serif;
-  font-size: 14px;
-  font-weight: bolder;
-  width: 250px;
-  height: 35px;
-  background-color: #72b292;
-  color: white;
-  border-radius: 5px;
-  margin-top: 20px;
-}
-
-.login_button:hover {
-  background-color: #aad0bd;
-  color: black;
 }

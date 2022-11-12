@@ -1,7 +1,7 @@
 import React from "react";
 import { ThemeProvider } from "@mui/material";
 import theme from "src/config/theme";
-import Login from "src/components/LoginComponent/login.js";
+import Login from "src/components/LoginComponent/Login.js";
 
 export const login = () => {
   return (
