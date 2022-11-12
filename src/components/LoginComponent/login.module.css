@@ -1,0 +1,23 @@
+.Login {
+  background-image: linear-gradient(to bottom, rgba(35, 83, 71, 0.78), rgba(35, 83, 71, 0.78)),
+    url("/login_bg.jpg");
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.LoginBox {
+  justify-content: center;
+  background-color: #235347;
+  background-color: white;
+  opacity: 0.78;
+  padding: 30px;
+  border-radius: 50px;
+  border: solid rgb(255, 255, 255);
+  border-width: 5px 5px;
+}

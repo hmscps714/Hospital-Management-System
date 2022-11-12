@@ -1,14 +1,14 @@
 import React from "react";
 import { ThemeProvider } from "@mui/material";
 import theme from "src/config/theme";
-import NavbarHome from "src/components/Navbar/NavbarHome";
+import Login from "src/components/LoginComponent/Login.js";
 
-export const Login = () => {
+export const login = () => {
   return (
     <ThemeProvider theme={theme}>
-      <NavbarHome />
+      <Login />
     </ThemeProvider>
   );
 };
 
-export default Login;
+export default login;
