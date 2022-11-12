@@ -9,6 +9,9 @@ export const theme = createTheme({
       main: "#9f000f",
     },
   },
+  typography: {
+    fontFamily: `"Inter", "Helvetica", "Arial", sans-serif`,
+  },
 });
 
 export default theme;
