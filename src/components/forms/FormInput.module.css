@@ -1,0 +1,13 @@
+.ErrorMessage{
+    padding: 5px;
+    color: red;
+    display: none;
+}
+
+.InputBox:invalid[focused="true"]{
+    border: 1px solid red;
+}
+
+.InputBox:invalid[focused="true"] ~ span{
+    display: block;
+}
