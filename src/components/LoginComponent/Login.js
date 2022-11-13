@@ -1,104 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Login.module.css";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import { useForm, Controller } from "react-hook-form";
-import { signInPatient } from "src/api/auth";
+import { FormInput } from "src/components/forms/FormInput";
+import { Label } from "@mui/icons-material";
 
 export const Login = () => {
-  const { control, handleSubmit } = useForm({
-    defaultValues: {
-      email: "",
-      password: "",
-    },
+  const [formVals, setFormVals] = useState({
+    email: "",
+    password: "",
+    userType: "",
   });
-  const onSubmit = async ({ email, password }) => {
-    const hasLoggedIn = await signInPatient({ email, password });
-    if (hasLoggedIn) window.location.href = "/about";
+
+  const inputs = [
+    {
+      id: "email",
+      name: "email",
+      type: "email",
+      placeholder: "Email",
+      errorMessage: "Please provide a valid email address",
+      required: true,
+    },
+    {
+      id: "password",
+      name: "password",
+      type: "password",
+      placeholder: "Password",
+      errorMessage: "Please provide password",
+      required: true,
+      // pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
+    },
+  ];
+
+  const onChange = (e) => {
+    setFormVals({ ...formVals, [e.target.name]: e.target.value });
   };
 
   return (
     <div className={styles.Login}>
       <div className={styles.LoginBox}>
-        <Box
-          sx={{
-            marginTop: 2,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Typography component="h1" variant="h4">
-            Sign in
-          </Typography>
-          <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
-            <Controller
-              name="email"
-              control={control}
-              defaultValue=""
-              render={({ field: { onChange, value }, fieldState: { error } }) => (
-                <TextField
-                  label="Email"
-                  value={value}
-                  onChange={onChange}
-                  error={!!error}
-                  fullWidth
-                  margin="normal"
-                  autoComplete="email"
-                  autoFocus
-                  helperText={error ? error.message : null}
-                  type="email"
-                />
-              )}
-              rules={{ required: "Email required" }}
-            />
-            <Controller
-              name="password"
-              control={control}
-              defaultValue=""
-              render={({ field: { onChange, value }, fieldState: { error } }) => (
-                <TextField
-                  label="Password"
-                  value={value}
-                  onChange={onChange}
-                  error={!!error}
-                  fullWidth
-                  margin="normal"
-                  autoComplete="email"
-                  autoFocus
-                  helperText={error ? error.message : null}
-                  type="password"
-                />
-              )}
-              rules={{ required: "Password required" }}
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-              Sign In
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
+        <h1>Sign in</h1>
+        <form onSubmit={handleSubmit} className={styles.FormItems}>
+          {inputs.map((input) => (
+            <FormInput key={input.id} {...input} value={formVals[input.name]} onChange={onChange} />
+          ))}
+          <label htmlFor="userType">Sign in as:</label>
+          <select name="userType" onChange={onChange} required>
+            <option value={"Patient"}>Patient</option>
+            <option value={"Practitioner"}>Practitioner</option>
+            <option value={"Admin"}>Admin</option>
+          </select>
+          <button>Sign in</button>
+        </form>
       </div>
     </div>
   );
