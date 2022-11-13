@@ -9,6 +9,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useForm, Controller } from "react-hook-form";
+import { signInPatient } from "src/api/auth";
 
 export const Login = () => {
   const { control, handleSubmit } = useForm({
@@ -17,8 +18,9 @@ export const Login = () => {
       password: "",
     },
   });
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async ({ email, password }) => {
+    const hasLoggedIn = await signInPatient({ email, password });
+    if (hasLoggedIn) window.location.href = "/about";
   };
 
   return (
