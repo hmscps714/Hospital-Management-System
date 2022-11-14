@@ -1,0 +1,107 @@
+.Landing {
+  background-image: linear-gradient(to bottom, rgba(31, 132, 107, 0.78), rgba(35, 83, 71, 0.78)),
+    url("/login_bg.jpg");
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Left {
+  float: left;
+  width: 50%;
+  padding: 15px;
+  box-sizing: border-box;
+  padding-left: 100px;
+}
+
+.Left h1 {
+  padding: 0;
+  margin: 0;
+  color: white;
+  font-size: 50px;
+  margin: 0;
+  margin-top: -100px;
+}
+
+.Left p {
+  color: white;
+}
+
+.Left strong {
+  color: yellow;
+}
+.Right {
+  float: right;
+  width: 50%;
+  background-color: none;
+  color: #fff;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.Landing button {
+  border-radius: 20px;
+  padding: 10px 30px;
+}
+
+.Landing button:active {
+  scale: 0.9;
+}
+
+.btn1 {
+  background-color: white;
+  color: rgb(243, 197, 101);
+  border: none;
+}
+
+.btn2 {
+  background-color: transparent;
+  color: white;
+  border-color: white;
+  border-width: 1px;
+  margin-left: 10px;
+}
+
+.img1 {
+  position: absolute;
+  left: 60%;
+  top: 50px;
+  padding: 0px;
+  height: 250px;
+  border-radius: 5px;
+}
+
+.img2 {
+  position: absolute;
+  left: 75%;
+  top: 250px;
+  padding: 0px;
+  height: 150px;
+  border-radius: 5px;
+}
+
+@media only screen and (max-width: 838px) {
+  .Left {
+    padding-left: 50px;
+  }
+  .Left h1 {
+    font-size: 30px;
+  }
+  .btn2 {
+    margin-left: 0;
+  }
+  .img1 {
+    height: 200px;
+    left: 50%;
+  }
+  .img2 {
+    height: 130px;
+    left: 55%;
+    top: 200px;
+  }
+}
