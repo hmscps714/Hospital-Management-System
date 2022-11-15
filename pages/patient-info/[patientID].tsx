@@ -17,11 +17,6 @@ export const PatientInfo = () => {
 
   const [patient, setPatient] = useState<Patient>(null);
   const [err, setErr] = useState<Error>(null);
-  // const getAndSetPatient = async () => {
-  //   const p = await getPatient(patientID as string);
-  //   console.log(p)
-  //   setPatient(p);
-  // };
 
   useEffect(() => {
     if (!patientID) {
@@ -29,13 +24,11 @@ export const PatientInfo = () => {
     }
 
     getPatient(patientID as string)
-    .then(p => setPatient(p))
-    .catch(e => 
-    {
-      console.error(e);
-      setErr(e)
-    })
-    // getAndSetPatient();
+      .then((p) => setPatient(p))
+      .catch((e) => {
+        console.error(e);
+        setErr(e);
+      });
   }, [patientID]);
 
   return (
@@ -43,15 +36,19 @@ export const PatientInfo = () => {
       <NavbarHome />
       <h1 className={styles.Title}>Patient Information</h1>
       <div>
-        {err ? <div className="errorMessage">{err.toString()}</div>: (patient && !err) ?
-        <div>
-          <DetailedPatientInfo patientData={patient} /> 
-          <div className={styles.Appointment}>
-          <h2>Appointment information</h2>
-            WIP
+        {err ? (
+          <div className="errorMessage">{err.toString()}</div>
+        ) : patient && !err ? (
+          <div>
+            <DetailedPatientInfo patientData={patient} />
+            <div className={styles.Appointment}>
+              <h2>Appointment information</h2>
+              WIP
+            </div>
           </div>
-        </div>
-        : <CustomLoader/>}        
+        ) : (
+          <CustomLoader />
+        )}
       </div>
     </ThemeProvider>
   );

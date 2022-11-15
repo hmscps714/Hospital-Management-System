@@ -8,58 +8,62 @@ import { getAllPatients } from "src/api/db";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 
 export const PatientList = () => {
-    const [patientList, setPatientList] = useState(null);
-    const [err, setErr] = useState(null);
+  const [patientList, setPatientList] = useState(null);
+  const [err, setErr] = useState(null);
 
-    useEffect(() => {
-      if (!patientList) {
-        getAllPatients()
-        .then(x => setPatientList(x))
-        .catch(e => {
+  useEffect(() => {
+    if (!patientList) {
+      getAllPatients()
+        .then((x) => setPatientList(x))
+        .catch((e) => {
           console.error(e);
-          setErr(e)
-        })
-      }
-    }, [patientList])
-
-    const extractInfo = () => {
-      const getName = (patientData) => {
-        const basicInfo = patientData['basicInformation']
-        return basicInfo['firstName'] + " " + basicInfo['lastName']
-      }
-
-      const getEmail = (patientData) => {
-        return patientData['personalContactInformation']['email']
-      }
-
-      const getPhone = (patientData) => {
-        return patientData['personalContactInformation']['phoneNumber']
-      }
-
-      const getUID = (patientData) => {
-        return patientData['uid']
-      }
-
-      return patientList.map(p => {
-        const patientObj = {
-          "name": getName(p),
-          "email": getEmail(p),
-          "phone": getPhone(p),
-          "uid": getUID(p)
-        }
-        return patientObj
-      })
+          setErr(e);
+        });
     }
+  }, [patientList]);
 
-    return (
-      <ThemeProvider theme={theme}>
-        <NavbarHome />
-        <h1 style={{textAlign: "center"}}>Patients List</h1>
-        { err ? <div className="errorMessage" >{err.toString()}</div> : patientList ?  <Table tableData={extractInfo()} routePath={'/patient-info/'} />  : <CustomLoader/>}
-      </ThemeProvider>
-      
-    );
+  const extractInfo = () => {
+    const getName = (patientData) => {
+      const basicInfo = patientData["basicInformation"];
+      return basicInfo["firstName"] + " " + basicInfo["lastName"];
+    };
+
+    const getEmail = (patientData) => {
+      return patientData["personalContactInformation"]["email"];
+    };
+
+    const getPhone = (patientData) => {
+      return patientData["personalContactInformation"]["phoneNumber"];
+    };
+
+    const getUID = (patientData) => {
+      return patientData["uid"];
+    };
+
+    return patientList.map((p) => {
+      const patientObj = {
+        name: getName(p),
+        email: getEmail(p),
+        phone: getPhone(p),
+        uid: getUID(p),
+      };
+      return patientObj;
+    });
   };
-  
-  export default PatientList;
-  
+
+  return (
+    <ThemeProvider theme={theme}>
+      <NavbarHome />
+      <h1 style={{ textAlign: "center" }}>Patients List</h1>
+      {err ? (
+        <div className="errorMessage">{err.toString()}</div>
+      ) : patientList ? (
+        <Table tableData={extractInfo()} routePath={"/patient-info/"} />
+      ) : (
+        <CustomLoader />
+      )}
+    </ThemeProvider>
+  );
+};
+
+export default PatientList;

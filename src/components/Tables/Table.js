@@ -28,72 +28,76 @@ export const Table = ({ tableData, routePath }) => {
   });
 
   //Destructure
-  const { 
-    getTableProps, 
-    getTableBodyProps, 
-    headerGroups, 
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
     page,
     nextPage,
     previousPage,
     state,
-    setGlobalFilter, 
-    prepareRow,  
-   } = useTable({
-    columns,
-    data,
-    initialState,
-  }, useGlobalFilter, usePagination);
+    setGlobalFilter,
+    prepareRow,
+  } = useTable(
+    {
+      columns,
+      data,
+      initialState,
+    },
+    useGlobalFilter,
+    usePagination
+  );
 
-  const { globalFilter } = state
+  const { globalFilter } = state;
 
   //table structure
   return (
-    <> 
-    <GlobalFilter filter ={globalFilter} setFilter={setGlobalFilter} />
-    <table {...getTableProps} className={styles.tables}>
-      <thead>
-        {headerGroups.map((headerGroup) => (
-          <tr {...headerGroup.getHeaderGroupProps()} className={styles.tr}>
-            {
-              //access to each column using map
-              headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()} className={styles.th}>
-                  {column.render("Header")}
-                </th>
-              ))
-            }
-            <th></th>
-          </tr>
-        ))}
-      </thead>
-      <tbody {...getTableBodyProps()}>
-        {
-          //access to each row
-          page.map((row) => {
-            prepareRow(row);
-            return (
-              <tr
-                {...row.getRowProps()}
-                className={styles.tr}
-                onClick={() => router.push(routePath + row.values["uid"])}
-              >
-                {
-                  //access to individual cells in the rows
-                  row.cells.map((cell) => {
-                    return (
-                      <td {...cell.getCellProps()} className={styles.td}>
-                        {cell.render("Cell")}
-                      </td>
-                    );
-                  })
-                }
-              </tr>
-            );
-          })
-        }
-      </tbody>
-    </table>
-    <div>
+    <>
+      <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+      <table {...getTableProps} className={styles.tables}>
+        <thead>
+          {headerGroups.map((headerGroup) => (
+            <tr {...headerGroup.getHeaderGroupProps()} className={styles.tr}>
+              {
+                //access to each column using map
+                headerGroup.headers.map((column) => (
+                  <th {...column.getHeaderProps()} className={styles.th}>
+                    {column.render("Header")}
+                  </th>
+                ))
+              }
+              <th></th>
+            </tr>
+          ))}
+        </thead>
+        <tbody {...getTableBodyProps()}>
+          {
+            //access to each row
+            page.map((row) => {
+              prepareRow(row);
+              return (
+                <tr
+                  {...row.getRowProps()}
+                  className={styles.tr}
+                  onClick={() => router.push(routePath + row.values["uid"])}
+                >
+                  {
+                    //access to individual cells in the rows
+                    row.cells.map((cell) => {
+                      return (
+                        <td {...cell.getCellProps()} className={styles.td}>
+                          {cell.render("Cell")}
+                        </td>
+                      );
+                    })
+                  }
+                </tr>
+              );
+            })
+          }
+        </tbody>
+      </table>
+      <div>
         <button onClick={() => previousPage()}>Previous</button>
         <button onClick={() => nextPage()}>Next</button>
       </div>

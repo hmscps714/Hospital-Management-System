@@ -38,11 +38,13 @@ export const Test = () => {
 
     const dummy_login: Login = {
       email: "jejejej@test.com",
-      password: "password"
-    }
+      password: "password",
+    };
 
-    registerPractitioner(dummy_login, dummy_practitioner).then(x => console.log(x)).catch(e => console.error(e));
-  }
+    registerPractitioner(dummy_login, dummy_practitioner)
+      .then((x) => console.log(x))
+      .catch((e) => console.error(e));
+  };
 
   return (
     <div>

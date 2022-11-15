@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { ThemeProvider } from "@mui/material";
 import theme from "src/config/theme";
 import NavbarHome from "src/components/Navbar/NavbarHome";
@@ -21,11 +21,11 @@ export const PractitionerInfo = () => {
       return;
     }
     getPractitioner(practitionerID as string)
-    .then(p => setPractitioner(p))
-    .catch(e => {
-      console.error(e);
-      setErr(e);
-    })
+      .then((p) => setPractitioner(p))
+      .catch((e) => {
+        console.error(e);
+        setErr(e);
+      });
   }, [practitionerID]);
 
   return (
@@ -33,9 +33,13 @@ export const PractitionerInfo = () => {
       <NavbarHome />
       <h1 className={styles.Title}>Practitioner Information</h1>
       <div>
-        {err ? <div className="errorMessage">{err.toString()}</div>: (practitioner && !err) ? 
-        <DetailedPractitionerInfo practitionerData={practitioner}></DetailedPractitionerInfo> : <CustomLoader/>
-        }
+        {err ? (
+          <div className="errorMessage">{err.toString()}</div>
+        ) : practitioner && !err ? (
+          <DetailedPractitionerInfo practitionerData={practitioner}></DetailedPractitionerInfo>
+        ) : (
+          <CustomLoader />
+        )}
       </div>
     </ThemeProvider>
   );
