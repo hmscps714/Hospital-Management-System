@@ -55,6 +55,20 @@
   border:none;
 }
 
+.FormItems #submit-button {
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #e1ad01;
+  border-radius: 5px;
+  box-shadow: none;
+  border: none;
+  font-size: 1rem;
+}
+
+.FormItems #submit-button:hover {
+  background-color: #bc9102;
+}
+
 .FormItems button {
   padding: 10px;
   margin: 10px 0;

@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import styles from "./Login.module.css";
 import { FormInput } from "src/components/forms/FormInput";
-import { Label } from "@mui/icons-material";
+import { signInPatient, signInPractitioner } from "src/api/auth";
+import { useRouter } from "next/router";
 
 export const Login = () => {
+  const router = useRouter();
+
   const [formVals, setFormVals] = useState({
     email: "",
     password: "",
-    userType: "",
+    userType: "Patient",
   });
 
   const inputs = [
@@ -30,9 +33,18 @@ export const Login = () => {
     },
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formVals);
+
+    const { email, password, userType } = formVals;
+
+    if (userType === "Patient") {
+      const hasLoggedIn = await signInPatient({ email, password });
+      if (hasLoggedIn) router.push("/patient-home"); // endpoint for patient home page
+    } else if (userType === "Practitioner") {
+      const hasLoggedIn = await signInPractitioner({ email, password });
+      if (hasLoggedIn) router.push("/practitioner-home"); // endpoint for practitioner home page
+    }
   };
 
   const onChange = (e) => {
@@ -53,7 +65,7 @@ export const Login = () => {
             <option value={"Practitioner"}>Practitioner</option>
             <option value={"Admin"}>Admin</option>
           </select>
-          <button>Sign in</button>
+          <button onClick={handleSubmit}>Sign in</button>
         </form>
       </div>
     </div>
