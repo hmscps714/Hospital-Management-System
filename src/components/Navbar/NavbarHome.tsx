@@ -13,7 +13,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 const pages = [
-  { name: "Home", href: "" },
+  { name: "Home", href: "/" },
   { name: "Our Staff", href: "" },
   { name: "About us", href: "/about" },
   { name: "Login", href: "/login" },
@@ -32,7 +32,7 @@ export const NavbarHome = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="sticky">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Image
@@ -42,7 +42,9 @@ export const NavbarHome = () => {
             height="80px"
             objectFit="contain"
           />
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }, justifyContent:"flex-end" }}>
+          <Box
+            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }, justifyContent: "flex-end" }}
+          >
             <IconButton
               size="large"
               aria-label="account of current user"
