@@ -98,3 +98,8 @@ export interface Prescription {
   quantity: number;
   timestamp: Date;
 }
+
+export interface InventoryItemUpdate {
+  id: string;
+  stock: number;
+}
