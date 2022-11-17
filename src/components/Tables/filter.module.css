@@ -3,7 +3,7 @@
     /* max-width: 250px; */
     background: #AAD0BD;
     /* display: flex; */
-    width: 250px;
+    width: 350px;
     margin-left: 50%;
     align-items: center;
     border-radius: 20px;
@@ -22,5 +22,9 @@
     outline: none;
     flex: 1;
     border: 0;
-    font-size: 20px;
+    font-size: 16px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    width: 300px;
+    margin-right: 20px;
 }
