@@ -5,8 +5,6 @@ import theme from "src/config/theme";
 import Landing from "src/components/Landing/Landing.js";
 
 export const Home = () => {
-  const router = useRouter();
-
   return (
     <ThemeProvider theme={theme}>
       <NavbarHome />
