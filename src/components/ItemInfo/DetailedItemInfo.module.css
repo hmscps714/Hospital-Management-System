@@ -1,0 +1,60 @@
+.Container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 40px;
+    grid-gap: 20px;
+    padding-top: 50px;
+}
+
+.Card {
+border: 1px solid #aad0bd;
+border-radius: 30px;
+padding: 30px;
+}
+
+.Card h2 {
+text-decoration: underline;
+text-decoration-color: #aad0bd;
+}
+
+.Card ul {
+list-style-type: none;
+padding-left: 0;
+}
+
+.Card form input {
+    margin-left: 50px;
+    width: 100px;
+}
+
+.BtnContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    padding: 15px;
+}
+
+.Card button {
+    width: 150px;
+    height: 30px;
+    border-radius: 55px;
+    border: 0;
+    cursor: pointer;
+}
+
+.UpdateBtn {
+    background-color: #e7b81e;
+}
+
+.DeleteBtn {
+    background-color: #ff6347;
+}
+
+.UpdateMessageSuccess {
+    color: green;
+}
+
+.UpdateMessageFail {
+    color: red;
+}
+  
