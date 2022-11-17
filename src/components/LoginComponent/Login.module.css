@@ -14,10 +14,77 @@
 .LoginBox {
   justify-content: center;
   background-color: #235347;
-  background-color: white;
+  /* background-color: white; */
   opacity: 0.78;
   padding: 30px;
   border-radius: 50px;
   border: solid rgb(255, 255, 255);
   border-width: 5px 5px;
+  width: 500px
+}
+
+.LoginBox h1 {
+  text-align: center;
+  color: white;
+}
+
+.FormItems {
+  display: flex;
+  flex-direction: column;
+}
+
+.FormItems label {
+  padding-top: 10px;
+  color: white;
+}
+
+.FormItems input{
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  background-color: #AAD0BD;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.FormItems select {
+  background-color: #AAD0BD;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border:none;
+}
+
+.FormItems #submit-button {
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #e1ad01;
+  border-radius: 5px;
+  box-shadow: none;
+  border: none;
+  font-size: 1rem;
+}
+
+.FormItems #submit-button:hover {
+  background-color: #bc9102;
+}
+
+.FormItems button {
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #e1ad01;
+  border-radius: 5px;
+  box-shadow: none;
+  border: none;
+  font-size: 1rem;
+}
+
+.FormItems button:hover {
+  background-color: #bc9102;
+}
+
+@media only screen and (max-width: 600px) {
+  .LoginBox {
+    width: 80%;
+  }
 }

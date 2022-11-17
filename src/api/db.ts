@@ -1,6 +1,21 @@
-import { collection, doc, getDoc, getDocs, query, setDoc, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  setDoc,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import { auth, db } from "src/api/init";
-import { Patient, Practitioner, Prescription } from "src/config/interfaces";
+import {
+  Patient,
+  Practitioner,
+  Prescription,
+  InventoryItem,
+  InventoryItemUpdate,
+} from "src/config/interfaces";
 import { userIsPractitioner } from "src/api/auth";
 
 export const getPatient = async (uid: string): Promise<Patient | null> => {
@@ -93,4 +108,36 @@ export const getCurrentPractitionersPrescriptions = async (): Promise<Prescripti
   if (user === null) return null;
 
   return await getPractitionersPrescriptions(user.uid);
+};
+
+export const getAllInventoryItems = async (): Promise<InventoryItem[]> => {
+  const querySnapshot = await getDocs(collection(db, "inventory"));
+  return querySnapshot.docs.map((doc) => doc.data() as InventoryItem);
+};
+
+export const getInventoryItem = async (inventoryId: string): Promise<InventoryItem | null> => {
+  const querySnapshot = await getDoc(doc(db, "inventory", inventoryId));
+  return querySnapshot.data() as InventoryItem;
+};
+
+export const createInventoryItem = async (item: InventoryItem): Promise<boolean> => {
+  try {
+    const { id } = item;
+    await setDoc(doc(db, "inventory", id), item);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const updateInventoryItem = async (updateObj: InventoryItemUpdate): Promise<boolean> => {
+  try {
+    const { id, stock } = updateObj;
+    await updateDoc(doc(db, "inventory", id), { stock });
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
 };
