@@ -1,12 +1,12 @@
 import React, { useMemo } from "react";
 import { useTable, usePagination, useGlobalFilter } from "react-table";
-import MOCK_DATA from "./MOCK_DATA.json";
 import { COLUMNS } from "./columns";
 import styles from "./Table.module.css";
 import { useRouter } from "next/router";
 import { GlobalFilter } from "./GlobalFilter";
+import styles2 from "./filter.module.css";
 
-export const Table = ({ tableData, routePath }) => {
+export const Table = ({ tableData, routePath, buttonLabel}) => {
   const router = useRouter();
 
   const columnsFromData = Object.keys(tableData[0]).map((key, id) => {
@@ -49,7 +49,15 @@ export const Table = ({ tableData, routePath }) => {
   //table structure
   return (
     <> 
-    <GlobalFilter filter ={globalFilter} setFilter={setGlobalFilter} />
+    <div className={styles.search}>
+      <GlobalFilter filter ={globalFilter} setFilter={setGlobalFilter} />
+      <div className={styles.Btn}>
+          {/* <a href="http://localhost:3000/forms"> */}
+            <button onClick={() => router.push("/forms")}
+            className={styles.Add}>{buttonLabel}</button>
+          {/* </a> */}
+        </div>
+    </div>
     <table {...getTableProps} className={styles.tables}>
       <thead>
         {headerGroups.map((headerGroup) => (
@@ -94,9 +102,9 @@ export const Table = ({ tableData, routePath }) => {
       </tbody>
     </table>
     <div>
-        <button onClick={() => previousPage()}>Previous</button>
-        <button onClick={() => nextPage()}>Next</button>
-      </div>
+        <button className={styles.previous} onClick={() => previousPage()}>Previous</button>
+        <button className={styles.next} onClick={() => nextPage()}>Next</button>
+    </div>
     </>
   );
 };

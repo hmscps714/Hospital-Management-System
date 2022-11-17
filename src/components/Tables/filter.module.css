@@ -1,0 +1,26 @@
+.Searchbar {
+    /* width: 100%; */
+    /* max-width: 250px; */
+    background: #AAD0BD;
+    /* display: flex; */
+    width: 250px;
+    margin-left: 50%;
+    align-items: center;
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+
+.search-bar {
+    background: #AAD0BD ;
+    outline: none;
+    flex: 1;
+    border: 0;
+}
+
+.input {
+    background: #AAD0BD ;
+    outline: none;
+    flex: 1;
+    border: 0;
+    font-size: 20px;
+}

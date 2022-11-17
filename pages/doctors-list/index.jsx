@@ -4,13 +4,16 @@ import theme from "src/config/theme";
 import NavbarHome from "src/components/Navbar/NavbarHome";
 import Table from "src/components/Tables/Table";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { getAllDoctors } from "src/api/db";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
+import styles from "./doctors.module.css";
 
 export const DoctorsList = () => {
 
   const [doctorsList, setdoctorsList] = useState(null);
   const [err, setErr] = useState(null);
+  const router = useRouter();
 
   // const getAndSetdoctorsList = async () => {
   //   const l = await getAllDocto();
@@ -78,11 +81,10 @@ export const DoctorsList = () => {
     return (
       <ThemeProvider theme={theme}>
         <NavbarHome />
-        <h1 style={{textAlign: "center"}}>Doctors List</h1>
-        { err ? <div className="errorMessage">{err.toString()}</div>: doctorsList ? <Table
-         tableData={extractInfo()} routePath={'/practitioner-info/'} /> : <CustomLoader/>}
+        <h1 className={styles.Heading} style={{textAlign: "center"}}>Doctors List</h1>
+        { err ? <div className="errorMessage">{err.toString()}</div>: doctorsList ? 
+        <Table buttonLabel={'Add Doctor'} tableData={extractInfo()} routePath={'/practitioner-info/'} /> : <CustomLoader/>}
         {console.log(doctorsList)}
-
       </ThemeProvider>
       
     );

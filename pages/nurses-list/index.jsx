@@ -6,6 +6,7 @@ import Table from "src/components/Tables/Table.js";
 import { useState, useEffect } from "react"
 import { getAllNurses } from "src/api/db"
 import {CustomLoader} from "src/components/CustomLoader/CustomLoader"
+import styles from "./nurses.module.css";
 
 export const NursesList = () => {
   const [nursesList, setNursesList] = useState(null);
@@ -56,8 +57,9 @@ export const NursesList = () => {
   return (
     <ThemeProvider theme={theme}>
       <NavbarHome />
-      <h1 style={{textAlign: "center"}}>Nurses Lists</h1>
-      { err ? <div className="errorMessage">{err.toString()}</div>: nursesList ? <Table tableData={extractInfo()} routePath={'/practitioner-info/'} /> : <CustomLoader/>}
+      <h1 className={styles.heading} style={{textAlign: "center"}}>Nurses List</h1>
+      { err ? <div className="errorMessage">{err.toString()}</div>: nursesList ? 
+      <Table buttonLabel={'Add Nurse'} tableData={extractInfo()} routePath={'/practitioner-info/'} /> : <CustomLoader/>}
     </ThemeProvider>
   );
 };

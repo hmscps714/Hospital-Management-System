@@ -3,10 +3,13 @@
     border-collapse: collapse;
     width: 80%;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 50px;
     
 }
 
+.search {
+    margin-top: 10px;
+}
 
 .td {
     text-align: center;
@@ -32,4 +35,32 @@
     background-color: #AAD0BD;
     color: black;
     cursor: default;
+}
+
+.previous {
+    margin-left: 50%;
+    margin-top: 40px;
+}
+
+.Btn {
+    margin-top: -42px;
+    margin-left: 72%;
+}
+
+@media (orientation: landscape) and (max-width: 100px) {
+    .Btn {
+        font-size: 1.5rem;
+    }
+}
+
+.Add {
+    width: 250px;
+    height: 40px;
+    align-items: center;
+    border-radius: 20px;
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    background-color: #e1ad01;
+    cursor: pointer;
 }
