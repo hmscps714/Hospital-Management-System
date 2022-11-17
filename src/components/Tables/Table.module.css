@@ -12,21 +12,22 @@
 }
 
 .td {
-    text-align: center;
-    padding: 15px;
+  text-align: center;
+  padding: 15px;
 }
 
 .th {
-    padding: 10px;
+  padding: 10px;
 }
 
-.tr:nth-child(even){background-color: #f2f2f2;}
+.tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
 .tr:hover {
-    background-color: #ddd;
-    cursor: pointer;
+  background-color: #ddd;
+  cursor: pointer;
 }
-
 
 .th {
     padding-top: 15px;

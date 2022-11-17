@@ -15,44 +15,44 @@ export const NursesList = () => {
   useEffect(() => {
     if (!nursesList) {
       getAllNurses()
-      .then(x => {
-        setNursesList(x);
-      })
-      .catch(e => {
-        console.error(e);
-        setErr(e);
-      })
+        .then((x) => {
+          setNursesList(x);
+        })
+        .catch((e) => {
+          console.error(e);
+          setErr(e);
+        });
     }
-  }, [nursesList])
+  }, [nursesList]);
 
   const extractInfo = () => {
     const getName = (nurseData) => {
-      const basicInfo = nurseData['basicInformation']
-      return basicInfo['firstName'] + " " + basicInfo['lastName']
-    }
+      const basicInfo = nurseData["basicInformation"];
+      return basicInfo["firstName"] + " " + basicInfo["lastName"];
+    };
 
     const getEmail = (nurseData) => {
-      return nurseData['personalContactInformation']['email']
-    }
+      return nurseData["personalContactInformation"]["email"];
+    };
 
     const getPhone = (nurseData) => {
-      return nurseData['personalContactInformation']['phoneNumber']
-    }
+      return nurseData["personalContactInformation"]["phoneNumber"];
+    };
 
     const getUID = (nurseData) => {
-      return nurseData['uid']
-    }    
+      return nurseData["uid"];
+    };
 
-    return nursesList.map(p => {
+    return nursesList.map((p) => {
       const nurseObj = {
-        "name": getName(p),
-        "email": getEmail(p),
-        "phone": getPhone(p),
-        "uid": getUID(p)
-      }
-      return nurseObj
-    })
-  }
+        name: getName(p),
+        email: getEmail(p),
+        phone: getPhone(p),
+        uid: getUID(p),
+      };
+      return nurseObj;
+    });
+  };
 
   return (
     <ThemeProvider theme={theme}>

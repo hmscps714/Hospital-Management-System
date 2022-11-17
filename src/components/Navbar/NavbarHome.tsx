@@ -61,7 +61,7 @@ export const NavbarHome = () => {
             height="80px"
             objectFit="contain"
             onClick={() => router.push("/")}
-            style={{cursor: "pointer"}}
+            style={{ cursor: "pointer" }}
           />
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton

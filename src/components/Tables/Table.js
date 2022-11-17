@@ -28,23 +28,27 @@ export const Table = ({ tableData, routePath, buttonLabel}) => {
   });
 
   //Destructure
-  const { 
-    getTableProps, 
-    getTableBodyProps, 
-    headerGroups, 
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
     page,
     nextPage,
     previousPage,
     state,
-    setGlobalFilter, 
-    prepareRow,  
-   } = useTable({
-    columns,
-    data,
-    initialState,
-  }, useGlobalFilter, usePagination);
+    setGlobalFilter,
+    prepareRow,
+  } = useTable(
+    {
+      columns,
+      data,
+      initialState,
+    },
+    useGlobalFilter,
+    usePagination
+  );
 
-  const { globalFilter } = state
+  const { globalFilter } = state;
 
   //table structure
   return (
