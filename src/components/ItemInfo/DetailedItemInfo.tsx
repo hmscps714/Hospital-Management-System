@@ -41,7 +41,7 @@ export const DetailedItemInfo = ({itemData} : {itemData:InventoryItem}) => {
         if (itemQuantity == dbItemQuantity) {
             alert("No changes in update!");
         } else if(itemQuantity >= 0 && itemQuantity <= 10000) {
-            const msg = `Are you sure you want to update the quantity from ${stock} to ${itemQuantity}?`;
+            const msg = `Are you sure you want to update the quantity from ${dbItemQuantity} to ${itemQuantity}?`;
             if (confirm(msg) == true) {
                 updateInventoryItem({...itemData, "stock": itemQuantity})
                 .then(status => {

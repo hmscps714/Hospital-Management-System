@@ -25,7 +25,7 @@ export const ItemInfo = () => {
         }))
     }, [itemID])
 
-
+    //TODO: update db, and useEffect to reflect when item is not found in db
     return (
         <ThemeProvider theme={theme}>
         <NavbarHome />
