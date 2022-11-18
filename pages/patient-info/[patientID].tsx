@@ -1,70 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { ThemeProvider } from "@mui/material";
 import theme from "src/config/theme";
-import NavbarHome from "src/components/NavbarHome";
+import NavbarHome from "src/components/Navbar/NavbarHome";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-
 import { Patient } from "src/config/interfaces";
 import { DetailedPatientInfo } from "src/components/PatientInfo/DetailedPatientInfo";
-//import { signInPatient, signInPractitioner } from "src/api/auth";
 import styles from "./patient-info.module.css";
+import { getPatient } from "src/api/db";
+
+import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 
 export const PatientInfo = () => {
   const router = useRouter();
-
-  const dummy_patient: Patient = {
-    basicInformation: {
-      firstName: "bob",
-      lastName: "smith",
-      dob: new Date("12/24/2000"),
-      healthCardNumber: 1234,
-      gender: "male",
-    },
-    personalContactInformation: {
-      email: "bobsmith@test.com",
-      // password: new Date("12/24/2000").toLocaleDateString("en-US"),
-      phoneNumber: "123-456-7890",
-      homeAddress: "350 victoria st",
-    },
-    emergencyContactInformation: {
-      name: "john",
-      relationshipToPatient: "sugar daddy",
-      phoneNumber: "911",
-      email: "john@pornhub.com",
-    },
-    physicianInformation: {
-      physicianName: "johnny sins",
-      clinicName: "redtube",
-      clinicAddress: "idk",
-      clinicPhone: "987-654-3210",
-    },
-  };
-
   const { patientID } = router.query;
+
+  const [patient, setPatient] = useState<Patient>(null);
+  const [err, setErr] = useState<Error>(null);
 
   useEffect(() => {
     if (!patientID) {
       return;
     }
-    // const fetchSomethingById = async () => {
-    //   const response = await fetch(`/api/something/${patientID}`);
-    // };
-    // fetchSomethingById();
-    console.log(patientID);
+
+    getPatient(patientID as string)
+      .then((p) => setPatient(p))
+      .catch((e) => {
+        console.error(e);
+        setErr(e);
+      });
   }, [patientID]);
 
-  // console.log(patientID);
   return (
     <ThemeProvider theme={theme}>
       <NavbarHome />
-      <h1 className={styles.Title}>Patient's Information {patientID}</h1>
+      <h1 className={styles.Title}>Patient Information</h1>
       <div>
-        <DetailedPatientInfo patientData={dummy_patient}></DetailedPatientInfo>
-        <div className={styles.Appointment}>
-          <h2>Appointment information</h2>
-          WIP
-        </div>
+        {err ? (
+          <div className="errorMessage">{err.toString()}</div>
+        ) : patient && !err ? (
+          <div>
+            <DetailedPatientInfo patientData={patient} />
+            <div className={styles.Appointment}>
+              <h2>Appointment information</h2>
+              WIP
+            </div>
+          </div>
+        ) : (
+          <CustomLoader />
+        )}
       </div>
     </ThemeProvider>
   );
