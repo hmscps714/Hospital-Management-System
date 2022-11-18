@@ -1,10 +1,8 @@
 import React, { useMemo } from "react";
 import { useTable, usePagination, useGlobalFilter } from "react-table";
-import { COLUMNS } from "./columns";
 import styles from "./Table.module.css";
 import { useRouter } from "next/router";
 import { GlobalFilter } from "./GlobalFilter";
-import styles2 from "./filter.module.css";
 
 export const Table = ({ tableData, routePath, buttonLabel, tableHeadings }) => {
   const router = useRouter();
@@ -57,11 +55,9 @@ export const Table = ({ tableData, routePath, buttonLabel, tableHeadings }) => {
         <div className={styles.BtnContainer}>
           <h1 className={styles.Heading}>{tableHeadings}</h1>
           <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
-          {/* <div className={styles.Btn}> */}
           <button onClick={() => router.push("/forms")} className={styles.Add}>
             {buttonLabel}
           </button>
-          {/* </div> */}
         </div>
       </div>
       <table {...getTableProps} className={styles.tables}>
@@ -89,7 +85,15 @@ export const Table = ({ tableData, routePath, buttonLabel, tableHeadings }) => {
                 <tr
                   {...row.getRowProps()}
                   className={styles.tr}
-                  onClick={() => router.push(routePath + row.values["uid"])}
+                  onClick={() => {
+                    let path = "";
+                    if (routePath === "/item-info/") {
+                      path = routePath + row.values["id"];
+                    } else {
+                      path = routePath + row.values["uid"];
+                    }
+                    router.push(path);
+                  }}
                 >
                   {
                     //access to individual cells in the rows
@@ -107,14 +111,12 @@ export const Table = ({ tableData, routePath, buttonLabel, tableHeadings }) => {
           }
         </tbody>
       </table>
-      {tableData.length > 10 ? <div className={styles.pagesBtn}>
-        <button onClick={() => previousPage()}>
-          Previous
-        </button>
-        <button onClick={() => nextPage()}>
-          Next
-        </button>
-      </div> : null}
+      {tableData.length > 10 ? (
+        <div className={styles.pagesBtn}>
+          <button onClick={() => previousPage()}>Previous</button>
+          <button onClick={() => nextPage()}>Next</button>
+        </div>
+      ) : null}
     </>
   );
 };
