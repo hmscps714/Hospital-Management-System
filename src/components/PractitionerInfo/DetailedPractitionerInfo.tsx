@@ -53,7 +53,7 @@ export const DetailedPractitionerInfo = ({ practitionerData }) => {
           </li>
           <li>Middle name: {middleName}</li>
           <li>Last name: {lastName}</li>
-          <li>DOB: {moment(dob).format("YYYY-MM-DD").toString()}</li>
+          <li>DOB: {moment(new Date(dob.toDate())).format("YYYY-MM-DD").toString()}</li>
           <li>Heath card #: {healthCardNumber}</li>
           <li>Gender: {gender}</li>
           <li>Marital status: {maritalStatus}</li>

@@ -9,35 +9,46 @@ import { DetailedPatientInfo } from "src/components/PatientInfo/DetailedPatientI
 import styles from "./patient-info.module.css";
 import { getPatient } from "src/api/db";
 
+import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
+
 export const PatientInfo = () => {
   const router = useRouter();
   const { patientID } = router.query;
 
   const [patient, setPatient] = useState<Patient>(null);
-
-  const getAndSetPatient = async () => {
-    const p = await getPatient(patientID as string);
-    setPatient(p);
-  };
+  const [err, setErr] = useState<Error>(null);
 
   useEffect(() => {
     if (!patientID) {
       return;
     }
 
-    getAndSetPatient();
+    getPatient(patientID as string)
+      .then((p) => setPatient(p))
+      .catch((e) => {
+        console.error(e);
+        setErr(e);
+      });
   }, [patientID]);
 
   return (
     <ThemeProvider theme={theme}>
       <NavbarHome />
-      <h1 className={styles.Title}>Patient's Information {patientID}</h1>
+      <h1 className={styles.Title}>Patient Information</h1>
       <div>
-        {patient ? <DetailedPatientInfo patientData={patient} /> : <h6>loading</h6>}
-        <div className={styles.Appointment}>
-          <h2>Appointment information</h2>
-          WIP
-        </div>
+        {err ? (
+          <div className="errorMessage">{err.toString()}</div>
+        ) : patient && !err ? (
+          <div>
+            <DetailedPatientInfo patientData={patient} />
+            <div className={styles.Appointment}>
+              <h2>Appointment information</h2>
+              WIP
+            </div>
+          </div>
+        ) : (
+          <CustomLoader />
+        )}
       </div>
     </ThemeProvider>
   );

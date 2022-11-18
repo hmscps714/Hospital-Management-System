@@ -7,6 +7,7 @@ export const Login = () => {
   return (
     <ThemeProvider theme={theme}>
       <NavbarHome />
+      About page
     </ThemeProvider>
   );
 };
