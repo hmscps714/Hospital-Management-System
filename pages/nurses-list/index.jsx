@@ -2,10 +2,10 @@ import React from "react";
 import { ThemeProvider } from "@mui/material";
 import theme from "src/config/theme";
 import NavbarHome from "src/components/Navbar/NavbarHome";
-import Table from "src/components/Tables/Table.js";
-import { useState, useEffect } from "react"
-import { getAllNurses } from "src/api/db"
-import {CustomLoader} from "src/components/CustomLoader/CustomLoader";
+import Table from "src/components/Tables/Table";
+import { useState, useEffect } from "react";
+import { getAllNurses } from "src/api/db";
+import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 
 export const NursesList = () => {
   const [nursesList, setNursesList] = useState(null);
@@ -56,8 +56,18 @@ export const NursesList = () => {
   return (
     <ThemeProvider theme={theme}>
       <NavbarHome />
-      { err ? <div className="errorMessage">{err.toString()}</div>: nursesList ? 
-      <Table buttonLabel={'Add Nurse'} tableData={extractInfo()} routePath={'/practitioner-info/'} tableHeadings={'Nurses List'} /> : <CustomLoader/>}
+      {err ? (
+        <div className="errorMessage">{err.toString()}</div>
+      ) : nursesList ? (
+        <Table
+          buttonLabel={"Add Nurse"}
+          tableData={extractInfo()}
+          routePath={"/practitioner-info/"}
+          tableHeadings={"Nurses List"}
+        />
+      ) : (
+        <CustomLoader />
+      )}
     </ThemeProvider>
   );
 };
