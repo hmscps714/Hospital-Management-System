@@ -38,10 +38,33 @@
     cursor: default;
 }
 
-.previous {
-    margin-left: 50%;
-    margin-top: 40px;
+.pagesBtn {
+    width: 30%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
 }
+.pagesBtn button {
+    background-color: #AAD0BD;
+    margin: 40px 10px;
+    padding: 8px 8px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    
+}
+
+.pagesBtn button:hover {
+    background-color: #6D9C85;
+    color: white;
+}
+
+.Heading {
+    justify-self: start;
+    margin: 0;
+}
+
 
 .Btn {
     margin-top: -42px;
@@ -68,10 +91,16 @@
     font-size: 16px;
 }
 
+.Add:hover {
+    background-color: #bb9002;
+    color: white;
+}
+
 .BtnContainer {
   margin: 0 auto; 
   display: grid;
   width: 80%;
-  grid-template-columns: 80% 20%;
+  grid-template-columns: 40% 40% 20%;
   justify-items: end;
+  margin-top: 50px;
 }

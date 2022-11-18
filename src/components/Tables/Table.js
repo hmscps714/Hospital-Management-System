@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { GlobalFilter } from "./GlobalFilter";
 import styles2 from "./filter.module.css";
 
-export const Table = ({ tableData, routePath, buttonLabel }) => {
+export const Table = ({ tableData, routePath, buttonLabel, tableHeadings }) => {
   const router = useRouter();
 
   const columnsFromData = Object.keys(tableData[0]).map((key, id) => {
@@ -55,6 +55,7 @@ export const Table = ({ tableData, routePath, buttonLabel }) => {
     <>
       <div className={styles.search}>
         <div className={styles.BtnContainer}>
+          <h1 className={styles.Heading}>{tableHeadings}</h1>
           <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
           {/* <div className={styles.Btn}> */}
           <button onClick={() => router.push("/forms")} className={styles.Add}>
@@ -106,14 +107,14 @@ export const Table = ({ tableData, routePath, buttonLabel }) => {
           }
         </tbody>
       </table>
-      <div>
-        <button className={styles.previous} onClick={() => previousPage()}>
+      {tableData.length > 10 ? <div className={styles.pagesBtn}>
+        <button onClick={() => previousPage()}>
           Previous
         </button>
-        <button className={styles.next} onClick={() => nextPage()}>
+        <button onClick={() => nextPage()}>
           Next
         </button>
-      </div>
+      </div> : null}
     </>
   );
 };

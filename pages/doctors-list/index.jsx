@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { getAllDoctors } from "src/api/db";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
-import styles from "./doctors.module.css";
 
 export const DoctorsList = () => {
   const [doctorsList, setdoctorsList] = useState(null);
@@ -59,9 +58,8 @@ export const DoctorsList = () => {
   return (
     <ThemeProvider theme={theme}>
       <NavbarHome />
-      <h1 className={styles.Heading} style={{textAlign: "center"}}>Doctors List</h1>
       { err ? <div className="errorMessage">{err.toString()}</div>: doctorsList ? 
-      <Table buttonLabel={'Add Doctor'} tableData={extractInfo()} routePath={'/practitioner-info/'} /> : <CustomLoader/>}
+      <Table buttonLabel={'Add Doctor'} tableData={extractInfo()} routePath={'/practitioner-info/'} tableHeadings={'Doctors List'} /> : <CustomLoader/>}
     </ThemeProvider>
     
   );
