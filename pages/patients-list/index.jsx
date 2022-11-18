@@ -2,7 +2,7 @@ import React from "react";
 import { ThemeProvider } from "@mui/material";
 import theme from "src/config/theme";
 import NavbarHome from "src/components/Navbar/NavbarHome";
-import Table from "src/components/Tables/Table.js";
+import Table from "src/components/Tables/Table";
 import { useState, useEffect } from "react";
 import { getAllPatients } from "src/api/db";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
@@ -51,15 +51,23 @@ export const PatientList = () => {
     });
   };
 
-    return (
-      <ThemeProvider theme={theme}>
-        <NavbarHome />
-        { err ? <div className="errorMessage" >{err.toString()}</div> : patientList ?  
-        <Table buttonLabel={'Add Patient'} tableData={extractInfo()} routePath={'/patient-info/'} tableHeadings={'Patients List'}/>  : <CustomLoader/>}
-      </ThemeProvider>
-      
-    );
-
+  return (
+    <ThemeProvider theme={theme}>
+      <NavbarHome />
+      {err ? (
+        <div className="errorMessage">{err.toString()}</div>
+      ) : patientList ? (
+        <Table
+          buttonLabel={"Add Patient"}
+          tableData={extractInfo()}
+          routePath={"/patient-info/"}
+          tableHeadings={"Patients List"}
+        />
+      ) : (
+        <CustomLoader />
+      )}
+    </ThemeProvider>
+  );
 };
 
 export default PatientList;
