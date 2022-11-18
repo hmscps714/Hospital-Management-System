@@ -22,58 +22,95 @@ export const Forms = () => {
         <div className={styles.mainDetails}>
             <div className={styles.center}>
             <div className={styles.info}>
-                <h4 className={styles.h4}>Basic information</h4>
-                  <label htmlFor="fname" className={styles.font}> First Name <label className={styles.red}>*</label> </label>
-                  <input className={styles.input2} id="fname" name="fname" type="text" autocomplete="fname" required/>
-                  <br></br>
-                  <br></br>
-                  <label htmlFor="lname" className={styles.font}> Last Name <label className={styles.red}>*</label> </label>
-                  <input className={styles.input2} id="lname" name="lname" type="text" autocomplete="lname" required/>
-                  <br></br>
-                  <br></br>
-                  <label htmlFor="dob" className={styles.font}> Date of Birth <label className={styles.red}>*</label> </label>
-                  <input className={styles.input3} id="dob" name="dob" type="text" autocomplete="dob" required/>
-                  <br></br>
-                  <br></br>
-                  <label htmlFor="hcn" className={styles.font}> Health Card Number <label className={styles.red}>*</label> </label>
-                  <input className={styles.input10} id="hcn" name="hcn" type="text" autocomplete="hcn" required/>
-                  <br></br>
-                  <br></br>
-                  <label htmlFor="gen" className={styles.font}> Gender <label className={styles.red}>*</label> </label>
-                  <input className={styles.input} id="gen" name="gen" type="text" autocomplete="gen" required/>
-                  <br></br>
-                  <br></br>
-                <h4 className={styles.h4}>Personal Contact Information</h4>
-                  <label className={styles.font}>Email</label>
-                  <input id="pemail" className={styles.input9}/>
-                  <br></br>
-                  <br></br>
-                  <label className={styles.font}>Number</label>
-                  <input id="pnumber" className={styles.input12}/>
-                  <br></br>
-                  <br></br>
-                  <label className={styles.font}>Adress</label>
-                  <input id="paddress" className={styles.input11}/>
-                  <br></br>
-                  <br></br>
-                <h4 className={styles.h4}>Emergency Contact Information</h4>
-                  <label className={styles.font}>Email</label>
-                  <input id="eemail" className={styles.input9}/>
-                  <br></br>
-                  <br></br>
-                  <label className={styles.font}>Number</label>
-                  <input id="enumber" className={styles.input12}/>
-                  <br></br>
-                  <br></br>
-                  <label className={styles.font}>Adress</label>
-                  <input id="eaddress" className={styles.input11}/>
-                  <br></br>
-                  <br></br>
-                  <label className={styles.font}>Relationship</label>
-                  <input id="erelationship" className={styles.input2}/>
-                  <br></br>
-                  <br></br>    
-                <h5 className={styles.h5}>* mandatory field</h5>
+                  <div className={styles.info1}>
+                    <h4 className={styles.h4}>Basic information</h4>
+                    <label htmlFor="fname" className={styles.font}> First Name <label className={styles.red}>*</label> </label>
+                    <br></br>
+                    <br></br>
+                    <label htmlFor="lname" className={styles.font}> Last Name <label className={styles.red}>*</label> </label>
+                    <br></br>
+                    <br></br>
+                    <label htmlFor="dob" className={styles.font}> Date of Birth <label className={styles.red}>*</label> </label>
+                    <br></br>
+                    <br></br>
+                    <label htmlFor="hcn" className={styles.font}> Health Card Number <label className={styles.red}>*</label> </label>
+                    <br></br>
+                    <br></br>
+                    <label htmlFor="gen" className={styles.font}> Gender <label className={styles.red}>*</label> </label>
+                    <br></br>
+                    <br></br>
+                    <h4 className={styles.h4}>Personal Contact Information</h4>
+                    <label className={styles.font}>Email</label>
+                    <br></br>
+                    <br></br>
+                    <label className={styles.font}>Number</label>
+                    <br></br>
+                    <br></br>
+                    <label className={styles.font}>Adress</label>
+                    <br></br>
+                    <br></br>
+                    <h4 className={styles.h4}>Emergency Contact Information</h4>
+                    <label className={styles.font}>Email</label>
+                    <br></br>
+                    <br></br>
+                    <label className={styles.font}>Number</label>
+                    <br></br>
+                    <br></br>
+                    <label className={styles.font}>Adress</label>
+                    <br></br>
+                    <br></br>
+                    <label className={styles.font}>Relationship</label>
+                    <br></br>
+                    <br></br>    
+                    <h5 className={styles.h5}>* mandatory field</h5>
+                  </div>
+                  <div className={styles.info2}>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <input className={styles.input} id="fname" name="fname" type="text" autocomplete="fname" required/>
+                    <br></br>
+                    <br></br>
+                    <input className={styles.input} id="lname" name="lname" type="text" autocomplete="lname" required/>
+                    <br></br>
+                    <br></br>
+                    <input className={styles.input} id="dob" name="dob" type="text" autocomplete="dob" required/>
+                    <br></br>
+                    <br></br>
+                    <input className={styles.input} id="hcn" name="hcn" type="text" autocomplete="hcn" required/>
+                    <br></br>
+                    <br></br>
+                    <input className={styles.input} id="gen" name="gen" type="text" autocomplete="gen" required/>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <input id="pemail" className={styles.input}/>
+                    <br></br>
+                    <br></br>
+                    <input id="pnumber" className={styles.input}/>
+                    <br></br>
+                    <br></br>
+                    <input id="paddress" className={styles.input}/>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <input id="eemail" className={styles.input}/>
+                    <br></br>
+                    <br></br>
+                    <input id="enumber" className={styles.input}/>
+                    <br></br>
+                    <br></br>
+                    <input id="eaddress" className={styles.input}/>
+                    <br></br>
+                    <br></br>
+                    <input id="erelationship" className={styles.input}/>
+                    <br></br>
+                    <br></br>    
+                  </div>
               </div>
               <div className={styles.imageUpload}>
                 <Image src="/forms/ddu.webp" width="283%" height="190%"></Image>
@@ -89,26 +126,46 @@ export const Forms = () => {
             </div>
         </div>
         <div className={styles.otherDetails}>
+        <div className={styles.info1}>
             <h4 className={styles.h4}>Log-in Details</h4>
-                <label className={styles.font}> Username </label>
-                <input className={styles.input1} />
-                <br></br>
-                <br></br>
-                <label className={styles.font}> Password </label>
-                <input className={styles.input1} />
-                <br></br>
-                <br></br>
+            <label className={styles.font}> Username </label>
+            <br></br>
+            <br></br>
+            <label className={styles.font}> Password </label>
+            <br></br>
+            <br></br>
             <h4 className={styles.h4}>Department </h4>
-                <label className={styles.font}>Specialty </label>
-                <input className={styles.input3} />
-                <br></br>
-                <br></br>
-                <label className={styles.font}>Floor </label>
-                <input className={styles.input4} />
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
+            <label className={styles.font}>Specialty </label>
+            <br></br>
+            <br></br>
+            <label className={styles.font}>Floor </label>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+          </div>
+          <div className={styles.info2}>
+            <br></br>
+            <br></br>
+            <br></br>
+            <input className={styles.input} />
+            <br></br>
+            <br></br>
+            <input className={styles.input} />
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <input className={styles.input} />
+            <br></br>
+            <br></br>
+            <input className={styles.input} />
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+          </div>
           <div className={styles.btnAlign}>
             <Stack spacing={2} direction="row">
               <Button className={styles.btnSub} variant="contained">Submit</Button>
