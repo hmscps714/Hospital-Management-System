@@ -33,9 +33,7 @@ export const ItemInfo = () => {
       <div>
         {err ? <div>Error</div> : null}
         {!err && item ? (
-          <DetailedItemInfo itemData={item}>
-            <h1>Hello</h1>
-          </DetailedItemInfo>
+          <DetailedItemInfo itemData={item}></DetailedItemInfo>
         ) : (
           <CustomLoader></CustomLoader>
         )}
