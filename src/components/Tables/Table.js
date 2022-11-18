@@ -8,10 +8,17 @@ export const Table = ({ tableData, routePath, buttonLabel, tableHeadings }) => {
   const router = useRouter();
 
   const columnsFromData = Object.keys(tableData[0]).map((key, id) => {
-    return {
-      Header: key.toUpperCase(),
-      accessor: key,
-    };
+    if (key == "uid") {
+      return {
+        Header: key.toUpperCase(),
+        accessor: key,
+        disableGlobalFilter: true,
+      };
+    } else
+      return {
+        Header: key.toUpperCase(),
+        accessor: key,
+      };
   });
 
   const columns = useMemo(() => columnsFromData, []);
@@ -36,6 +43,7 @@ export const Table = ({ tableData, routePath, buttonLabel, tableHeadings }) => {
     state,
     setGlobalFilter,
     prepareRow,
+    rows,
   } = useTable(
     {
       columns,
@@ -111,7 +119,7 @@ export const Table = ({ tableData, routePath, buttonLabel, tableHeadings }) => {
           }
         </tbody>
       </table>
-      {tableData.length > 10 ? (
+      {rows.length > 10 ? (
         <div className={styles.pagesBtn}>
           <button onClick={() => previousPage()}>Previous</button>
           <button onClick={() => nextPage()}>Next</button>
