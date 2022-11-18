@@ -88,24 +88,3 @@
   border-radius: 0.7vw;
   margin-top: 10%;
 }
-/* 
-@media only screen and (max-width: 838px) {
-  .Left {
-    padding-left: 50px;
-  }
-  .Left h1 {
-    font-size: 30px;
-  }
-  .btn2 {
-    margin-left: 0;
-  }
-  .img1 {
-    height: 200px;
-    left: 50%;
-  }
-  .img2 {
-    height: 130px;
-    left: 55%;
-    top: 200px;
-  }
-} */
