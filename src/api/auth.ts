@@ -95,3 +95,34 @@ export const userIsPractitioner = async (): Promise<boolean> => {
   const querySnapshot = await getDoc(doc(db, "practitioner", user.uid));
   return querySnapshot.exists();
 };
+
+export const userIsDoctor = async (): Promise<boolean> => {
+  const user = auth.currentUser;
+
+  if (user === null) return false;
+
+  const querySnapshot = await getDoc(doc(db, "practitioner", user.uid));
+  const data: Practitioner = querySnapshot.data() as Practitioner;
+
+  return data && data.fieldSpecialty && data.fieldSpecialty !== "nurse";
+};
+
+export const userIsNurse = async (): Promise<boolean> => {
+  const user = auth.currentUser;
+
+  if (user === null) return false;
+
+  const querySnapshot = await getDoc(doc(db, "practitioner", user.uid));
+  const data: Practitioner = querySnapshot.data() as Practitioner;
+
+  return data && data.fieldSpecialty && data.fieldSpecialty === "nurse";
+};
+
+export const userIsAdmin = async (): Promise<boolean> => {
+  const user = auth.currentUser;
+
+  if (user === null) return false;
+
+  const querySnapshot = await getDoc(doc(db, "admin", user.uid));
+  return querySnapshot.exists();
+};

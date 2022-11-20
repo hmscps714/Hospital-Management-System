@@ -5,9 +5,14 @@ import NavbarHome from "src/components/Navbar/NavbarHome";
 import Table from "src/components/Tables/Table";
 import { useState, useEffect } from "react";
 import { getAllPatients } from "src/api/db";
+import { userIsPractitioner, userIsAdmin } from "src/api/auth";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
+import { useRouter } from "next/router";
 
 export const PatientList = () => {
+  const router = useRouter();
+
+  const [userIsAuthenticated, setUserIsAuthenticated] = useState(null);
   const [patientList, setPatientList] = useState(null);
   const [err, setErr] = useState(null);
 
@@ -20,7 +25,16 @@ export const PatientList = () => {
           setErr(e);
         });
     }
-  }, [patientList]);
+
+    if (userIsAuthenticated === null) {
+      const adminPromise = userIsAdmin();
+      const practitionerPromise = userIsPractitioner();
+
+      Promise.all([adminPromise, practitionerPromise]).then((values) =>
+        setUserIsAuthenticated(values[0] || values[1])
+      );
+    }
+  }, [patientList, userIsAuthenticated]);
 
   const extractInfo = () => {
     const getName = (patientData) => {
@@ -51,21 +65,25 @@ export const PatientList = () => {
     });
   };
 
+  if (userIsAuthenticated === false) router.push("/not-autheticated");
+
   return (
     <ThemeProvider theme={theme}>
       <NavbarHome />
-      {err ? (
-        <div className="errorMessage">{err.toString()}</div>
-      ) : patientList ? (
-        <Table
-          buttonLabel={"Add Patient"}
-          tableData={extractInfo()}
-          routePath={"/patient-info/"}
-          tableHeadings={"Patients List"}
-        />
-      ) : (
-        <CustomLoader />
-      )}
+      {!userIsAuthenticated && <CustomLoader />}
+      {userIsAuthenticated &&
+        (err ? (
+          <div className="errorMessage">{err.toString()}</div>
+        ) : patientList ? (
+          <Table
+            buttonLabel={"Add Patient"}
+            tableData={extractInfo()}
+            routePath={"/patient-info/"}
+            tableHeadings={"Patients List"}
+          />
+        ) : (
+          <CustomLoader />
+        ))}
     </ThemeProvider>
   );
 };

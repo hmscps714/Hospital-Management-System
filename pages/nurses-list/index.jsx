@@ -5,9 +5,14 @@ import NavbarHome from "src/components/Navbar/NavbarHome";
 import Table from "src/components/Tables/Table";
 import { useState, useEffect } from "react";
 import { getAllNurses } from "src/api/db";
+import { useRouter } from "next/router";
+import { userIsAdmin } from "src/api/auth";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 
 export const NursesList = () => {
+  const router = useRouter();
+
+  const [userIsAuthenticated, setUserIsAuthenticated] = useState(null);
   const [nursesList, setNursesList] = useState(null);
   const [err, setErr] = useState(null);
 
@@ -22,7 +27,11 @@ export const NursesList = () => {
           setErr(e);
         });
     }
-  }, [nursesList]);
+
+    if (userIsAuthenticated === null) {
+      userIsAdmin().then((x) => setUserIsAuthenticated(x));
+    }
+  }, [nursesList, userIsAuthenticated]);
 
   const extractInfo = () => {
     const getName = (nurseData) => {
@@ -53,21 +62,25 @@ export const NursesList = () => {
     });
   };
 
+  if (userIsAuthenticated === false) router.push("/not-autheticated");
+
   return (
     <ThemeProvider theme={theme}>
       <NavbarHome />
-      {err ? (
-        <div className="errorMessage">{err.toString()}</div>
-      ) : nursesList ? (
-        <Table
-          buttonLabel={"Add Nurse"}
-          tableData={extractInfo()}
-          routePath={"/practitioner-info/"}
-          tableHeadings={"Nurses List"}
-        />
-      ) : (
-        <CustomLoader />
-      )}
+      {!userIsAuthenticated && <CustomLoader />}
+      {userIsAuthenticated &&
+        (err ? (
+          <div className="errorMessage">{err.toString()}</div>
+        ) : nursesList ? (
+          <Table
+            buttonLabel={"Add Nurse"}
+            tableData={extractInfo()}
+            routePath={"/practitioner-info/"}
+            tableHeadings={"Nurses List"}
+          />
+        ) : (
+          <CustomLoader />
+        ))}
     </ThemeProvider>
   );
 };
