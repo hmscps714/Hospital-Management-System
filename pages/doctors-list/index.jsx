@@ -56,11 +56,21 @@ export const DoctorsList = () => {
   return (
     <ThemeProvider theme={theme}>
       <NavbarHome />
-      { err ? <div className="errorMessage">{err.toString()}</div>: doctorsList ? 
-      <Table buttonLabel={'Add Doctor'} tableData={extractInfo()} routePath={'/practitioner-info/'} tableHeadings={'Doctors List'} /> : <CustomLoader/>}
+      {err ? (
+        <div className="errorMessage">{err.toString()}</div>
+      ) : doctorsList ? (
+        <Table
+          buttonLabel={"Add Doctor"}
+          tableData={extractInfo()}
+          routePath={"/practitioner-info/"}
+          tableHeadings={"Doctors List"}
+          buttonRoutePath={"/practitioner-registration"}
+        />
+      ) : (
+        <CustomLoader />
+      )}
     </ThemeProvider>
-    
   );
-  }
+};
 
 export default DoctorsList;

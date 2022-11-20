@@ -62,6 +62,7 @@ export const PatientList = () => {
           tableData={extractInfo()}
           routePath={"/patient-info/"}
           tableHeadings={"Patients List"}
+          buttonRoutePath={"/patient-registration"}
         />
       ) : (
         <CustomLoader />

@@ -4,7 +4,7 @@ import styles from "./Table.module.css";
 import { useRouter } from "next/router";
 import { GlobalFilter } from "./GlobalFilter";
 
-export const Table = ({ tableData, routePath, buttonLabel, tableHeadings }) => {
+export const Table = ({ tableData, routePath, buttonLabel, tableHeadings, buttonRoutePath }) => {
   const router = useRouter();
 
   const columnsFromData = Object.keys(tableData[0]).map((key, id) => {
@@ -63,7 +63,7 @@ export const Table = ({ tableData, routePath, buttonLabel, tableHeadings }) => {
         <div className={styles.BtnContainer}>
           <h1 className={styles.Heading}>{tableHeadings}</h1>
           <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
-          <button onClick={() => router.push("/forms")} className={styles.Add}>
+          <button onClick={() => router.push(buttonRoutePath)} className={styles.Add}>
             {buttonLabel}
           </button>
         </div>
