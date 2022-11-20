@@ -1,14 +1,14 @@
 export interface Practitioner {
   basicInformation: {
     firstName: string;
-    middleName?: string;
+    // middleName?: string;
     lastName: string;
     dob: Date;
     healthCardNumber: number;
     gender: string;
-    maritalStatus?: string;
-    drugAllergies?: string;
-    foodAllergies?: string;
+    // maritalStatus?: string;
+    // drugAllergies?: string;
+    // foodAllergies?: string;
   };
   personalContactInformation: {
     email: string;
@@ -21,13 +21,13 @@ export interface Practitioner {
     phoneNumber: string;
     email: string;
   };
-  insurance?: {
-    memberName?: string;
-    providerName?: string;
-    planName?: string;
-    planNumber?: number;
-    planExpiryDate?: Date;
-  };
+  // insurance?: {
+  //   memberName?: string;
+  //   providerName?: string;
+  //   planName?: string;
+  //   planNumber?: number;
+  //   planExpiryDate?: Date;
+  // };
   fieldSpecialty: string;
   uid?: string;
 }
@@ -35,14 +35,14 @@ export interface Practitioner {
 export interface Patient {
   basicInformation: {
     firstName: string;
-    middleName?: string;
+    // middleName?: string;
     lastName: string;
     dob: Date;
     healthCardNumber: number;
     gender: string;
-    maritalStatus?: string;
-    drugAllergies?: string;
-    foodAllergies?: string;
+    // maritalStatus?: string;
+    // drugAllergies?: string;
+    // foodAllergies?: string;
   };
   personalContactInformation: {
     email: string;
@@ -69,13 +69,13 @@ export interface Patient {
     email?: string;
     address?: string;
   };
-  insurance?: {
-    memberName?: string;
-    providerName?: string;
-    planName?: string;
-    planNumber?: number;
-    planExpiryDate?: Date;
-  };
+  // insurance?: {
+  //   memberName?: string;
+  //   providerName?: string;
+  //   planName?: string;
+  //   planNumber?: number;
+  //   planExpiryDate?: Date;
+  // };
   uid?: string;
 }
 
