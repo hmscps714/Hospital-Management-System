@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Login.module.css";
-  
+import { FormInput } from "src/components/forms/FormInput";
 import { signInPatient, signInPractitioner } from "src/api/auth";
 import { useRouter } from "next/router";
 
