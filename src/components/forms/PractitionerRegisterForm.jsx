@@ -9,7 +9,7 @@ import { registerPractitioner } from "src/api/auth";
 
 const pages = [{ name: "Forms", href: "/forms" }];
 
-export const Forms = () => {
+export const PractitionerRegisterForm = () => {
   const router = useRouter();
 
   const [formVals, setFormVals] = useState({
@@ -21,12 +21,14 @@ export const Forms = () => {
     email: "",
     phoneNumber: "",
     homeAddress: "",
-    name: "",
+    //Emergency contact below
+    eName: "",
     relationshipToPatient: "",
-    phoneNumberE: "",
-    email: "",
-    fieldSpecialty: "",
-    username: "",
+    ePhone: "",
+    eEmail: "",
+    //Login
+    fieldSpecialty: "doctor",
+    //username: "", //username is email
     password: "",
   });
 
@@ -52,8 +54,7 @@ export const Forms = () => {
     {
       id: "dob",
       name: "dob",
-      type: "text",
-      placeholder: "Password",
+      type: "date",
       errorMessage: "Please provide a date of birth",
       label: "Date of Birth",
       required: true,
@@ -62,8 +63,9 @@ export const Forms = () => {
       id: "healthCardNumber",
       name: "healthCardNumber",
       type: "text",
-      placeholder: "Health Card Number",
-      errorMessage: "Please provide a health card number",
+      pattern: "[1-9]\\d{9}",
+      placeholder: "1234567890",
+      errorMessage: "Please provide your 10-digit health card number",
       label: "Health Card Number",
       required: true,
     },
@@ -81,7 +83,7 @@ export const Forms = () => {
     {
       id: "email",
       name: "email",
-      type: "text",
+      type: "email",
       placeholder: "Email",
       errorMessage: "Please provide a email",
       label: "Email",
@@ -90,8 +92,9 @@ export const Forms = () => {
     {
       id: "phoneNumber",
       name: "phoneNumber",
-      type: "text",
-      placeholder: "Phone Number",
+      type: "tel",
+      placeholder: "1234567890",
+      pattern: "\\d{10}",
       errorMessage: "Please provide a phone number",
       label: "Phone Number",
       required: true,
@@ -108,8 +111,8 @@ export const Forms = () => {
   ];
   const emergencyContactInformation = [
     {
-      id: "name",
-      name: "name",
+      id: "eName",
+      name: "eName",
       type: "text",
       placeholder: "Name",
       errorMessage: "Please provide a name",
@@ -126,18 +129,19 @@ export const Forms = () => {
       required: true,
     },
     {
-      id: "phoneNumberE",
-      name: "phoneNumberE",
-      type: "text",
-      placeholder: "Phone Number",
+      id: "ePhone",
+      name: "ePhone",
+      type: "tel",
+      placeholder: "1234567890",
+      pattern: "\\d{10}",
       errorMessage: "Please provide a phone number",
       label: "Phone Number",
       required: true,
     },
     {
-      id: "emailE",
-      name: "emailE",
-      type: "text",
+      id: "eEmail",
+      name: "eEmail",
+      type: "email",
       placeholder: "Email",
       errorMessage: "Please provide a email",
       label: "Email",
@@ -145,15 +149,15 @@ export const Forms = () => {
     },
   ];
   const login = [
-    {
-      id: "username",
-      name: "username",
-      type: "text",
-      placeholder: "Username",
-      errorMessage: "Please provide a username",
-      label: "Username",
-      required: true,
-    },
+    // {
+    //   id: "username",
+    //   name: "username",
+    //   type: "text",
+    //   placeholder: "Username",
+    //   errorMessage: "Please provide a username",
+    //   label: "Username",
+    //   required: true,
+    // },
     {
       id: "password",
       name: "password",
@@ -164,29 +168,30 @@ export const Forms = () => {
       required: true,
     },
   ];
-  const inputs = [
-    {
-      id: "fieldSpecialty",
-      name: "fieldSpecialty",
-      type: "text",
-      placeholder: "Field Specialty",
-      errorMessage: "Please provide a field specialty",
-      label: "Field Specialty",
-      required: true,
-    },
-    {
-      id: "floor",
-      name: "floor",
-      type: "text",
-      placeholder: "Floor",
-      errorMessage: "Please provide a floor",
-      label: "Floor",
-      required: true,
-    },
-  ];
+  // const inputs = [
+  //   {
+  //     id: "fieldSpecialty",
+  //     name: "fieldSpecialty",
+  //     type: "text",
+  //     placeholder: "Field Specialty",
+  //     errorMessage: "Please provide a field specialty",
+  //     label: "Field Specialty",
+  //     required: true,
+  //   },
+  //   {
+  //     id: "floor",
+  //     name: "floor",
+  //     type: "text",
+  //     placeholder: "Floor",
+  //     errorMessage: "Please provide a floor",
+  //     label: "Floor",
+  //     required: true,
+  //   },
+  // ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // console.log(formVals);
 
     const {
       firstName,
@@ -197,10 +202,10 @@ export const Forms = () => {
       email,
       phoneNumber,
       homeAddress,
-      name,
+      eName,
       relationshipToPatient,
-      phoneNumberE,
-      emailE,
+      ePhone,
+      eEmail,
       fieldSpecialty,
     } = formVals;
 
@@ -208,7 +213,7 @@ export const Forms = () => {
       basicInformation: {
         firstName,
         lastName,
-        dob,
+        dob: new Date(dob),
         healthCardNumber,
         gender,
       },
@@ -218,17 +223,20 @@ export const Forms = () => {
         homeAddress,
       },
       emergencyContactInformation: {
-        name,
+        name: eName,
         relationshipToPatient,
-        phoneNumber: phoneNumberE,
-        email: emailE,
+        phoneNumber: ePhone,
+        email: eEmail,
       },
       fieldSpecialty,
     };
     const login = {
       email,
-      password: dob,
+      password: dob.toString().replaceAll("-", ""),
     };
+
+    console.log(practitioner);
+    console.log(login);
 
     const hasLoggedIn = await registerPractitioner(login, practitioner);
     if (hasLoggedIn) {
@@ -244,7 +252,7 @@ export const Forms = () => {
 
   return (
     <React.Fragment>
-      <h3 className={styles.h3}>Doctor Enrollment Form</h3>
+      <h3 className={styles.h3}>Practitioner Enrollment Form</h3>
       <div className={styles.center}>
         <div className={styles.picture}>
           <Image src="/forms/doctor.png" width="198%" height="290%"></Image>
@@ -300,6 +308,8 @@ export const Forms = () => {
           </div>
           <div className={styles.otherDetails}>
             <h4 className={styles.h4}>Log-in Details</h4>
+            <label>Username</label>
+            <input type="text" value={formVals.email} disabled />
             {login.map((logins) => (
               <FormInput
                 key={logins.id}
@@ -309,17 +319,22 @@ export const Forms = () => {
               />
             ))}
             <h4 className={styles.h4}>Department </h4>
-            {inputs.map((input) => (
+            <label htmlFor="fieldSpecialty">Field Specialty</label>
+            <select name="fieldSpecialty" onChange={onChange} required>
+              <option value="doctor">Doctor</option>
+              <option value="nurse">Nurse</option>
+            </select>
+            {/* {inputs.map((input) => (
               <FormInput
                 key={input.id}
                 {...input}
                 value={formVals[input.name]}
                 onChange={onChange}
-              />
-            ))}
+              /> */}
+            {/* ))} */}
           </div>
           <br></br>
-          <Button onClick={handleSubmit} className={styles.btnSub1} variant="contained">
+          <Button type="submit" className={styles.btnSub1} variant="contained">
             Submit
           </Button>
         </form>
@@ -328,4 +343,4 @@ export const Forms = () => {
   );
 };
 
-export default Forms;
+export default PractitionerRegisterForm;
