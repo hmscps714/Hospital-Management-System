@@ -1,7 +1,7 @@
 import { ThemeProvider } from "@mui/material";
 import React from "react";
 import NavbarHome from "src/components/Navbar/NavbarHome";
-import PatientForms from "src/components/forms/DoctorRegisterForm";
+import PatientForms from "src/components/forms/PatientRegisterForm.jsx";
 import theme from "src/config/theme";
 
 export const Forms = () => {
