@@ -1,11 +1,21 @@
 /* GENERAL */
+.FormItems {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* gap: 50px; */
+    justify-items: center;
+    margin: 0 5%;
+    gap: 20px
+}
+
 .FormItems label {
     display: inline-block;
-    width: 200px;
+    width: 50%;
     font-family: Inter;
-    margin-left: 2em;
-    font-size: 0.9em;
-    padding-top: 1em;
+    /* margin-left: 2em; */
+    /* font-size: 0.9em; */
+    margin-top: 1em;
   }
 
 .center {
@@ -15,7 +25,8 @@
 }
 
 .FormItems input, .FormItems select {
-    width: 40%;
+    display: inline-block;
+    width: 50%;
     height: 2em;
     background: #fdfdfc;
     font-size: 0.8em;
@@ -51,16 +62,17 @@
     -moz-border-radius: 20px;
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
-    margin-left: 25em;
 }
 
 /* SPECIFIC */
 .mainDetails, .otherDetails {
     display: block;
-    height: auto;
-    width: auto;
-    float: left;
-    margin: 0.5em 1em 2em 1em;
+    height: fit-content;
+    width: 90%;
+    /* width: 50%; */
+    /* float: left; */
+    /* margin: 0.5em 1em 2em 1em; */
+    /* margin: 0 20px; */
     padding: 2em 2em 3.5em 2em;
     background-color:white;
     border: 2px solid #AAD0BD;
@@ -75,21 +87,26 @@
     grid-template-columns: 40% 60%;
 }
 
-@media only screen and (max-width: 600px) {
-    .mainDetails, .otherDetails {
-        padding: 0.5em 0.5em 1.5em 0.5em;
+@media only screen and (max-width: 700px) {
+    .FormItems {
+        grid-template-columns: 1fr;
+        margin: 10px 15px;
+    }
 
+    .mainDetails, .otherDetails {
+        /* padding: 0.5em 0.5em 1.5em 0.5em; */
+        width: 100%;
     }
 
     .btnSub1 {
         display: block;
         width: 90%;
-        margin: 0 auto;
+        margin: 25px auto;
     }
 
-    .FormItems label {
+    /* .FormItems label {
         display: inline-block;
         width: 150px;
-      }
+      } */
 
   }

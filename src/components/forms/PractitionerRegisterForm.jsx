@@ -280,33 +280,33 @@ export const PractitionerRegisterForm = () => {
         </div> */}
         <form onSubmit={handleSubmit} className={styles.FormItems}>
           <div className={styles.mainDetails}>
-                <h4 className={styles.h4}>Basic information</h4>
-                {basicInformation.map((basicInformations) => (
-                  <FormInput
-                    key={basicInformations.id}
-                    {...basicInformations}
-                    value={formVals[basicInformations.name]}
-                    onChange={onChange}
-                  />
-                ))}
-                <h4 className={styles.h4}>Personal Contact Information</h4>
-                {personalContactInformation.map((personalContactInformations) => (
-                  <FormInput
-                    key={personalContactInformations.id}
-                    {...personalContactInformations}
-                    value={formVals[personalContactInformations.name]}
-                    onChange={onChange}
-                  />
-                ))}
-                <h4 className={styles.h4}>Emergency Contact Information</h4>
-                {emergencyContactInformation.map((emergencyContactInformations) => (
-                  <FormInput
-                    key={emergencyContactInformations.id}
-                    {...emergencyContactInformations}
-                    value={formVals[emergencyContactInformations.name]}
-                    onChange={onChange}
-                  />
-                ))}{" "}
+            <h4 className={styles.h4}>Basic information</h4>
+            {basicInformation.map((basicInformations) => (
+              <FormInput
+                key={basicInformations.id}
+                {...basicInformations}
+                value={formVals[basicInformations.name]}
+                onChange={onChange}
+              />
+            ))}
+            <h4 className={styles.h4}>Personal Contact Information</h4>
+            {personalContactInformation.map((personalContactInformations) => (
+              <FormInput
+                key={personalContactInformations.id}
+                {...personalContactInformations}
+                value={formVals[personalContactInformations.name]}
+                onChange={onChange}
+              />
+            ))}
+            <h4 className={styles.h4}>Emergency Contact Information</h4>
+            {emergencyContactInformation.map((emergencyContactInformations) => (
+              <FormInput
+                key={emergencyContactInformations.id}
+                {...emergencyContactInformations}
+                value={formVals[emergencyContactInformations.name]}
+                onChange={onChange}
+              />
+            ))}{" "}
           </div>
           <div className={styles.otherDetails}>
             <h4 className={styles.h4}>Payment</h4>
@@ -335,12 +335,11 @@ export const PractitionerRegisterForm = () => {
               /> */}
             {/* ))} */}
           </div>
-          <br></br>
           <Button type="submit" className={styles.btnSub1} variant="contained">
             Submit
           </Button>
         </form>
-      </div > 
+      </div>
     </React.Fragment>
   );
 };
