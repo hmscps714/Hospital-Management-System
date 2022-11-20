@@ -1,15 +1,13 @@
-import React, { useState }  from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { FormInput } from "src/components/forms/FormInput";
 import styles from "./patientRegisterForm.module.css";
-import Image from 'next/image';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
+import Image from "next/image";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
 import { registerPractitioner } from "src/api/auth";
 
-const pages = [
-  { name: "Forms", href: "/forms" },
-];
+const pages = [{ name: "Forms", href: "/forms" }];
 
 export const Forms = () => {
   const router = useRouter();
@@ -159,7 +157,7 @@ export const Forms = () => {
     {
       id: "password",
       name: "password",
-      type: "text",
+      type: "password",
       placeholder: "Password",
       errorMessage: "Please provide a password",
       label: "Password",
@@ -190,36 +188,54 @@ export const Forms = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { firstName, lastName, dob, healthCardNumber, gender, email, phoneNumber, homeAddress, name, relationshipToPatient, phoneNumberE, emailE, fieldSpecialty } = formVals;
-    
-    const practitioner = 
-    {
+    const {
+      firstName,
+      lastName,
+      dob,
+      healthCardNumber,
+      gender,
+      email,
+      phoneNumber,
+      homeAddress,
+      name,
+      relationshipToPatient,
+      phoneNumberE,
+      emailE,
+      fieldSpecialty,
+    } = formVals;
+
+    const practitioner = {
       basicInformation: {
-        firstName, lastName, dob, healthCardNumber, gender,
+        firstName,
+        lastName,
+        dob,
+        healthCardNumber,
+        gender,
       },
       personalContactInformation: {
-        email, phoneNumber, homeAddress,
+        email,
+        phoneNumber,
+        homeAddress,
       },
       emergencyContactInformation: {
-        name, relationshipToPatient, 
+        name,
+        relationshipToPatient,
         phoneNumber: phoneNumberE,
         email: emailE,
       },
       fieldSpecialty,
-    }
-    const login =
-    {
+    };
+    const login = {
       email,
       password: dob,
-    }
-    
+    };
 
-    const hasLoggedIn = await registerPractitioner( login, practitioner );
+    const hasLoggedIn = await registerPractitioner(login, practitioner);
     if (hasLoggedIn) {
       router.push("/admin-home");
     } else {
       alert("Sorry it has failed : ( Please try again!");
-    }    
+    }
   };
 
   const onChange = (e) => {
@@ -238,40 +254,76 @@ export const Forms = () => {
             <div className={styles.center}>
               <div className={styles.info}>
                 <h4 className={styles.h4}>Basic information</h4>
-                  {basicInformation.map((basicInformations) => (
-                  <FormInput key={basicInformations.id} {...basicInformations} value={formVals[basicInformations.name]} onChange={onChange} />
-                  ))}
+                {basicInformation.map((basicInformations) => (
+                  <FormInput
+                    key={basicInformations.id}
+                    {...basicInformations}
+                    value={formVals[basicInformations.name]}
+                    onChange={onChange}
+                  />
+                ))}
                 <h4 className={styles.h4}>Personal Contact Information</h4>
-                  {personalContactInformation.map((personalContactInformations) => (
-                  <FormInput key={personalContactInformations.id} {...personalContactInformations} value={formVals[personalContactInformations.name]} onChange={onChange} />
-                  ))}
+                {personalContactInformation.map((personalContactInformations) => (
+                  <FormInput
+                    key={personalContactInformations.id}
+                    {...personalContactInformations}
+                    value={formVals[personalContactInformations.name]}
+                    onChange={onChange}
+                  />
+                ))}
                 <h4 className={styles.h4}>Emergency Contact Information</h4>
-                  {emergencyContactInformation.map((emergencyContactInformations) => (
-                  <FormInput key={emergencyContactInformations.id} {...emergencyContactInformations} value={formVals[emergencyContactInformations.name]} onChange={onChange} />
-                  ))} </div>
-                <div className={styles.imageUpload}>
+                {emergencyContactInformation.map((emergencyContactInformations) => (
+                  <FormInput
+                    key={emergencyContactInformations.id}
+                    {...emergencyContactInformations}
+                    value={formVals[emergencyContactInformations.name]}
+                    onChange={onChange}
+                  />
+                ))}{" "}
+              </div>
+              <div className={styles.imageUpload}>
                 <Image src="/forms/ddu.webp" width="283%" height="190%"></Image>
                 <h4 className={styles.h4}>Max. Size: 5MB</h4>
                 <h4 className={styles.h4}>Allowed Types: JPG, PNG, GIF, JPEG</h4>
                 <div className={styles.center}>
                   <Stack spacing={2} direction="row">
-                    <Button className={styles.btnSub} variant="contained">Upload</Button>
-                    <Button className={styles.btnRes} variant="contained">Remove</Button>
+                    <Button className={styles.btnSub} variant="contained">
+                      Upload
+                    </Button>
+                    <Button className={styles.btnRes} variant="contained">
+                      Remove
+                    </Button>
                   </Stack>
-          </div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className={styles.otherDetails}>
             <h4 className={styles.h4}>Log-in Details</h4>
             {login.map((logins) => (
-                  <FormInput key={logins.id} {...logins} value={formVals[logins.name]} onChange={onChange} />
+              <FormInput
+                key={logins.id}
+                {...logins}
+                value={formVals[logins.name]}
+                onChange={onChange}
+              />
             ))}
             <h4 className={styles.h4}>Department </h4>
             {inputs.map((input) => (
-                  <FormInput key={input.id} {...input} value={formVals[input.name]} onChange={onChange} />
+              <FormInput
+                key={input.id}
+                {...input}
+                value={formVals[input.name]}
+                onChange={onChange}
+              />
             ))}
           </div>
           <br></br>
-          <Button onClick={handleSubmit} className={styles.btnSub1} variant="contained">Submit</Button>
-        </form></div>
+          <Button onClick={handleSubmit} className={styles.btnSub1} variant="contained">
+            Submit
+          </Button>
+        </form>
+      </div>
     </React.Fragment>
   );
 };
