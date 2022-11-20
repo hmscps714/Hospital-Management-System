@@ -72,7 +72,7 @@ export const PatientRegisterForm = () => {
       name: "healthCardNumber",
       type: "text",
       pattern: "[1-9]\\d{9}",
-      placeholder: "1234567890",
+      placeholder: "1234567890-AW",
       errorMessage: "Please provide your 10-digit health card number",
       label: "Health Card Number",
       required: true,
@@ -144,7 +144,6 @@ export const PatientRegisterForm = () => {
       type: "tel",
       placeholder: "1234567890",
       pattern: "\\d{10}",
-      placeholder: "Phone Number",
       errorMessage: "Please provide a phone number",
       label: "Phone Number",
       required: true,
@@ -168,7 +167,6 @@ export const PatientRegisterForm = () => {
       placeholder: "Physician Name",
       errorMessage: "Please provide a physician name",
       label: "Physician Name",
-      required: true,
     },
     {
       id: "clinicName",
@@ -177,7 +175,6 @@ export const PatientRegisterForm = () => {
       placeholder: "Clinic Name",
       errorMessage: "Please provide a clinic name",
       label: "Clinic Name",
-      required: true,
     },
     {
       id: "clinicAddress",
@@ -186,7 +183,6 @@ export const PatientRegisterForm = () => {
       placeholder: "Clinic Address",
       errorMessage: "Please provide a Clinic Address",
       label: "Clinic Address",
-      required: true,
     },
     {
       id: "clinicPhone",
@@ -194,10 +190,8 @@ export const PatientRegisterForm = () => {
       type: "tel",
       placeholder: "1234567890",
       pattern: "\\d{10}",
-      placeholder: "Clinic Phone",
       errorMessage: "Please provide a clinic phone",
       label: "Clinic Phone",
-      required: true,
     },
     {
       id: "clinicEmail",
@@ -206,7 +200,6 @@ export const PatientRegisterForm = () => {
       placeholder: "Clinic Email",
       errorMessage: "Please provide a clinic email",
       label: "Clinic Email",
-      required: true,
     },
   ];
 
@@ -218,7 +211,6 @@ export const PatientRegisterForm = () => {
       placeholder: "Name",
       errorMessage: "Please provide a name",
       label: "Name",
-      required: true,
     },
     {
       id: "pPhone",
@@ -226,10 +218,8 @@ export const PatientRegisterForm = () => {
       type: "tel",
       placeholder: "1234567890",
       pattern: "\\d{10}",
-      placeholder: "Phone",
       errorMessage: "Please provide a phone",
       label: "Phone",
-      required: true,
     },
     {
       id: "fax",
@@ -237,10 +227,8 @@ export const PatientRegisterForm = () => {
       type: "tel",
       placeholder: "1234567890",
       pattern: "\\d{10}",
-      placeholder: "Fax Address",
       errorMessage: "Please provide a fax Address",
       label: "Fax Address",
-      required: true,
     },
     {
       id: "pEmail",
@@ -249,7 +237,6 @@ export const PatientRegisterForm = () => {
       placeholder: "Email",
       errorMessage: "Please provide a email",
       label: "Email",
-      required: true,
     },
     {
       id: "pAddress",
@@ -258,7 +245,6 @@ export const PatientRegisterForm = () => {
       placeholder: "Address",
       errorMessage: "Please provide a address",
       label: "Address",
-      required: true,
     },
   ];
 
@@ -349,16 +335,15 @@ export const PatientRegisterForm = () => {
     <React.Fragment>
       <h3 className={styles.h3}>Patient Enrollment Form</h3>
       <div className={styles.center}>
-        <div className={styles.picture}>
+        {/* <div className={styles.picture}>
           <Image src="/forms/nurse.png" width="750%" height="750%"></Image>
-        </div>
+        </div> */}
         <form onSubmit={handleSubmit} className={styles.FormItems}>
           <div className={styles.mainDetails}>
-            <div className={styles.center}>
-              <div className={styles.info}>
                 <h4 className={styles.h4}>Basic information</h4>
                 {basicInformation.map((basicInformations) => (
                   <FormInput
+                    className={styles.customFormInput}
                     key={basicInformations.id}
                     {...basicInformations}
                     value={formVals[basicInformations.name]}
@@ -383,23 +368,6 @@ export const PatientRegisterForm = () => {
                     onChange={onChange}
                   />
                 ))}{" "}
-              </div>
-              <div className={styles.imageUpload}>
-                <Image src="/forms/ddu.webp" width="283%" height="190%"></Image>
-                <h4 className={styles.h4}>Max. Size: 5MB</h4>
-                <h4 className={styles.h4}>Allowed Types: JPG, PNG, GIF, JPEG</h4>
-                <div className={styles.center}>
-                  <Stack spacing={2} direction="row">
-                    <Button className={styles.btnSub} variant="contained">
-                      Upload
-                    </Button>
-                    <Button className={styles.btnRes} variant="contained">
-                      Remove
-                    </Button>
-                  </Stack>
-                </div>
-              </div>
-            </div>
           </div>
           <div className={styles.otherDetails}>
             <h4 className={styles.h4}> Family Physician Information</h4>

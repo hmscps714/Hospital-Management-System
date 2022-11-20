@@ -29,7 +29,7 @@ export const PractitionerRegisterForm = () => {
     //Login
     fieldSpecialty: "doctor",
     //username: "", //username is email
-    password: "",
+    // password: "",
   });
 
   const basicInformation = [
@@ -64,7 +64,7 @@ export const PractitionerRegisterForm = () => {
       name: "healthCardNumber",
       type: "text",
       pattern: "[1-9]\\d{9}",
-      placeholder: "1234567890",
+      placeholder: "1234567890-AW",
       errorMessage: "Please provide your 10-digit health card number",
       label: "Health Card Number",
       required: true,
@@ -148,26 +148,26 @@ export const PractitionerRegisterForm = () => {
       required: true,
     },
   ];
-  const login = [
-    // {
-    //   id: "username",
-    //   name: "username",
-    //   type: "text",
-    //   placeholder: "Username",
-    //   errorMessage: "Please provide a username",
-    //   label: "Username",
-    //   required: true,
-    // },
-    {
-      id: "password",
-      name: "password",
-      type: "password",
-      placeholder: "Password",
-      errorMessage: "Please provide a password",
-      label: "Password",
-      required: true,
-    },
-  ];
+  // const login = [
+  // {
+  //   id: "username",
+  //   name: "username",
+  //   type: "text",
+  //   placeholder: "Username",
+  //   errorMessage: "Please provide a username",
+  //   label: "Username",
+  //   required: true,
+  // },
+  //   {
+  //     id: "password",
+  //     name: "password",
+  //     type: "password",
+  //     placeholder: "Password",
+  //     errorMessage: "Please provide a password",
+  //     label: "Password",
+  //     required: true,
+  //   },
+  // ];
   // const inputs = [
   //   {
   //     id: "fieldSpecialty",
@@ -188,6 +188,27 @@ export const PractitionerRegisterForm = () => {
   //     required: true,
   //   },
   // ];
+
+  const login = [
+    {
+      id: "salary",
+      name: "salary",
+      type: "text",
+      placeholder: "Salary",
+      errorMessage: "Please provide a salary",
+      label: "Salary",
+      // required: true,
+    },
+    {
+      id: "bonus",
+      name: "bonus",
+      type: "text",
+      placeholder: "Bonus",
+      errorMessage: "Please provide a bonus",
+      label: "Bonus",
+      // required: true,
+    },
+  ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -254,13 +275,11 @@ export const PractitionerRegisterForm = () => {
     <React.Fragment>
       <h3 className={styles.h3}>Practitioner Enrollment Form</h3>
       <div className={styles.center}>
-        <div className={styles.picture}>
+        {/* <div className={styles.picture}>
           <Image src="/forms/doctor.png" width="198%" height="290%"></Image>
-        </div>
+        </div> */}
         <form onSubmit={handleSubmit} className={styles.FormItems}>
           <div className={styles.mainDetails}>
-            <div className={styles.center}>
-              <div className={styles.info}>
                 <h4 className={styles.h4}>Basic information</h4>
                 {basicInformation.map((basicInformations) => (
                   <FormInput
@@ -288,28 +307,11 @@ export const PractitionerRegisterForm = () => {
                     onChange={onChange}
                   />
                 ))}{" "}
-              </div>
-              <div className={styles.imageUpload}>
-                <Image src="/forms/ddu.webp" width="283%" height="190%"></Image>
-                <h4 className={styles.h4}>Max. Size: 5MB</h4>
-                <h4 className={styles.h4}>Allowed Types: JPG, PNG, GIF, JPEG</h4>
-                <div className={styles.center}>
-                  <Stack spacing={2} direction="row">
-                    <Button className={styles.btnSub} variant="contained">
-                      Upload
-                    </Button>
-                    <Button className={styles.btnRes} variant="contained">
-                      Remove
-                    </Button>
-                  </Stack>
-                </div>
-              </div>
-            </div>
           </div>
           <div className={styles.otherDetails}>
-            <h4 className={styles.h4}>Log-in Details</h4>
-            <label>Username</label>
-            <input type="text" value={formVals.email} disabled />
+            <h4 className={styles.h4}>Payment</h4>
+            {/* <label>Username</label>
+            <input type="text" value={formVals.email} disabled /> */}
             {login.map((logins) => (
               <FormInput
                 key={logins.id}
@@ -338,7 +340,7 @@ export const PractitionerRegisterForm = () => {
             Submit
           </Button>
         </form>
-      </div>
+      </div > 
     </React.Fragment>
   );
 };

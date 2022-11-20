@@ -1,5 +1,4 @@
 /* GENERAL */
-
 .FormItems label {
     display: inline-block;
     width: 200px;
@@ -15,9 +14,8 @@
     align-items: center;
 }
 
-.FormItems input {
-    box-sizing: 20em;
-    width: auto;
+.FormItems input, .FormItems select {
+    width: 40%;
     height: 2em;
     background: #fdfdfc;
     font-size: 0.8em;
@@ -44,17 +42,6 @@
 }
 
 
-.btnSub {
-    font-family: Inter;
-    background-color: #72B292;
-    color:white;
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
-}
-
 .btnSub1 {
     font-family: Inter;
     background-color: #72B292;
@@ -67,92 +54,42 @@
     margin-left: 25em;
 }
 
-.btnRes {
-    font-family: Inter;
-    background-color: #B27272;
-    color:white;
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
-}
-
-.btnRes:hover {
-    font-family: Inter;
-    background-color: #976262;
-    color:white;
-}
-
-.btnAlign {
-    margin-left: 50%;
-}
-
 /* SPECIFIC */
-.picture {
-    display: block;
-    height: 100%;
-    width: 15%;
-    float: left;
-    margin: 0.5em 1em 2em 2em;
-    padding: 0.5em 0.5em 0.5em 0.5em;
-    font-family: Inter;
-}
-
-.mainDetails {
+.mainDetails, .otherDetails {
     display: block;
     height: auto;
     width: auto;
     float: left;
     margin: 0.5em 1em 2em 1em;
-    padding: 1.5em 1.5em 1.5em 1.5em;
+    padding: 2em 2em 3.5em 2em;
     background-color:white;
     border: 2px solid #AAD0BD;
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
+    border-radius: 20px;    -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
 }
 
-.otherDetails {
-    display: block;
-    height: auto;
-    width: auto;
-    float: left;
-    margin: 0.5em 2em 2em 1em;
-    padding: 1.5em 1.5em 3em 1.5em;
-    background-color:white;
-    border: 2px solid #AAD0BD;
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
+.customFormInput {
+    display: grid;
+    grid-template-columns: 40% 60%;
 }
 
-.info {
-    display: block;
-    height: auto;
-    width: auto;
-    float: left;
-    padding: 0em 1em 1em 1em;
-}
+@media only screen and (max-width: 600px) {
+    .mainDetails, .otherDetails {
+        padding: 0.5em 0.5em 1.5em 0.5em;
 
-.imageUpload {
-    padding-top: 2em;
-    height: 40rem;
-    width: 35%;
-    margin-left: 1em;
-    text-align: center; 
-}
+    }
 
-.wave {
-    z-index:-30;
-    margin-top: -20%;
-}
+    .btnSub1 {
+        display: block;
+        width: 90%;
+        margin: 0 auto;
+    }
 
-.waveBack {
-    background-color: #A3B7B0;
-    z-index: -1;
-}
+    .FormItems label {
+        display: inline-block;
+        width: 150px;
+      }
+
+  }
