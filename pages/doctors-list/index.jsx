@@ -4,20 +4,18 @@ import theme from "src/config/theme";
 import NavbarHome from "src/components/Navbar/NavbarHome";
 import Table from "src/components/Tables/Table";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import { getAllDoctors } from "src/api/db";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 
 export const DoctorsList = () => {
-  const [doctorsList, setdoctorsList] = useState(null);
+  const [doctorsList, setDoctorsList] = useState(null);
   const [err, setErr] = useState(null);
-  const router = useRouter();
 
   useEffect(() => {
     if (!doctorsList) {
       getAllDoctors()
         .then((x) => {
-          setdoctorsList(x);
+          setDoctorsList(x);
         })
         .catch((e) => {
           console.error(e);
@@ -33,11 +31,11 @@ export const DoctorsList = () => {
     };
 
     const getEmail = (doctorData) => {
-      return doctorData["emergencyContactInformation"]["email"];
+      return doctorData["personalContactInformation"]["email"];
     };
 
     const getPhone = (doctorData) => {
-      return doctorData["emergencyContactInformation"]["phoneNumber"];
+      return doctorData["personalContactInformation"]["phoneNumber"];
     };
 
     const getUID = (doctorData) => {

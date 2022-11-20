@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Landing.module.css";
+import { useRouter } from "next/router";
 
 export const Landing = () => {
+  const router = useRouter();
+
   return (
     <div className={styles.Landing}>
       <title>Landing Page</title>
@@ -10,8 +13,10 @@ export const Landing = () => {
           Making your lives <strong>better.</strong>
         </h1>
         <p>Join today to see what great wonders await!</p>
-        <button className={styles.btn1}>Try it Free!</button>
-        <button className={styles.btn2}>Get a Demo</button>
+        <button className={styles.btn1}>Contact us</button>
+        <button className={styles.btn2} onClick={() => router.push("/demo")}>
+          Demo
+        </button>
       </div>
       <div className={styles.Right}>
         <img src="/landing/surgery.jpg" alt="img not found" className={styles.img1} />

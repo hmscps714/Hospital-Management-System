@@ -14,8 +14,8 @@ import { useRouter } from "next/router";
 
 const pages = [
   { name: "Home", href: "/" },
-  { name: "Our Staff", href: "" },
   { name: "About us", href: "/about" },
+  { name: "Contact us", href: "" },
   { name: "Login", href: "/login" },
 ];
 

@@ -1,0 +1,26 @@
+.ButtonContainer {
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(1fr, 4);
+  justify-content: center;
+}
+
+.Title {
+  text-align: center;
+}
+
+.ButtonContainer button {
+  width: 250px;
+  font-size: 24px;
+  border: none;
+  margin: 15px;
+  padding: 40px;
+  background-color: #72b292;
+  border-radius: 60px;
+  cursor: pointer;
+}
+
+.ButtonContainer button:hover {
+  background-color: #2fcc7d;
+}
