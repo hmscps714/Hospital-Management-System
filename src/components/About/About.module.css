@@ -1,0 +1,68 @@
+.About {
+  background-image: linear-gradient(to bottom, rgba(32, 73, 62, 0.7), rgba(32, 73, 62, 0.7)),
+    url("/about/1.jpg");
+  min-width: 100%;
+  min-height: calc(100vh + 80px);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+}
+
+.contents {
+  margin: 1vw;
+  color: white;
+}
+
+.contents strong {
+  color: rgb(250, 199, 99);
+}
+
+.contents h1 {
+  font-size: calc(3vw + 25px);
+  letter-spacing: 0.3vw;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.contents p {
+  letter-spacing: 0.1vw;
+  font-size: calc(1vw + 13.5px);
+}
+
+.contents .block1 {
+  float: left;
+  width: 33.3%;
+  /* border: 1px solid #ccc; */
+  padding: 0 calc(0.2vw + 20px);
+}
+
+.contents .block2 {
+  float: left;
+  width: 33.3%;
+  /* border: 1px solid #ccc; */
+  padding: 0 calc(0.2vw + 20px);
+}
+
+.contents .block2 img {
+  height: 8vw;
+}
+
+.contents .clr {
+  clear: both;
+}
+
+@media only screen and (max-width: 1100px) {
+  .contents .block1 {
+    float: none;
+    width: 100%;
+  }
+
+  .contents .block2 {
+    width: auto;
+  }
+
+  .contents .block2 img {
+    height: calc(8vw + 50px);
+  }
+}
