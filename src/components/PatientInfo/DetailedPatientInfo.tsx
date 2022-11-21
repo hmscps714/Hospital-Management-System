@@ -1,4 +1,4 @@
-import React from "react";
+  import React from "react";
 import { Patient } from "src/config/interfaces";
 import moment from "moment";
 import styles from "./DetailedPatientInfo.module.css";
