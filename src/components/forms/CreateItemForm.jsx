@@ -4,6 +4,7 @@ import { FormInput } from "src/components/forms/FormInput";
 import styles from "./patientRegisterForm.module.css";
 import Button from "@mui/material/Button";
 import { createInventoryItem } from "src/api/db";
+import { integerPropType } from "@mui/utils";
 
 const pages = [{ name: "Forms", href: "/forms" }];
 
@@ -16,6 +17,8 @@ export const CreateItemForm = () => {
     price: "",
     stock: "",
   });
+
+  const [itemCreated, setItemCreated] = useState(null);
 
   const inputs = [
     {
@@ -61,11 +64,18 @@ export const CreateItemForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(formVals);
+    console.log(formVals);
 
     const { id, name, price, stock } = formVals;
 
-    console.log(formVals);
+    const tempItem = {
+      name: name,
+      stock: parseInt(stock),
+      id: id,
+      price: parseInt(price),
+    };
+
+    console.log(tempItem);
 
     //TODO: add route protection + item registration
     // const hasLoggedIn = await registerPractitioner(login, practitioner);
@@ -74,6 +84,9 @@ export const CreateItemForm = () => {
     // } else {
     //   alert("Sorry it has failed : ( Please try again!");
     // }
+
+    const res = await createInventoryItem(tempItem);
+    setItemCreated(res);
   };
 
   const onChange = (e) => {
@@ -103,6 +116,9 @@ export const CreateItemForm = () => {
           <Button type="submit" className={styles.btnSub1} variant="contained">
             Submit
           </Button>
+          <br></br>
+          {itemCreated && <span className={styles.successMsg}>Item added</span>}
+          {itemCreated === false && <span className={styles.errorMsg}>Failed to add item</span>}
         </form>
       </div>
     </React.Fragment>
