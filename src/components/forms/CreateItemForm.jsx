@@ -103,7 +103,7 @@ export const CreateItemForm = () => {
           style={{ gridTemplateColumns: "1fr", width: "50%" }}
         >
           <div className={styles.mainDetails}>
-            <h4 className={styles.h4}>Basic information</h4>
+            <h4 className={styles.h4}>Item details</h4>
             {inputs.map((input) => (
               <FormInput
                 key={input.id}
