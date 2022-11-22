@@ -44,12 +44,13 @@
     -o-border-radius: 20px;
 }
 
-@media screen and (min-width: 250px) {
+@media only screen and (max-width: 700px) {
     .form {
-        grid-template-columns: 28vw;
+        grid-template-columns: 80vw;
     }
 
     .rect {
-        width: 50%;
+        width: 100%;
+        margin: 0.4em 0;
     }
   }
