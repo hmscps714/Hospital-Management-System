@@ -1,16 +1,16 @@
 import { ThemeProvider } from "@mui/material";
 import React from "react";
 import NavbarHome from "src/components/Navbar/NavbarHome";
-import DoctorForms from "src/components/forms/DoctorRegisterForm.jsx";
+import CreateItemForm from "src/components/forms/CreateItemForm";
 import theme from "src/config/theme";
 
-export const Forms = () => {
+export const ItemRegistration = () => {
   return (
     <ThemeProvider theme={theme}>
       <NavbarHome />
-      <DoctorForms />
+      <CreateItemForm />
     </ThemeProvider>
   );
 };
 
-export default Forms;
+export default ItemRegistration;

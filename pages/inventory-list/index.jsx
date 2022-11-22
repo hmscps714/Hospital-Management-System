@@ -3,9 +3,9 @@ import { ThemeProvider } from "@mui/material";
 import theme from "src/config/theme";
 import NavbarHome from "src/components/Navbar/NavbarHome";
 import Table from "src/components/Tables/Table.js";
-import { useState, useEffect } from "react"
-import { getAllInventoryItems } from "src/api/db"
-import {CustomLoader} from "src/components/CustomLoader/CustomLoader";
+import { useState, useEffect } from "react";
+import { getAllInventoryItems } from "src/api/db";
+import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 
 export const InventoryList = () => {
   const [inventoryList, setInventoryList] = useState(null);
@@ -27,10 +27,10 @@ export const InventoryList = () => {
   const extractInfo = () => {
     return inventoryList.map((item) => {
       const itemObj = {
-        id: item['id'],
-        name: item['name'],
-        price: item['price'],
-        stock: item['stock']
+        id: item["id"],
+        name: item["name"],
+        price: item["price"],
+        stock: item["stock"],
       };
       return itemObj;
     });
@@ -39,8 +39,19 @@ export const InventoryList = () => {
   return (
     <ThemeProvider theme={theme}>
       <NavbarHome />
-      { err ? <div className="errorMessage">{err.toString()}</div>: inventoryList ? 
-      <Table buttonLabel={'Add Item'} tableData={extractInfo()} routePath={'/item-info/'} tableHeadings={'Inventory List'} /> : <CustomLoader/>}
+      {err ? (
+        <div className="errorMessage">{err.toString()}</div>
+      ) : inventoryList ? (
+        <Table
+          buttonLabel={"Add Item"}
+          tableData={extractInfo()}
+          routePath={"/item-info/"}
+          tableHeadings={"Inventory List"}
+          buttonRoutePath={"/item-registration"}
+        />
+      ) : (
+        <CustomLoader />
+      )}
     </ThemeProvider>
   );
 };

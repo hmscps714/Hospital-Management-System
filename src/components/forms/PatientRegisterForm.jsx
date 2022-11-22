@@ -1,19 +1,15 @@
-import React, { useState }  from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { FormInput } from "src/components/forms/FormInput";
 import styles from "./patientRegisterForm.module.css";
-import Image from 'next/image';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import { registerPatient } from "src/api/auth";
 
-const pages = [
-  { name: "Forms", href: "/forms" },
-];
+const pages = [{ name: "Forms", href: "/forms" }];
 
-export const Forms = () => {
+export const PatientRegisterForm = () => {
   const router = useRouter();
-  
+
   const [formVals, setFormVals] = useState({
     firstName: "",
     lastName: "",
@@ -23,20 +19,23 @@ export const Forms = () => {
     email: "",
     phoneNumber: "",
     homeAddress: "",
-    name: "",
+    //Emergency contact below
+    eName: "",
     relationshipToPatient: "",
-    phoneNumberE: "",
-    emailE: "",
+    ePhone: "",
+    eEmail: "",
+    //Physician info
     physicianName: "",
     clinicName: "",
     clinicAddress: "",
     clinicPhone: "",
     clinicEmail: "",
-    nameP: "",
-    phone: "",
+    //Pharmacy info
+    pName: "",
+    pPhone: "",
     fax: "",
-    emailP: "",
-    address: "",
+    pEmail: "",
+    pAddress: "",
   });
 
   const basicInformation = [
@@ -44,6 +43,7 @@ export const Forms = () => {
       id: "firstName",
       name: "firstName",
       type: "text",
+      pattern: "^[a-zA-Z ]*$",
       placeholder: "First Name",
       errorMessage: "Please provide a first name",
       label: "First Name",
@@ -53,6 +53,7 @@ export const Forms = () => {
       id: "lastName",
       name: "lastName",
       type: "text",
+      pattern: "^[a-zA-Z ]*$",
       placeholder: "Last Name",
       errorMessage: "Please provide a last name",
       label: "Last Name",
@@ -61,8 +62,7 @@ export const Forms = () => {
     {
       id: "dob",
       name: "dob",
-      type: "text",
-      placeholder: "Password",
+      type: "date",
       errorMessage: "Please provide a date of birth",
       label: "Date of Birth",
       required: true,
@@ -71,8 +71,9 @@ export const Forms = () => {
       id: "healthCardNumber",
       name: "healthCardNumber",
       type: "text",
-      placeholder: "Health Card Number",
-      errorMessage: "Please provide a health card number",
+      pattern: "[1-9]\\d{9}",
+      placeholder: "1234567890-AW",
+      errorMessage: "Please provide your 10-digit health card number",
       label: "Health Card Number",
       required: true,
     },
@@ -91,7 +92,7 @@ export const Forms = () => {
     {
       id: "email",
       name: "email",
-      type: "text",
+      type: "email",
       placeholder: "Email",
       errorMessage: "Please provide a email",
       label: "Email",
@@ -100,8 +101,9 @@ export const Forms = () => {
     {
       id: "phoneNumber",
       name: "phoneNumber",
-      type: "text",
-      placeholder: "Phone Number",
+      type: "tel",
+      placeholder: "1234567890",
+      pattern: "\\d{10}",
       errorMessage: "Please provide a phone number",
       label: "Phone Number",
       required: true,
@@ -119,9 +121,10 @@ export const Forms = () => {
 
   const emergencyContactInformation = [
     {
-      id: "name",
-      name: "name",
+      id: "eName",
+      name: "eName",
       type: "text",
+      pattern: "^[a-zA-Z ]*$",
       placeholder: "Name",
       errorMessage: "Please provide a name",
       label: "Name",
@@ -131,24 +134,26 @@ export const Forms = () => {
       id: "relationshipToPatient",
       name: "relationshipToPatient",
       type: "text",
+      pattern: "^[a-zA-Z ]*$",
       placeholder: "Relationship to Patient",
       errorMessage: "Please provide their relationship to patient",
       label: "Relationship to Patient",
       required: true,
     },
     {
-      id: "phoneNumberE",
-      name: "phoneNumberE",
-      type: "text",
-      placeholder: "Phone Number",
+      id: "ePhone",
+      name: "ePhone",
+      type: "tel",
+      placeholder: "1234567890",
+      pattern: "\\d{10}",
       errorMessage: "Please provide a phone number",
       label: "Phone Number",
       required: true,
     },
     {
-      id: "emailE",
-      name: "emailE",
-      type: "text",
+      id: "eEmail",
+      name: "eEmail",
+      type: "email",
       placeholder: "Email",
       errorMessage: "Please provide a email",
       label: "Email",
@@ -164,7 +169,6 @@ export const Forms = () => {
       placeholder: "Physician Name",
       errorMessage: "Please provide a physician name",
       label: "Physician Name",
-      required: true,
     },
     {
       id: "clinicName",
@@ -173,7 +177,6 @@ export const Forms = () => {
       placeholder: "Clinic Name",
       errorMessage: "Please provide a clinic name",
       label: "Clinic Name",
-      required: true,
     },
     {
       id: "clinicAddress",
@@ -182,118 +185,148 @@ export const Forms = () => {
       placeholder: "Clinic Address",
       errorMessage: "Please provide a Clinic Address",
       label: "Clinic Address",
-      required: true,
     },
     {
       id: "clinicPhone",
       name: "clinicPhone",
-      type: "text",
-      placeholder: "Clinic Phone",
+      type: "tel",
+      placeholder: "1234567890",
+      pattern: "\\d{10}",
       errorMessage: "Please provide a clinic phone",
       label: "Clinic Phone",
-      required: true,
     },
     {
       id: "clinicEmail",
       name: "clinicEmail",
-      type: "text",
+      type: "email",
       placeholder: "Clinic Email",
       errorMessage: "Please provide a clinic email",
       label: "Clinic Email",
-      required: true,
     },
   ];
 
   const pharmacy = [
     {
-      id: "nameP",
-      name: "nameP",
+      id: "pName",
+      name: "pName",
       type: "text",
       placeholder: "Name",
       errorMessage: "Please provide a name",
       label: "Name",
-      required: true,
     },
     {
-      id: "phone",
-      name: "phone",
-      type: "text",
-      placeholder: "Phone",
+      id: "pPhone",
+      name: "pPhone",
+      type: "tel",
+      placeholder: "1234567890",
+      pattern: "\\d{10}",
       errorMessage: "Please provide a phone",
       label: "Phone",
-      required: true,
     },
     {
       id: "fax",
       name: "fax",
-      type: "text",
-      placeholder: "Fax Address",
+      type: "tel",
+      placeholder: "1234567890",
+      pattern: "\\d{10}",
       errorMessage: "Please provide a fax Address",
       label: "Fax Address",
-      required: true,
     },
     {
-      id: "emailP",
-      name: "emailP",
-      type: "text",
+      id: "pEmail",
+      name: "pEmail",
+      type: "email",
       placeholder: "Email",
       errorMessage: "Please provide a email",
       label: "Email",
-      required: true,
     },
     {
-      id: "address",
-      name: "address",
+      id: "pAddress",
+      name: "pAddress",
       type: "text",
       placeholder: "Address",
       errorMessage: "Please provide a address",
       label: "Address",
-      required: true,
     },
   ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { firstName, lastName, dob, healthCardNumber, gender, email, phoneNumber, homeAddress, name, relationshipToPatient, phoneNumberE, emailE, physicianName, clinicName, clinicAddress, clinicPhone, clinicEmail, nameP, phone, fax, emailP, address } = formVals;
-    
-    const patient = 
-    {
+    const {
+      firstName,
+      lastName,
+      dob,
+      healthCardNumber,
+      gender,
+      email,
+      phoneNumber,
+      homeAddress,
+      eName,
+      relationshipToPatient,
+      ePhone,
+      eEmail,
+      physicianName,
+      clinicName,
+      clinicAddress,
+      clinicPhone,
+      clinicEmail,
+      pName,
+      pPhone,
+      fax,
+      pEmail,
+      pAddress,
+    } = formVals;
+
+    const patient = {
       basicInformation: {
-        firstName, lastName, dob, healthCardNumber, gender,
+        firstName,
+        lastName,
+        dob: new Date(dob),
+        healthCardNumber,
+        gender,
       },
       personalContactInformation: {
-        email, phoneNumber, homeAddress,
+        email,
+        phoneNumber,
+        homeAddress,
       },
       emergencyContactInformation: {
-        name, relationshipToPatient, 
-        phoneNumber: phoneNumberE,
-        email: emailE,
+        name: eName,
+        relationshipToPatient,
+        phoneNumber: ePhone,
+        email: eEmail,
       },
       physicianInformation: {
-        physicianName, clinicName, clinicAddress, clinicPhone, clinicEmail,
+        physicianName,
+        clinicName,
+        clinicAddress,
+        clinicPhone,
+        clinicEmail,
       },
       pharmacy: {
-        name: nameP,
-        phone, fax,
-        email: emailP,
-        address,
+        name: pName,
+        phone: pPhone,
+        fax,
+        email: pEmail,
+        address: pAddress,
       },
-    }
+    };
 
-    const login =
-    {
+    const login = {
       email,
-      password: dob,
-    }
-    
+      password: dob.toString().replaceAll("-", ""),
+    };
 
-    const hasLoggedIn = await registerPatient( login, patient );
+    console.log(patient);
+    console.log(login);
+
+    const hasLoggedIn = await registerPatient(login, patient);
     if (hasLoggedIn) {
       router.push("/practitioner-home");
     } else {
       alert("Sorry it has failed : ( Please try again!");
-    }    
+    }
   };
 
   const onChange = (e) => {
@@ -304,50 +337,64 @@ export const Forms = () => {
     <React.Fragment>
       <h3 className={styles.h3}>Patient Enrollment Form</h3>
       <div className={styles.center}>
-        <div className={styles.picture}>
-          <Image src="/forms/nurse.png" width="750%" height="750%"></Image>
-        </div>
         <form onSubmit={handleSubmit} className={styles.FormItems}>
           <div className={styles.mainDetails}>
-            <div className={styles.center}>
-              <div className={styles.info}>
-                <h4 className={styles.h4}>Basic information</h4>
-                  {basicInformation.map((basicInformations) => (
-                  <FormInput key={basicInformations.id} {...basicInformations} value={formVals[basicInformations.name]} onChange={onChange} />
-                  ))}
-                <h4 className={styles.h4}>Personal Contact Information</h4>
-                  {personalContactInformation.map((personalContactInformations) => (
-                  <FormInput key={personalContactInformations.id} {...personalContactInformations} value={formVals[personalContactInformations.name]} onChange={onChange} />
-                  ))}
-                <h4 className={styles.h4}>Emergency Contact Information</h4>
-                  {emergencyContactInformation.map((emergencyContactInformations) => (
-                  <FormInput key={emergencyContactInformations.id} {...emergencyContactInformations} value={formVals[emergencyContactInformations.name]} onChange={onChange} />
-                  ))} </div>
-                <div className={styles.imageUpload}>
-                <Image src="/forms/ddu.webp" width="283%" height="190%"></Image>
-                <h4 className={styles.h4}>Max. Size: 5MB</h4>
-                <h4 className={styles.h4}>Allowed Types: JPG, PNG, GIF, JPEG</h4>
-                <div className={styles.center}>
-                  <Stack spacing={2} direction="row">
-                    <Button className={styles.btnSub} variant="contained">Upload</Button>
-                    <Button className={styles.btnRes} variant="contained">Remove</Button>
-                  </Stack>
-          </div></div></div></div>
+            <h4 className={styles.h4}>Basic information</h4>
+            {basicInformation.map((basicInformations) => (
+              <FormInput
+                className={styles.customFormInput}
+                key={basicInformations.id}
+                {...basicInformations}
+                value={formVals[basicInformations.name]}
+                onChange={onChange}
+              />
+            ))}
+            <h4 className={styles.h4}>Personal Contact Information</h4>
+            {personalContactInformation.map((personalContactInformations) => (
+              <FormInput
+                key={personalContactInformations.id}
+                {...personalContactInformations}
+                value={formVals[personalContactInformations.name]}
+                onChange={onChange}
+              />
+            ))}
+            <h4 className={styles.h4}>Emergency Contact Information</h4>
+            {emergencyContactInformation.map((emergencyContactInformations) => (
+              <FormInput
+                key={emergencyContactInformations.id}
+                {...emergencyContactInformations}
+                value={formVals[emergencyContactInformations.name]}
+                onChange={onChange}
+              />
+            ))}{" "}
+          </div>
           <div className={styles.otherDetails}>
             <h4 className={styles.h4}> Family Physician Information</h4>
             {physicianInformation.map((physicianInformations) => (
-                  <FormInput key={physicianInformations.id} {...physicianInformations} value={formVals[physicianInformations.name]} onChange={onChange} />
+              <FormInput
+                key={physicianInformations.id}
+                {...physicianInformations}
+                value={formVals[physicianInformations.name]}
+                onChange={onChange}
+              />
             ))}
             <h4 className={styles.h4}>Preferred Pharmacy</h4>
             {pharmacy.map((pharmac) => (
-                  <FormInput key={pharmac.id} {...pharmac} value={formVals[pharmac.name]} onChange={onChange} />
+              <FormInput
+                key={pharmac.id}
+                {...pharmac}
+                value={formVals[pharmac.name]}
+                onChange={onChange}
+              />
             ))}
           </div>
-          <br></br>
-          <Button onClick={handleSubmit} className={styles.btnSub1} variant="contained">Submit</Button>
-        </form></div>
+          <Button type="submit" className={styles.btnSub1} variant="contained">
+            Submit
+          </Button>
+        </form>
+      </div>
     </React.Fragment>
   );
 };
 
-export default Forms;
+export default PatientRegisterForm;

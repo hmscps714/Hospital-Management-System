@@ -13,7 +13,9 @@ export const Landing = () => {
           Making your lives <strong>better.</strong>
         </h1>
         <p>Join today to see what great wonders await!</p>
-        <button className={styles.btn1}>Contact us</button>
+        <button className={styles.btn1} onClick={() => router.push("/contact")}>
+          Contact us
+        </button>
         <button className={styles.btn2} onClick={() => router.push("/demo")}>
           Demo
         </button>
