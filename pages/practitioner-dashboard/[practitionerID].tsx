@@ -31,12 +31,14 @@ export const DoctorInfo = () => {
   return (
     <ThemeProvider theme={theme}>
       <NavbarHome />
+      <>{ console.log({practitionerID, practitioner, err}) }</>
       <div>
         {err ? (
           <div className="errorMessage">{err.toString()}</div>
         ) : practitioner && !err ? (
-          <DoctorDash doctorData={practitioner}/>
-        ) : (
+            <DoctorDash doctorData={practitioner} />
+        ) 
+         : (
           <CustomLoader />
         )}
       </div>

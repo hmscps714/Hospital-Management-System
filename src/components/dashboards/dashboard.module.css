@@ -43,3 +43,13 @@
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
 }
+
+@media screen and (min-width: 250px) {
+    .form {
+        grid-template-columns: 28vw;
+    }
+
+    .rect {
+        width: 50%;
+    }
+  }
