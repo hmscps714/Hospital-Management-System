@@ -2,15 +2,15 @@ import React from "react";
 import { ThemeProvider } from "@mui/material";
 import theme from "src/config/theme";
 import NavbarHome from "src/components/Navbar/NavbarHome";
-import About from "src/components/About/About";
+import Contact from "src/components/Contact/Contact";
 
-export const about = () => {
+export const contact = () => {
   return (
     <ThemeProvider theme={theme}>
       <NavbarHome />
-      <About />
+      <Contact />
     </ThemeProvider>
   );
 };
 
-export default about;
+export default contact;
