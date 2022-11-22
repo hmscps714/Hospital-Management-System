@@ -15,6 +15,7 @@ import {
   Prescription,
   InventoryItem,
   InventoryItemUpdate,
+  Transaction,
 } from "src/config/interfaces";
 import { userIsPractitioner } from "src/api/auth";
 
@@ -143,6 +144,27 @@ export const updateInventoryItem = async (updateObj: InventoryItemUpdate): Promi
   try {
     const { id, stock } = updateObj;
     await updateDoc(doc(db, "inventory", id), { stock });
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const getAllTransactions = async (): Promise<Transaction[]> => {
+  const querySnapshot = await getDocs(collection(db, "transaction"));
+  return querySnapshot.docs.map((doc) => doc.data() as Transaction);
+};
+
+export const getTransaction = async (transactionId: string): Promise<Transaction | null> => {
+  const querySnapshot = await getDoc(doc(db, "transaction", transactionId));
+  return querySnapshot.data() as Transaction;
+};
+
+export const createTransaction = async (transaction: Transaction): Promise<boolean> => {
+  try {
+    const { id } = transaction;
+    await setDoc(doc(db, "transaction", id), transaction);
     return true;
   } catch (error) {
     console.error(error);
