@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { FormInput } from "src/components/forms/FormInput";
 import styles from "./patientRegisterForm.module.css";
-import Image from "next/image";
-import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { registerPractitioner } from "src/api/auth";
 
@@ -29,7 +27,7 @@ export const PractitionerRegisterForm = () => {
     //Login
     fieldSpecialty: "doctor",
     //username: "", //username is email
-    // password: "",
+    password: "",
   });
 
   const basicInformation = [
@@ -194,29 +192,37 @@ export const PractitionerRegisterForm = () => {
   // ];
 
   const login = [
+    // {
+    //   id: "salary",
+    //   name: "salary",
+    //   type: "text",
+    //   placeholder: "Salary",
+    //   errorMessage: "Please provide a salary",
+    //   label: "Salary",
+    //   // required: true,
+    // },
+    // {
+    //   id: "bonus",
+    //   name: "bonus",
+    //   type: "text",
+    //   placeholder: "Bonus",
+    //   errorMessage: "Please provide a bonus",
+    //   label: "Bonus",
+    //   // required: true,
+    // },
     {
-      id: "salary",
-      name: "salary",
-      type: "text",
-      placeholder: "Salary",
-      errorMessage: "Please provide a salary",
-      label: "Salary",
-      // required: true,
-    },
-    {
-      id: "bonus",
-      name: "bonus",
-      type: "text",
-      placeholder: "Bonus",
-      errorMessage: "Please provide a bonus",
-      label: "Bonus",
-      // required: true,
+      id: "password",
+      name: "password",
+      type: "password",
+      placeholder: "Password",
+      errorMessage: "Please provide a password",
+      label: "Password",
+      required: true,
     },
   ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(formVals);
 
     const {
       firstName,
@@ -232,6 +238,7 @@ export const PractitionerRegisterForm = () => {
       ePhone,
       eEmail,
       fieldSpecialty,
+      password,
     } = formVals;
 
     const practitioner = {
@@ -257,11 +264,8 @@ export const PractitionerRegisterForm = () => {
     };
     const login = {
       email,
-      password: dob.toString().replaceAll("-", ""),
+      password,
     };
-
-    console.log(practitioner);
-    console.log(login);
 
     const hasLoggedIn = await registerPractitioner(login, practitioner);
     if (hasLoggedIn) {
@@ -279,9 +283,6 @@ export const PractitionerRegisterForm = () => {
     <React.Fragment>
       <h3 className={styles.h3}>Practitioner Enrollment Form</h3>
       <div className={styles.center}>
-        {/* <div className={styles.picture}>
-          <Image src="/forms/doctor.png" width="198%" height="290%"></Image>
-        </div> */}
         <form onSubmit={handleSubmit} className={styles.FormItems}>
           <div className={styles.mainDetails}>
             <h4 className={styles.h4}>Basic information</h4>
@@ -313,9 +314,9 @@ export const PractitionerRegisterForm = () => {
             ))}{" "}
           </div>
           <div className={styles.otherDetails}>
-            <h4 className={styles.h4}>Payment</h4>
-            {/* <label>Username</label>
-            <input type="text" value={formVals.email} disabled /> */}
+            <h4 className={styles.h4}>Account</h4>
+            <label>Username</label>
+            <input type="text" value={formVals.email} disabled />
             {login.map((logins) => (
               <FormInput
                 key={logins.id}

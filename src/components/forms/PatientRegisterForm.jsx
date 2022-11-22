@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { FormInput } from "src/components/forms/FormInput";
 import styles from "./patientRegisterForm.module.css";
-import Image from "next/image";
-import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { registerPatient } from "src/api/auth";
 
@@ -339,9 +337,6 @@ export const PatientRegisterForm = () => {
     <React.Fragment>
       <h3 className={styles.h3}>Patient Enrollment Form</h3>
       <div className={styles.center}>
-        {/* <div className={styles.picture}>
-          <Image src="/forms/nurse.png" width="750%" height="750%"></Image>
-        </div> */}
         <form onSubmit={handleSubmit} className={styles.FormItems}>
           <div className={styles.mainDetails}>
             <h4 className={styles.h4}>Basic information</h4>
