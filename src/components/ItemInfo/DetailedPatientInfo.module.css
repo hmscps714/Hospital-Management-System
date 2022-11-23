@@ -1,0 +1,36 @@
+.Container {
+  display: grid;
+  /* width: 100%; */
+  grid-template-columns: 30vw;
+  margin: 20px 40px;
+  grid-gap: 20px;
+  text-align: center;
+  justify-content: center;
+}
+
+.Card {
+  border: 1px solid #aad0bd;
+  border-radius: 30px;
+  /* padding: 20px; */
+  /* margin: 0 20px; */
+  padding: 30px;
+}
+
+.Card h2 {
+  text-decoration: underline;
+  text-decoration-color: #aad0bd;
+}
+
+.Card ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+/* .Card ul > li > span {
+  display: inline-block;
+  width: 50%;
+} */
+
+/* .Card ul > li > span:nth-child(2) {
+  text-align: right;
+} */
