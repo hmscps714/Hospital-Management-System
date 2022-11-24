@@ -45,9 +45,9 @@ export const TransactionList = () => {
         <Table
           buttonLabel={"Add Transaction"}
           tableData={extractInfo()}
-          routePath={"/item-info/"}
+          routePath={"/transaction-info/"}
           tableHeadings={"Financial Transactions"}
-          buttonRoutePath={"/item-registration"}
+          buttonRoutePath={"/transaction-registration"}
         />
       ) : (
         <CustomLoader />

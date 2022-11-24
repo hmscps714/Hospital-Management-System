@@ -5,7 +5,7 @@ import NavbarHome from "src/components/Navbar/NavbarHome";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { Transaction } from "src/config/interfaces";
-import { DetailedTransactiontInfo } from "src/components/ItemInfo/DetailedPriceInfo";
+import { DetailedTransactiontInfo } from "src/components/TransactionInfo/DetailedTransactionInfo";
 import { getTransaction } from "src/api/db";
 
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
