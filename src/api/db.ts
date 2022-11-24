@@ -16,8 +16,10 @@ import {
   InventoryItem,
   InventoryItemUpdate,
   Transaction,
+  Appointment,
 } from "src/config/interfaces";
-import { userIsPractitioner } from "src/api/auth";
+import { userIsPatient, userIsPractitioner } from "src/api/auth";
+import { v4 as uuidv4 } from "uuid";
 
 export const getPatient = async (uid: string): Promise<Patient | null> => {
   const querySnapshot = await getDoc(doc(db, "patient", uid));
@@ -165,6 +167,63 @@ export const createTransaction = async (transaction: Transaction): Promise<boole
   try {
     const { id } = transaction;
     await setDoc(doc(db, "transaction", id), transaction);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const getPractitionerAppointments = async (uid: string): Promise<Appointment[]> => {
+  const q = query(collection(db, "appointment"), where("practitionerId", "==", uid));
+
+  const querySnapshot = await getDocs(q);
+  const appointments = querySnapshot.docs.map((doc) => doc.data() as Appointment);
+  appointments.forEach((appointment) => {
+    appointment.startDate = new Date(appointment.startDate.seconds * 1000);
+    appointment.endDate = new Date(appointment.endDate.seconds * 1000);
+  });
+
+  return appointments;
+};
+
+export const getPatientAppointments = async (uid: string): Promise<Appointment[]> => {
+  const q = query(collection(db, "appointment"), where("patientId", "==", uid));
+
+  const querySnapshot = await getDocs(q);
+  const appointments = querySnapshot.docs.map((doc) => doc.data() as Appointment);
+  appointments.forEach((appointment) => {
+    appointment.startDate = new Date(appointment.startDate.seconds * 1000);
+    appointment.endDate = new Date(appointment.endDate.seconds * 1000);
+  });
+
+  return appointments;
+};
+
+export const getCurrentPractitionerAppointments = async (): Promise<Appointment[]> => {
+  const user = auth.currentUser;
+
+  if (user === null) return null;
+
+  return await getPractitionerAppointments(user.uid);
+};
+
+export const getCurrentPatientAppointments = async (): Promise<Appointment[]> => {
+  const user = auth.currentUser;
+
+  if (user === null) return null;
+
+  return await getPatientAppointments(user.uid);
+};
+
+export const createAppointment = async (appointment: Appointment): Promise<boolean> => {
+  if (!userIsPatient()) return false;
+
+  try {
+    const uid = uuidv4();
+    appointment.appointmentId = uid;
+
+    await setDoc(doc(db, "appointment", uid), appointment);
     return true;
   } catch (error) {
     console.error(error);

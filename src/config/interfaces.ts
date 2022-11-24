@@ -111,3 +111,14 @@ export interface Transaction {
   amount: number;
   date: Date;
 }
+
+export interface Appointment {
+  title: string;
+  startDate: Date;
+  endDate: Date;
+  appointmentId: string;
+  practitionerId: string;
+  patientId: string;
+  allDay?: boolean;
+  notes?: string;
+}
