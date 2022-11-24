@@ -38,6 +38,24 @@
     cursor: default;
 }
 
+.TableFooter {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    background-color: #AAD0BD;
+    color: black;
+    cursor: default;
+}
+
+.TDfooter {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    background-color: #AAD0BD;
+    color: black;
+    cursor: default;
+}
+
 .pagesBtn {
     width: 30%;
     margin: 0 auto;

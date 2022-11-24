@@ -37,6 +37,7 @@ export const Table = ({ tableData, routePath, buttonLabel, tableHeadings, button
     getTableProps,
     getTableBodyProps,
     headerGroups,
+    footerGroups,
     page,
     nextPage,
     previousPage,
@@ -118,6 +119,31 @@ export const Table = ({ tableData, routePath, buttonLabel, tableHeadings, button
             })
           }
         </tbody>
+         { tableHeadings == "Financial Transactions" && <tfoot className={styles.TableFooter}>
+          {
+            footerGroups.map((footerGroup) => (
+              <tr {...footerGroup.getFooterGroupProps()} >
+                
+                  <td className={styles.TDfooter} style={{fontWeight: "800"}}>
+                    Total
+                  </td>
+                  <td className={styles.TDfooter}>
+
+                  </td>
+                  <td className={styles.TDfooter}>
+                  </td>
+                  <td className={styles.TDfooter} style={{fontWeight: "800"}}>
+                      {(rows.map((inp) => (
+                        (inp.values.amount)
+                      )).reduce(
+                        (acc, curval) => acc + curval,
+                        0
+                      ))}
+                  </td>
+              </tr>
+            ))
+          }
+        </tfoot>}
       </table>
       {rows.length > 10 ? (
         <div className={styles.pagesBtn}>
