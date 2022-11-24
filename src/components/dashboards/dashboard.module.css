@@ -1,0 +1,56 @@
+.h1, .h3 {
+    padding: 0 14%;
+}
+
+.green {
+    color: #235347;
+    font-weight: 800;
+}
+
+.text {
+    font-weight: 500;
+}
+
+.line {
+    margin-top: 2em;
+    width: 80%;
+    height:5px;
+    border-width:0;
+    border: 3px solid #A7AFAD;
+    border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    -ms-border-radius: 1em;
+    -o-border-radius: 1em;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: 28vw 28vw 28vw;
+    column-gap: 20px;
+    padding: 20px 40px;
+    justify-content: center;
+}
+
+.rect {
+    height: 10em;
+    width: auto;
+    background-color:white;
+    border: 2px solid #AAD0BD;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+@media only screen and (max-width: 700px) {
+    .form {
+        grid-template-columns: 80vw;
+    }
+
+    .rect {
+        width: 100%;
+        margin: 0.4em 0;
+    }
+  }
