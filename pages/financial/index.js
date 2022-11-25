@@ -8,14 +8,14 @@ import { getAllTransactions } from "src/api/db";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 
 export const TransactionList = () => {
-  const [transactionList, setTransactionList ] = useState(null);
+  const [transactionList, setTransactionList] = useState(null);
   const [err, setErr] = useState(null);
 
   useEffect(() => {
     if (!transactionList) {
-        getAllTransactions()
-            .then((x) => {
-                setTransactionList(x);
+      getAllTransactions()
+        .then((x) => {
+          setTransactionList(x);
         })
         .catch((e) => {
           console.error(e);
@@ -38,6 +38,7 @@ export const TransactionList = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      {console.log(transactionList)}
       <NavbarHome />
       {err ? (
         <div className="errorMessage">{err.toString()}</div>
