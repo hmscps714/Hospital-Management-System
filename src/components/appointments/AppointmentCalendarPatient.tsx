@@ -1,20 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Paper from "@mui/material/Paper";
 import {
   Scheduler,
   WeekView,
   Appointments,
   AppointmentTooltip,
-  AppointmentForm,
   DateNavigator,
   TodayButton,
   Toolbar,
 } from "@devexpress/dx-react-scheduler-material-ui";
 import { ViewState } from "@devexpress/dx-react-scheduler";
-import { Appointment, Patient } from "src/config/interfaces";
-import { getCurrentPatientAppointments, getPatientAppointments } from "src/api/db";
+import { Appointment } from "src/config/interfaces";
 import styles from "./appointments.module.css";
-import moment from "moment";
 import { CustomLoader } from "../CustomLoader/CustomLoader";
 
 interface AppointmentCalendarPatientProps {
