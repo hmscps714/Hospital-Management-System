@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Login.module.css";
 import { FormInput } from "src/components/forms/FormInput";
-import { signInPatient, signInPractitioner } from "src/api/auth";
+import { signInPatient, signInPractitioner, getCurrentUserId } from "src/api/auth";
 import { useRouter } from "next/router";
 
 export const Login = () => {
@@ -38,12 +38,20 @@ export const Login = () => {
 
     const { email, password, userType } = formVals;
 
+    console.log(formVals);
+
     if (userType === "Patient") {
       const hasLoggedIn = await signInPatient({ email, password });
-      if (hasLoggedIn) router.push("/patient-home"); // endpoint for patient home page
+      if (hasLoggedIn) {
+        const uid = getCurrentUserId();
+        router.push(`/patient-dashboard/${uid}`);
+      }
     } else if (userType === "Practitioner") {
       const hasLoggedIn = await signInPractitioner({ email, password });
-      if (hasLoggedIn) router.push("/practitioner-home"); // endpoint for practitioner home page
+      if (hasLoggedIn) {
+        const uid = getCurrentUserId();
+        router.push(`/practitioner-dashboard/${uid}`);
+      }
     }
   };
 

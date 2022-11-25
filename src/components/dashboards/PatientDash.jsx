@@ -52,15 +52,11 @@ export const PatientDash = ({ patientData }) => {
       </h3>
       <hr className={styles.line}></hr>
       <div className={styles.form}>
-        <div className={styles.rect}></div>
-        <div className={styles.rect}></div>
-        <div className={styles.rect}></div>
+          <AppointmentCalendarPatient appointments={patientAppointments} />
+          <AppointmentCreator patient={patientData} addPatientAppointment={addPatientAppointment} />
       </div>
 
-      <div className={styles.form2}>
-        <AppointmentCalendarPatient appointments={patientAppointments} />
-        <AppointmentCreator patient={patientData} addPatientAppointment={addPatientAppointment} />
-      </div>
+
     </>
   );
 };

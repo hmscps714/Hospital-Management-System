@@ -95,3 +95,11 @@ export const userIsPractitioner = async (): Promise<boolean> => {
   const querySnapshot = await getDoc(doc(db, "practitioner", user.uid));
   return querySnapshot.exists();
 };
+
+export const getCurrentUserId = (): string | null => {
+  const user = auth.currentUser;
+
+  if (user === null) return null;
+
+  return user.uid;
+};
