@@ -1,7 +1,7 @@
 import React from "react";
 import { Transaction } from "src/config/interfaces";
 import moment from "moment";
-import styles from "./DetailedPatientInfo.module.css";
+import styles from "./DetailedTransactionInfo.module.css";
 
 export const DetailedTransactiontInfo = ({ transactionData }) => {
   const {

@@ -81,8 +81,16 @@ export const CreatePriceForm = () => {
     //   alert("Sorry it has failed : ( Please try again!");
     // }
 
+
+
     const res = await createTransaction(tempItem);
     setItemCreated(res);
+
+    if (res) {
+      router.push("/financial");
+    } else {
+      alert("Sorry it has failed : ( Please try again!");
+    }
   };
 
   const onChange = (e) => {
@@ -108,7 +116,7 @@ export const CreatePriceForm = () => {
                 onChange={onChange}
               />
             ))}
-            <label htmlFor="type">Field Specialty</label>
+            <label htmlFor="type">Equipment Type</label>
             <select id="type" name="type" onChange={onChange} required>
                 <option value="Equipment Repair">Equipment Repair</option>
                 <option value="Salary">Salary</option>
