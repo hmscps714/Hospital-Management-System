@@ -96,7 +96,7 @@ export const Table = ({ tableData, routePath, buttonLabel, tableHeadings, button
                   className={styles.tr}
                   onClick={() => {
                     let path = "";
-                    if (routePath === "/item-info/") {
+                    if (routePath === "/item-info/" || routePath === "/transaction-info/") {
                       path = routePath + row.values["id"];
                     } else {
                       path = routePath + row.values["uid"];
@@ -119,31 +119,22 @@ export const Table = ({ tableData, routePath, buttonLabel, tableHeadings, button
             })
           }
         </tbody>
-         { tableHeadings == "Financial Transactions" && <tfoot className={styles.TableFooter}>
-          {
-            footerGroups.map((footerGroup) => (
-              <tr {...footerGroup.getFooterGroupProps()} >
-                
-                  <td className={styles.TDfooter} style={{fontWeight: "800"}}>
-                    Total
-                  </td>
-                  <td className={styles.TDfooter}>
-
-                  </td>
-                  <td className={styles.TDfooter}>
-                  </td>
-                  <td className={styles.TDfooter} style={{fontWeight: "800"}}>
-                      {(rows.map((inp) => (
-                        (inp.values.amount)
-                      )).reduce(
-                        (acc, curval) => acc + curval,
-                        0
-                      ))}
-                  </td>
+        {tableHeadings == "Financial Transactions" && (
+          <tfoot className={styles.TableFooter}>
+            {footerGroups.map((footerGroup) => (
+              <tr {...footerGroup.getFooterGroupProps()}>
+                <td className={styles.TDfooter} style={{ fontWeight: "800" }}>
+                  Total
+                </td>
+                <td className={styles.TDfooter}></td>
+                <td className={styles.TDfooter}></td>
+                <td className={styles.TDfooter} style={{ fontWeight: "800" }}>
+                  {rows.map((inp) => inp.values.amount).reduce((acc, curval) => acc + curval, 0)}
+                </td>
               </tr>
-            ))
-          }
-        </tfoot>}
+            ))}
+          </tfoot>
+        )}
       </table>
       {rows.length > 10 ? (
         <div className={styles.pagesBtn}>
