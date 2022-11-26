@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { auth } from "src/api/init";
-import { userIsPatient, userIsPractitioner } from "src/api/auth";
+import { userIsPatient, userIsPractitioner, userIsAdmin } from "src/api/auth";
 
 const formatAuthUser = (user) => ({
   uid: user.uid,
@@ -20,8 +20,9 @@ export default function useFirebaseAuth() {
         setAuthUserType("patient");
       } else if (await userIsPractitioner()) {
         setAuthUserType("practitioner");
+      } else if (await userIsAdmin()) {
+        setAuthUserType("admin");
       }
-      //TODO admin check
     };
 
     if (!authState) {
@@ -33,7 +34,6 @@ export default function useFirebaseAuth() {
 
     //if authState changed, perform follow calls:
     setLoading(true);
-    console.log("\nAUTH: retrieving state from firebase!\n");
     var formattedUser = formatAuthUser(authState);
     setAuthUser(formattedUser);
     await checkAndUpdateUserType();

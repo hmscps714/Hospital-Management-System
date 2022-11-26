@@ -11,7 +11,7 @@ import { getPatient } from "src/api/db";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 import { useAuth } from "src/context/AuthUserContext";
 
-export const PatientDashBoard = () => {
+export const AdminDashboard = () => {
   const { authUser, loading, authUserType } = useAuth();
   const router = useRouter();
   const [patient, setPatient] = useState<Patient>(null);
@@ -19,24 +19,26 @@ export const PatientDashBoard = () => {
 
   useEffect(() => {
     if (loading) return;
-    if (!authUser || authUserType !== "patient") {
+    if (!authUser || authUserType !== "admin") {
       router.push("/401");
       return;
     }
 
-    getPatient(authUser.uid as string)
-      .then((p) => setPatient(p))
-      .catch((e) => {
-        console.error(e);
-        setErr(e);
-      });
+    //Todo fetch admin data??
+    // getPatient(authUser.uid as string)
+    //   .then((p) => setPatient(p))
+    //   .catch((e) => {
+    //     console.error(e);
+    //     setErr(e);
+    //   });
   }, [loading, authUser, authUserType]);
 
   return (
     <ThemeProvider theme={theme}>
       <NavbarHome />
       <div>
-        {err ? (
+        <h1>Admin dash</h1>
+        {/* {err ? (
           <div className="errorMessage">{err.toString()}</div>
         ) : patient && !err ? (
           <div>
@@ -44,10 +46,10 @@ export const PatientDashBoard = () => {
           </div>
         ) : (
           <CustomLoader />
-        )}
+        )} */}
       </div>
     </ThemeProvider>
   );
 };
 
-export default PatientDashBoard;
+export default AdminDashboard;
