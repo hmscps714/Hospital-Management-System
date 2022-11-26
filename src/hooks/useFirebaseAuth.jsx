@@ -12,15 +12,15 @@ export default function useFirebaseAuth() {
   const [authUserType, setAuthUserType] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  //Async function that handle auth state change (ie log in and log out)
   const authStateChanged = async (authState) => {
+    //Determine the user type
     const checkAndUpdateUserType = async () => {
-      // let actualUserType = null;
       if (await userIsPatient()) {
         setAuthUserType("patient");
       } else if (await userIsPractitioner()) {
         setAuthUserType("practitioner");
       }
-      // setAuthUserType(actualUserType);
       //TODO admin check
     };
 
@@ -30,25 +30,13 @@ export default function useFirebaseAuth() {
       setLoading(false);
       return;
     }
+
+    //if authState changed, perform follow calls:
     setLoading(true);
-
-    const data = window.sessionStorage.getItem("AUTH_STATE");
-    if (data !== null) {
-      console.log("\nAUTH: retrieving state from sessionStorage!\n");
-      const converted = JSON.parse(data);
-      setAuthUser(converted.authUser);
-      setAuthUserType(converted.authUserType);
-      // setLoading(converted.loading);
-    } else {
-      console.log("\nAUTH: retrieving state from firebase!\n");
-
-      var formattedUser = formatAuthUser(authState);
-      setAuthUser(formattedUser);
-      // window.sessionStorage.setItem("hello", "world");
-      await checkAndUpdateUserType();
-      // console.log(authUser, authUserType);
-      // window.sessionStorage.setItem("AUTH_STATE", JSON.stringify({ authUser, authUserType }));
-    }
+    console.log("\nAUTH: retrieving state from firebase!\n");
+    var formattedUser = formatAuthUser(authState);
+    setAuthUser(formattedUser);
+    await checkAndUpdateUserType();
     setLoading(false);
   };
 
@@ -56,14 +44,8 @@ export default function useFirebaseAuth() {
     setLoading(true);
     setAuthUser(null);
     setAuthUserType(null);
-    window.sessionStorage.removeItem("AUTH_STATE");
   };
 
-  //   const signInWithEmailAndPassword = (email, password) =>
-  //     auth.signInWithEmailAndPassword(email, password);
-
-  //   const createUserWithEmailAndPassword = (email, password) =>
-  //     auth.createUserWithEmailAndPassword(email, password);
   const signOut = () => auth.signOut().then(clear);
 
   useEffect(() => {
@@ -71,29 +53,10 @@ export default function useFirebaseAuth() {
     return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
-    if (authUser && authUserType) {
-      window.sessionStorage.setItem("AUTH_STATE", JSON.stringify({ authUser, authUserType }));
-    }
-  }, [authUser, authUserType]);
-
-  //Once authUser obj is no longer null, determine the user type
-  // useEffect(() => {
-  //   const checkAndUpdateUserType = async () => {
-  //     if (await userIsPatient()) setAuthUserType("patient");
-  //     else if (await userIsPractitioner()) setAuthUserType("practitioner");
-  //     //TODO admin check
-  //   };
-
-  //   if (authUser) checkAndUpdateUserType();
-  // }, [authUser]);
-
   return {
     authUser,
     loading,
     authUserType,
-    // signInWithEmailAndPassword,
-    // createUserWithEmailAndPassword,
     signOut,
   };
 }

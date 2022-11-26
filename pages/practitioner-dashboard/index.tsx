@@ -45,7 +45,6 @@ export const DoctorInfo = () => {
   return (
     <ThemeProvider theme={theme}>
       <NavbarHome />
-      <button onClick={() => router.push("/patient-dashboard")}>Press me!</button>
       <div>
         {err ? (
           <div className="errorMessage">{err.toString()}</div>
