@@ -40,10 +40,13 @@ export const Login = () => {
 
     if (userType === "Patient") {
       const hasLoggedIn = await signInPatient({ email, password });
-      if (hasLoggedIn) router.push("/patient-home"); // endpoint for patient home page
+      if (hasLoggedIn) router.push("/patient-dashboard");
     } else if (userType === "Practitioner") {
       const hasLoggedIn = await signInPractitioner({ email, password });
-      if (hasLoggedIn) router.push("/practitioner-home"); // endpoint for practitioner home page
+      if (hasLoggedIn) router.push("/practitioner-dashboard");
+    } else if (userType === "Admin") {
+      const hasLoggedIn = await signInPractitioner({ email, password });
+      if (hasLoggedIn) router.push("/admin-dashboard");
     }
   };
 

@@ -180,7 +180,9 @@ export const getPractitionerAppointments = async (uid: string): Promise<Appointm
   const querySnapshot = await getDocs(q);
   const appointments = querySnapshot.docs.map((doc) => doc.data() as Appointment);
   appointments.forEach((appointment) => {
+    // @ts-ignore
     appointment.startDate = new Date(appointment.startDate.seconds * 1000);
+    // @ts-ignore
     appointment.endDate = new Date(appointment.endDate.seconds * 1000);
   });
 
@@ -193,7 +195,9 @@ export const getPatientAppointments = async (uid: string): Promise<Appointment[]
   const querySnapshot = await getDocs(q);
   const appointments = querySnapshot.docs.map((doc) => doc.data() as Appointment);
   appointments.forEach((appointment) => {
+    // @ts-ignore
     appointment.startDate = new Date(appointment.startDate.seconds * 1000);
+    // @ts-ignore
     appointment.endDate = new Date(appointment.endDate.seconds * 1000);
   });
 
