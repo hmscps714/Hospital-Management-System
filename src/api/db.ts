@@ -234,3 +234,27 @@ export const createAppointment = async (appointment: Appointment): Promise<boole
     return false;
   }
 };
+
+export const updatePatient = async (patient: Patient): Promise<boolean> => {
+  try {
+    const { uid } = patient;
+
+    await setDoc(doc(db, "patient", uid), patient);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const updatePractitioner = async (practitioner: Practitioner): Promise<boolean> => {
+  try {
+    const { uid } = practitioner;
+
+    await setDoc(doc(db, "practitioner", uid), practitioner);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
