@@ -95,3 +95,14 @@ export const userIsPractitioner = async (): Promise<boolean> => {
   const querySnapshot = await getDoc(doc(db, "practitioner", user.uid));
   return querySnapshot.exists();
 };
+
+export const customSignIn = async (loginObject: Login): Promise<boolean> => {
+  try {
+    const { email, password } = loginObject;
+    await signInWithEmailAndPassword(auth, email, password);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};

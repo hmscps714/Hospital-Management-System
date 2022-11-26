@@ -1,11 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Login.module.css";
 import { FormInput } from "src/components/forms/FormInput";
-import { signInPatient, signInPractitioner } from "src/api/auth";
+import { signInPatient, signInPractitioner, getCurrentUserId } from "src/api/auth";
 import { useRouter } from "next/router";
+import { useAuth } from "src/context/AuthUserContext";
 
 export const Login = () => {
   const router = useRouter();
+  const { authUser, loading, authUserType } = useAuth();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
+  // const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!loading && authUser && authUserType) {
+      console.log("redirecting!");
+      if (authUserType === "patient") router.push("/patient-dashboard");
+      else if (authUserType === "practitioner") router.push("/practitioner-dashboard");
+    }
+  }, [authUser, loading, authUserType]);
 
   const [formVals, setFormVals] = useState({
     email: "",
@@ -38,13 +51,8 @@ export const Login = () => {
 
     const { email, password, userType } = formVals;
 
-    if (userType === "Patient") {
-      const hasLoggedIn = await signInPatient({ email, password });
-      if (hasLoggedIn) router.push("/patient-home"); // endpoint for patient home page
-    } else if (userType === "Practitioner") {
-      const hasLoggedIn = await signInPractitioner({ email, password });
-      if (hasLoggedIn) router.push("/practitioner-home"); // endpoint for practitioner home page
-    }
+    const res = await signInPatient({ email, password });
+    setIsLoggedIn(res);
   };
 
   const onChange = (e) => {
@@ -65,7 +73,12 @@ export const Login = () => {
             <option value={"Practitioner"}>Practitioner</option>
             <option value={"Admin"}>Admin</option>
           </select>
-          <button onClick={handleSubmit}>Sign in</button>
+          <button type="submit">Sign in</button>
+          {isLoggedIn === false && (
+            <span className="errorMessage">
+              The email and password you entered does not match any account. Please try again!
+            </span>
+          )}
         </form>
       </div>
     </div>

@@ -11,17 +11,17 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useAuth } from "src/context/AuthUserContext";
 
 const pages = [
   { name: "Home", href: "/" },
   { name: "About us", href: "/about" },
   { name: "Contact us", href: "/contact" },
-  { name: "Login", href: "/login" },
 ];
 
 export const NavbarHome = () => {
   const router = useRouter();
-
+  const { authUser, loading } = useAuth();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -82,6 +82,19 @@ export const NavbarHome = () => {
                   </Typography>
                 </MenuItem>
               ))}
+              {authUser ? (
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center" onClick={() => router.push("/logout")}>
+                    Log out
+                  </Typography>
+                </MenuItem>
+              ) : (
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center" onClick={() => router.push("/login")}>
+                    Login
+                  </Typography>
+                </MenuItem>
+              )}
             </Menu>
           </Box>
           <Box
@@ -96,6 +109,21 @@ export const NavbarHome = () => {
                 {name}
               </Button>
             ))}
+            {authUser ? (
+              <Button
+                onClick={() => router.push("/logout")}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                Log out
+              </Button>
+            ) : (
+              <Button
+                onClick={() => router.push("/login")}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                Login
+              </Button>
+            )}
           </Box>
         </Toolbar>
       </Container>
