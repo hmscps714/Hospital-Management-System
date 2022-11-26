@@ -318,8 +318,8 @@ export const PatientRegisterForm = () => {
       password: dob.toString().replaceAll("-", ""),
     };
 
-    console.log(patient);
-    console.log(login);
+    // console.log(patient);
+    // console.log(login);
 
     const hasLoggedIn = await registerPatient(login, patient);
     if (hasLoggedIn) {

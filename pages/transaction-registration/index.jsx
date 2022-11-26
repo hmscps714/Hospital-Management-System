@@ -1,17 +1,22 @@
-import { ThemeProvider } from "@mui/material";
-import React from "react";
-import NavbarHome from "src/components/Navbar/NavbarHome";
+import React, { useEffect } from "react";
 import CreateTransactionForm from "src/components/forms/TransactionForm";
-import theme from "src/config/theme";
+import { useAuth } from "src/context/AuthUserContext";
+import { useRouter } from "next/router";
+import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 
 export const PriceRegistration = () => {
-  return (
-    <ThemeProvider theme={theme}>
-      <NavbarHome />
-      <CreateTransactionForm />
-    </ThemeProvider>
-  );
+  const { authUser, loading, authUserType } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (loading) return;
+    if (!authUser || authUserType !== "admin") {
+      router.push("/401");
+      return;
+    }
+  }, [loading, authUser, authUserType]);
+
+  return <>{!loading ? <CreateTransactionForm /> : <CustomLoader />}</>;
 };
 
 export default PriceRegistration;
-

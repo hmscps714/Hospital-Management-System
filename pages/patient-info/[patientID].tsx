@@ -1,56 +1,49 @@
-import React, { useState } from "react";
-import { ThemeProvider } from "@mui/material";
-import theme from "src/config/theme";
-import NavbarHome from "src/components/Navbar/NavbarHome";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 import { Patient } from "src/config/interfaces";
 import { DetailedPatientInfo } from "src/components/PatientInfo/DetailedPatientInfo";
 import styles from "./patient-info.module.css";
 import { getPatient } from "src/api/db";
-
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
+import { useAuth } from "src/context/AuthUserContext";
 
 export const PatientInfo = () => {
+  const { authUser, loading, authUserType } = useAuth();
   const router = useRouter();
   const { patientID } = router.query;
-
   const [patient, setPatient] = useState<Patient>(null);
   const [err, setErr] = useState<Error>(null);
 
   useEffect(() => {
-    if (!patientID) {
+    if (loading || !patientID) return;
+    if (!authUser || (authUserType !== "admin" && authUserType !== "practitioner")) {
+      router.push("/401");
       return;
     }
-
     getPatient(patientID as string)
       .then((p) => setPatient(p))
       .catch((e) => {
         console.error(e);
         setErr(e);
       });
-  }, [patientID]);
+  }, [loading, authUser, authUserType]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <NavbarHome />
+    <>
       <h1 className={styles.Title}>Patient Information</h1>
-      <div>
-        {err ? (
-          <div className="errorMessage">{err.toString()}</div>
-        ) : patient && !err ? (
-          <div>
-            <DetailedPatientInfo patientData={patient} />
-            <div className={styles.Appointment}>
-              <h2>Appointment information</h2>
-              WIP
-            </div>
+      {err && <div className="errorMessage">{err.toString()}</div>}
+      {!err && patient && !loading ? (
+        <div>
+          <DetailedPatientInfo patientData={patient} />
+          <div className={styles.Appointment}>
+            <h2>Appointment information</h2>
+            WIP
           </div>
-        ) : (
-          <CustomLoader />
-        )}
-      </div>
-    </ThemeProvider>
+        </div>
+      ) : (
+        <CustomLoader />
+      )}
+    </>
   );
 };
 

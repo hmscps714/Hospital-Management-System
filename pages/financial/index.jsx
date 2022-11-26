@@ -1,28 +1,31 @@
-import React from "react";
-import { ThemeProvider } from "@mui/material";
-import theme from "src/config/theme";
-import NavbarHome from "src/components/Navbar/NavbarHome";
+import React, { useState, useEffect } from "react";
 import Table from "src/components/Tables/Table.js";
-import { useState, useEffect } from "react";
 import { getAllTransactions } from "src/api/db";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
+import { useAuth } from "src/context/AuthUserContext";
+import { useRouter } from "next/router";
 
-export const TransactionList = () => {
+export const FinancialList = () => {
+  const { authUser, loading, authUserType } = useAuth();
+  const router = useRouter();
   const [transactionList, setTransactionList] = useState(null);
   const [err, setErr] = useState(null);
 
   useEffect(() => {
-    if (!transactionList) {
-      getAllTransactions()
-        .then((x) => {
-          setTransactionList(x);
-        })
-        .catch((e) => {
-          console.error(e);
-          setErr(e);
-        });
+    if (loading) return;
+    if (!authUser || authUserType !== "admin") {
+      router.push("/401");
+      return;
     }
-  }, [transactionList]);
+    getAllTransactions()
+      .then((x) => {
+        setTransactionList(x);
+      })
+      .catch((e) => {
+        console.error(e);
+        setErr(e);
+      });
+  }, [loading, authUser, authUserType]);
 
   const extractInfo = () => {
     return transactionList.map((item) => {
@@ -37,12 +40,9 @@ export const TransactionList = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      {console.log(transactionList)}
-      <NavbarHome />
-      {err ? (
-        <div className="errorMessage">{err.toString()}</div>
-      ) : transactionList ? (
+    <>
+      {err && <div className="errorMessage">{err.toString()}</div>}
+      {!err && transactionList && !loading ? (
         <Table
           buttonLabel={"Add Transaction"}
           tableData={extractInfo()}
@@ -53,8 +53,8 @@ export const TransactionList = () => {
       ) : (
         <CustomLoader />
       )}
-    </ThemeProvider>
+    </>
   );
 };
 
-export default TransactionList;
+export default FinancialList;

@@ -1,16 +1,22 @@
-import { ThemeProvider } from "@mui/material";
-import React from "react";
-import NavbarHome from "src/components/Navbar/NavbarHome";
+import React, { useEffect } from "react";
 import CreateItemForm from "src/components/forms/CreateItemForm";
-import theme from "src/config/theme";
+import { useAuth } from "src/context/AuthUserContext";
+import { useRouter } from "next/router";
+import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 
 export const ItemRegistration = () => {
-  return (
-    <ThemeProvider theme={theme}>
-      <NavbarHome />
-      <CreateItemForm />
-    </ThemeProvider>
-  );
+  const { authUser, loading, authUserType } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (loading) return;
+    if (!authUser || (authUserType !== "admin" && authUserType !== "practitioner")) {
+      router.push("/401");
+      return;
+    }
+  }, [loading, authUser, authUserType]);
+
+  return <>{!loading ? <CreateItemForm /> : <CustomLoader />}</>;
 };
 
 export default ItemRegistration;

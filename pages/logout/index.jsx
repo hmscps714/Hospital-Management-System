@@ -2,9 +2,6 @@ import React, { useEffect } from "react";
 import { useAuth } from "src/context/AuthUserContext";
 import { useRouter } from "next/router";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
-import { ThemeProvider } from "@mui/material";
-import theme from "src/config/theme";
-import NavbarHome from "src/components/Navbar/NavbarHome";
 
 export const Logout = () => {
   const router = useRouter();
@@ -27,10 +24,7 @@ export const Logout = () => {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <NavbarHome />
-        <CustomLoader />
-      </ThemeProvider>
+      <CustomLoader />
     </>
   );
 };

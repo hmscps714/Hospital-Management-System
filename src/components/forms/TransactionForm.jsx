@@ -30,7 +30,7 @@ export const CreatePriceForm = () => {
       errorMessage: "Please provide ID",
       label: "ID",
       required: true,
-      },
+    },
     {
       id: "name",
       name: "name",
@@ -62,16 +62,17 @@ export const CreatePriceForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formVals);
+    // console.log(formVals);
 
-    
     const { id, type, name, amount, date } = formVals;
 
-      const tempItem = {
-          id, type, name,
-          amount: parseInt(amount),
-          date: new Date(date),
-      };
+    const tempItem = {
+      id,
+      type,
+      name,
+      amount: parseInt(amount),
+      date: new Date(date),
+    };
 
     //TODO: add route protection + item registration
     // const hasLoggedIn = await registerPractitioner(login, practitioner);
@@ -80,8 +81,6 @@ export const CreatePriceForm = () => {
     // } else {
     //   alert("Sorry it has failed : ( Please try again!");
     // }
-
-
 
     const res = await createTransaction(tempItem);
     setItemCreated(res);
@@ -118,20 +117,22 @@ export const CreatePriceForm = () => {
             ))}
             <label htmlFor="type">Equipment Type</label>
             <select id="type" name="type" onChange={onChange} required>
-                <option value="Equipment Repair">Equipment Repair</option>
-                <option value="Salary">Salary</option>
-                <option value="Donation">Donation</option>
-                <option value="Insurance Payment">Insurance Payment</option>
-                <option value="Utilities">Utilities</option>
-                <option value="Rent">Rent</option>
-            </select>       
+              <option value="Equipment Repair">Equipment Repair</option>
+              <option value="Salary">Salary</option>
+              <option value="Donation">Donation</option>
+              <option value="Insurance Payment">Insurance Payment</option>
+              <option value="Utilities">Utilities</option>
+              <option value="Rent">Rent</option>
+            </select>
           </div>
           <Button type="submit" className={styles.btnSub1} variant="contained">
             Submit
           </Button>
           <br></br>
           {itemCreated && <span className={styles.successMsg}>Transaction added</span>}
-          {itemCreated === false && <span className={styles.errorMsg}>Failed to add transaction</span>}
+          {itemCreated === false && (
+            <span className={styles.errorMsg}>Failed to add transaction</span>
+          )}
         </form>
       </div>
     </React.Fragment>
