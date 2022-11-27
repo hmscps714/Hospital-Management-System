@@ -82,6 +82,13 @@ export const NavbarHome = () => {
                   </Typography>
                 </MenuItem>
               ))}
+              {authUser && (
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center" onClick={() => router.push("/login")}>
+                    Dashboard
+                  </Typography>
+                </MenuItem>
+              )}
               {authUser ? (
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center" onClick={() => router.push("/logout")}>
@@ -109,6 +116,14 @@ export const NavbarHome = () => {
                 {name}
               </Button>
             ))}
+            {authUser && (
+              <Button
+                onClick={() => router.push("/login")}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                Dashboard
+              </Button>
+            )}
             {authUser ? (
               <Button
                 onClick={() => router.push("/logout")}

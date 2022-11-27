@@ -4,9 +4,6 @@ import { FormInput } from "src/components/forms/FormInput";
 import styles from "./patientRegisterForm.module.css";
 import Button from "@mui/material/Button";
 import { createTransaction } from "src/api/db";
-import { integerPropType } from "@mui/utils";
-
-const pages = [{ name: "Forms", href: "/forms" }];
 
 export const CreatePriceForm = () => {
   const router = useRouter();
@@ -62,7 +59,7 @@ export const CreatePriceForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(formVals);
+    console.log(formVals);
 
     const { id, type, name, amount, date } = formVals;
 
@@ -85,11 +82,11 @@ export const CreatePriceForm = () => {
     const res = await createTransaction(tempItem);
     setItemCreated(res);
 
-    if (res) {
-      router.push("/financial");
-    } else {
-      alert("Sorry it has failed : ( Please try again!");
-    }
+    // if (res) {
+    //   router.push("/financial");
+    // } else {
+    //   alert("Sorry it has failed : ( Please try again!");
+    // }
   };
 
   const onChange = (e) => {
