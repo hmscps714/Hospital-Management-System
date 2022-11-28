@@ -1,5 +1,6 @@
 import {
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
@@ -228,6 +229,50 @@ export const createAppointment = async (appointment: Appointment): Promise<boole
     appointment.appointmentId = uid;
 
     await setDoc(doc(db, "appointment", uid), appointment);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const updatePatient = async (patient: Patient): Promise<boolean> => {
+  try {
+    const { uid } = patient;
+
+    await setDoc(doc(db, "patient", uid), patient);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const updatePractitioner = async (practitioner: Practitioner): Promise<boolean> => {
+  try {
+    const { uid } = practitioner;
+
+    await setDoc(doc(db, "practitioner", uid), practitioner);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const deleteInventoryItem = async (inventoryItemId: string): Promise<boolean> => {
+  try {
+    await deleteDoc(doc(db, "inventory", inventoryItemId));
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const deleteTransactionItem = async (transactionItemId: string): Promise<boolean> => {
+  try {
+    await deleteDoc(doc(db, "transaction", transactionItemId));
     return true;
   } catch (error) {
     console.error(error);
