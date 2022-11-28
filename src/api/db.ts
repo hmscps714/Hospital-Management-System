@@ -1,5 +1,6 @@
 import {
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
@@ -252,6 +253,26 @@ export const updatePractitioner = async (practitioner: Practitioner): Promise<bo
     const { uid } = practitioner;
 
     await setDoc(doc(db, "practitioner", uid), practitioner);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const deleteInventoryItem = async (inventoryItemId: string): Promise<boolean> => {
+  try {
+    await deleteDoc(doc(db, "inventory", inventoryItemId));
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const deleteTransactionItem = async (transactionItemId: string): Promise<boolean> => {
+  try {
+    await deleteDoc(doc(db, "transaction", transactionItemId));
     return true;
   } catch (error) {
     console.error(error);
