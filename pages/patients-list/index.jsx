@@ -14,7 +14,7 @@ export const PatientList = () => {
   useEffect(() => {
     if (loading) return;
     if (!authUser || (authUserType !== "admin" && authUserType !== "practitioner")) {
-      router.push("/401");
+      router.replace("/401");
       return;
     }
     getAllPatients()

@@ -16,7 +16,7 @@ export const PatientDashBoard = () => {
   useEffect(() => {
     if (loading) return;
     if (!authUser || authUserType !== "patient") {
-      router.push("/401");
+      router.replace("/401");
       return;
     }
 

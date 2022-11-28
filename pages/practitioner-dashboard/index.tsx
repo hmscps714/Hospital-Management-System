@@ -16,7 +16,7 @@ export const PractitionerDashboard = () => {
   useEffect(() => {
     if (loading) return;
     if (!authUser || authUserType !== "practitioner") {
-      router.push("/401");
+      router.replace("/401");
       return;
     }
 

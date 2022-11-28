@@ -17,7 +17,7 @@ export const PractitionerInfo = () => {
   useEffect(() => {
     if (loading || !practitionerID) return;
     if (!authUser || authUserType !== "admin") {
-      router.push("/401");
+      router.replace("/401");
       return;
     }
     getPractitioner(practitionerID as string)

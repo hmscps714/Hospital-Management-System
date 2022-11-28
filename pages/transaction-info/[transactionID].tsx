@@ -16,7 +16,7 @@ export const PatientInfo = () => {
   useEffect(() => {
     if (loading || !transactionID) return;
     if (!authUser || authUserType !== "admin") {
-      router.push("/401");
+      router.replace("/401");
       return;
     }
     getTransaction(transactionID as string)

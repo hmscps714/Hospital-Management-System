@@ -16,7 +16,7 @@ export const ItemInfo = () => {
   useEffect(() => {
     if (loading || !itemID) return;
     if (!authUser || (authUserType !== "admin" && authUserType !== "practitioner")) {
-      router.push("/401");
+      router.replace("/401");
       return;
     }
     getInventoryItem(itemID as string)

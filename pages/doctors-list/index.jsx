@@ -14,7 +14,7 @@ export const DoctorsList = () => {
   useEffect(() => {
     if (loading) return;
     if (!authUser || authUserType !== "admin") {
-      router.push("/401");
+      router.replace("/401");
       return;
     }
     getAllDoctors()

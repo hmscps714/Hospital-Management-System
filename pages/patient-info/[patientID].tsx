@@ -17,7 +17,7 @@ export const PatientInfo = () => {
   useEffect(() => {
     if (loading || !patientID) return;
     if (!authUser || (authUserType !== "admin" && authUserType !== "practitioner")) {
-      router.push("/401");
+      router.replace("/401");
       return;
     }
     getPatient(patientID as string)
