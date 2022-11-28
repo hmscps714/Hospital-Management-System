@@ -30,6 +30,11 @@ export const signInPractitioner = async (loginObject: Login): Promise<boolean> =
     const { email, password } = loginObject;
     await signInWithEmailAndPassword(auth, email, password);
 
+    if (!(await userIsPractitioner())) {
+      await signOutUser();
+      return false;
+    }
+
     return true;
   } catch (error) {
     console.error(error);
@@ -60,6 +65,11 @@ export const signInPatient = async (loginObject: Login): Promise<boolean> => {
   try {
     const { email, password } = loginObject;
     await signInWithEmailAndPassword(auth, email, password);
+
+    if (!(await userIsPatient())) {
+      await signOutUser();
+      return false;
+    }
 
     return true;
   } catch (error) {
@@ -114,4 +124,21 @@ export const userIsAdmin = async (): Promise<boolean> => {
 
   const querySnapshot = await getDoc(doc(db, "admin", user.uid));
   return querySnapshot.exists();
+};
+
+export const signInAdmin = async (loginObject: Login): Promise<boolean> => {
+  try {
+    const { email, password } = loginObject;
+    await signInWithEmailAndPassword(auth, email, password);
+
+    if (!(await userIsAdmin())) {
+      await signOutUser();
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
 };
