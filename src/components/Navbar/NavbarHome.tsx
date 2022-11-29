@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -13,15 +13,52 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useAuth } from "src/context/AuthUserContext";
 
-const pages = [
-  { name: "Home", href: "/" },
-  { name: "About us", href: "/about" },
-  { name: "Contact us", href: "/contact" },
-];
-
 export const NavbarHome = () => {
   const router = useRouter();
-  const { authUser, loading } = useAuth();
+  const { authUser, loading, authUserType } = useAuth();
+
+  const default_pages = [
+    { name: "About us", href: "/about" },
+    { name: "Contact us", href: "/contact" },
+    { name: "Login", href: "/login" },
+  ];
+  const [pages, setPages] = useState(default_pages);
+
+  useEffect(() => {
+    if (loading) return;
+    if (!authUser) {
+      setPages(default_pages);
+      return;
+    }
+    switch (authUserType) {
+      case "practitioner":
+        setPages([
+          { name: "Dashboard", href: "/login" },
+          { name: "Patients List", href: "/patients-list" },
+          { name: "Inventory List", href: "/inventory-list" },
+          { name: "Logout", href: "/logout" },
+        ]);
+        break;
+      case "admin":
+        setPages([
+          { name: "Dashboard", href: "/login" },
+          { name: "Patients List", href: "/patients-list" },
+          { name: "Doctors List", href: "/doctors-list" },
+          { name: "Nurses List", href: "/nurses-list" },
+          { name: "Inventory List", href: "/inventory-list" },
+          { name: "Financial", href: "/financial" },
+          { name: "Logout", href: "/logout" },
+        ]);
+        break;
+      default:
+        setPages([
+          { name: "Dashboard", href: "/login" },
+          { name: "Logout", href: "/logout" },
+        ]);
+        break;
+    }
+  }, [loading, authUser, authUserType]);
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -41,7 +78,10 @@ export const NavbarHome = () => {
             width="150px"
             height="80px"
             objectFit="contain"
-            onClick={() => router.push("/")}
+            onClick={() => {
+              if (!authUser) router.push("/");
+              else router.push("/login");
+            }}
             style={{ cursor: "pointer" }}
           />
           <Box
@@ -82,26 +122,6 @@ export const NavbarHome = () => {
                   </Typography>
                 </MenuItem>
               ))}
-              {authUser && (
-                <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" onClick={() => router.push("/login")}>
-                    Dashboard
-                  </Typography>
-                </MenuItem>
-              )}
-              {authUser ? (
-                <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" onClick={() => router.push("/logout")}>
-                    Log out
-                  </Typography>
-                </MenuItem>
-              ) : (
-                <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" onClick={() => router.push("/login")}>
-                    Login
-                  </Typography>
-                </MenuItem>
-              )}
             </Menu>
           </Box>
           <Box
@@ -116,29 +136,6 @@ export const NavbarHome = () => {
                 {name}
               </Button>
             ))}
-            {authUser && (
-              <Button
-                onClick={() => router.push("/login")}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                Dashboard
-              </Button>
-            )}
-            {authUser ? (
-              <Button
-                onClick={() => router.push("/logout")}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                Log out
-              </Button>
-            ) : (
-              <Button
-                onClick={() => router.push("/login")}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                Login
-              </Button>
-            )}
           </Box>
         </Toolbar>
       </Container>
