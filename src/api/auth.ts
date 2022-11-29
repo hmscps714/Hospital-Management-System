@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import { auth, db } from "src/api/init";
+import { auth, db, secondaryAuth } from "src/api/init";
 import { Login, Practitioner, Patient } from "src/config/interfaces";
 
 export const registerPractitioner = async (
@@ -10,14 +10,14 @@ export const registerPractitioner = async (
   try {
     const { email, password } = loginObject;
 
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const userCredential = await createUserWithEmailAndPassword(secondaryAuth, email, password);
     const user = userCredential.user;
     const { uid } = user;
 
     practitioner.uid = uid;
 
     await setDoc(doc(db, "practitioner", uid), practitioner);
-
+    signOut(secondaryAuth);
     return true;
   } catch (error) {
     console.error(error);
@@ -46,14 +46,14 @@ export const registerPatient = async (loginObject: Login, patient: Patient): Pro
   try {
     const { email, password } = loginObject;
 
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const userCredential = await createUserWithEmailAndPassword(secondaryAuth, email, password);
     const user = userCredential.user;
     const { uid } = user;
 
     patient.uid = uid;
 
     await setDoc(doc(db, "patient", uid), patient);
-
+    signOut(secondaryAuth); //Sign out to prevent potential auth issues
     return true;
   } catch (error) {
     console.error(error);
