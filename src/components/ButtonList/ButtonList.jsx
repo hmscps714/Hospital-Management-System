@@ -28,6 +28,7 @@ export const ButtonList = () => {
     "/practitioner-registration",
     "/item-registration",
     "/transaction-registration",
+    "/password-reset",
   ];
 
   return (
