@@ -6,6 +6,7 @@ import styles from "./practitioner-info.module.css";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 import { getPractitioner } from "src/api/db";
 import { useAuth } from "src/context/AuthUserContext";
+import Button from "@mui/material/Button";
 
 export const PractitionerInfo = () => {
   const { authUser, loading, authUserType } = useAuth();
@@ -33,7 +34,17 @@ export const PractitionerInfo = () => {
       <h1 className={styles.Title}>Practitioner Information</h1>
       {err && <div className="errorMessage">{err.toString()}</div>}
       {!err && practitioner && !loading ? (
-        <DetailedPractitionerInfo practitionerData={practitioner}></DetailedPractitionerInfo>
+        <div>
+          <DetailedPractitionerInfo practitionerData={practitioner} />
+          <div style={{ textAlign: "center", marginTop: 50 }}>
+            <Button
+              variant="contained"
+              onClick={() => router.push(`/edit-practitioners/${practitionerID}`)}
+            >
+              Edit
+            </Button>
+          </div>
+        </div>
       ) : (
         <CustomLoader />
       )}

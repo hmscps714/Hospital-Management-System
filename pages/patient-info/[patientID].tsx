@@ -6,6 +6,7 @@ import styles from "./patient-info.module.css";
 import { getPatient } from "src/api/db";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 import { useAuth } from "src/context/AuthUserContext";
+import Button from "@mui/material/Button";
 
 export const PatientInfo = () => {
   const { authUser, loading, authUserType } = useAuth();
@@ -35,9 +36,10 @@ export const PatientInfo = () => {
       {!err && patient && !loading ? (
         <div>
           <DetailedPatientInfo patientData={patient} />
-          <div className={styles.Appointment}>
-            <h2>Appointment information</h2>
-            WIP
+          <div style={{ textAlign: "center", marginTop: 50 }}>
+            <Button variant="contained" onClick={() => router.push(`/edit-patient/${patientID}`)}>
+              Edit
+            </Button>
           </div>
         </div>
       ) : (
