@@ -2,7 +2,7 @@ import React from "react";
 import { Patient } from "src/config/interfaces";
 import { useRouter } from "next/router";
 import moment from "moment";
-import styles from "./dashboard.module.css";
+import styles from "./DocDashboard.module.css";
 
 export const DoctorDash = ({ doctorData }) => {
 

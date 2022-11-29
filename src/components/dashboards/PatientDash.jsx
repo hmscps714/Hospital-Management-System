@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
-import styles from "./dashboard.module.css";
+import styles from "./PatDashboard.module.css.module.css";
 import AppointmentCalendarPatient from "../appointments/AppointmentCalendarPatient";
 import AppointmentCreator from "../appointments/AppointmentCreator";
 import { getPatientAppointments } from "src/api/db";
