@@ -1,17 +1,22 @@
-import { ThemeProvider } from "@mui/material";
-import React from "react";
-import NavbarHome from "src/components/Navbar/NavbarHome";
+import React, { useEffect } from "react";
 import PractitionerRegisterForm from "src/components/forms/PractitionerRegisterForm";
-
-import theme from "src/config/theme";
+import { useAuth } from "src/context/AuthUserContext";
+import { useRouter } from "next/router";
+import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 
 export const PractitionerRegistration = () => {
-  return (
-    <ThemeProvider theme={theme}>
-      <NavbarHome />
-      <PractitionerRegisterForm />
-    </ThemeProvider>
-  );
+  const { authUser, loading, authUserType } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (loading) return;
+    if (!authUser || authUserType !== "admin") {
+      router.replace("/401");
+      return;
+    }
+  }, [loading, authUser, authUserType]);
+
+  return <>{!loading ? <PractitionerRegisterForm /> : <CustomLoader />}</>;
 };
 
 export default PractitionerRegistration;

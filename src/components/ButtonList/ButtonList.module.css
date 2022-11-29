@@ -1,0 +1,18 @@
+.ButtonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+
+}
+
+.Button {
+    padding: 15px;
+    font-size: 20px;
+    border-radius: 15px;
+    background-color: aqua;
+}
+
+.Button:hover {
+    cursor: pointer;
+}

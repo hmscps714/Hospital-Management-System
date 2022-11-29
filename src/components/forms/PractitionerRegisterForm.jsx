@@ -5,11 +5,9 @@ import styles from "./patientRegisterForm.module.css";
 import Button from "@mui/material/Button";
 import { registerPractitioner } from "src/api/auth";
 
-const pages = [{ name: "Forms", href: "/forms" }];
-
 export const PractitionerRegisterForm = () => {
   const router = useRouter();
-
+  const [hasRegistered, setHasRegistered] = useState(null);
   const [formVals, setFormVals] = useState({
     firstName: "",
     lastName: "",
@@ -267,12 +265,8 @@ export const PractitionerRegisterForm = () => {
       password,
     };
 
-    const hasLoggedIn = await registerPractitioner(login, practitioner);
-    if (hasLoggedIn) {
-      router.push("/admin-home");
-    } else {
-      alert("Sorry it has failed : ( Please try again!");
-    }
+    const status = await registerPractitioner(login, practitioner);
+    setHasRegistered(status);
   };
 
   const onChange = (e) => {
@@ -343,6 +337,8 @@ export const PractitionerRegisterForm = () => {
           <Button type="submit" className={styles.btnSub1} variant="contained">
             Submit
           </Button>
+          {hasRegistered && <span className="successMessage">Registration successful!</span>}
+          {hasRegistered === false && <span className="errorMessage">Registration failed!</span>}
         </form>
       </div>
     </React.Fragment>

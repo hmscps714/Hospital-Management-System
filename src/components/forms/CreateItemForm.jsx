@@ -64,7 +64,7 @@ export const CreateItemForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formVals);
+    // console.log(formVals);
 
     const { id, name, price, stock } = formVals;
 
@@ -75,7 +75,7 @@ export const CreateItemForm = () => {
       price: parseInt(price),
     };
 
-    console.log(tempItem);
+    // console.log(tempItem);
 
     //TODO: add route protection + item registration
     // const hasLoggedIn = await registerPractitioner(login, practitioner);

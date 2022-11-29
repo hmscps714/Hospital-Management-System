@@ -106,6 +106,17 @@ export const userIsPractitioner = async (): Promise<boolean> => {
   return querySnapshot.exists();
 };
 
+export const signInUser = async (loginObject: Login): Promise<boolean> => {
+  try {
+    const { email, password } = loginObject;
+    await signInWithEmailAndPassword(auth, email, password);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
 export const userIsAdmin = async (): Promise<boolean> => {
   const user = auth.currentUser;
 
