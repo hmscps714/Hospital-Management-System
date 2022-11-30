@@ -6,6 +6,9 @@ import styles from "./patient-info.module.css";
 import { getPatient } from "src/api/db";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 import { useAuth } from "src/context/AuthUserContext";
+import { getPatientAppointments } from "src/api/db";
+import { Appointment } from "src/config/interfaces";
+import AppointmentCalendarPatient from "src/components/appointments/AppointmentCalendarPatient";
 
 export const PatientInfo = () => {
   const { authUser, loading, authUserType } = useAuth();
@@ -13,6 +16,9 @@ export const PatientInfo = () => {
   const { patientID } = router.query;
   const [patient, setPatient] = useState<Patient>(null);
   const [err, setErr] = useState<Error>(null);
+
+  // keeps track of patient appointments
+  const [patientAppointments, setPatientAppointments] = useState<Appointment[]>();
 
   useEffect(() => {
     if (loading || !patientID) return;
@@ -28,6 +34,15 @@ export const PatientInfo = () => {
       });
   }, [loading, authUser, authUserType]);
 
+  useEffect(() => {
+    if (loading || !patientID) return;
+    if (patientAppointments === undefined) {
+      getPatientAppointments(patientID as string)
+        .then((data) => setPatientAppointments(data))
+        .catch((e) => console.error(e));
+    }
+  }, [patientAppointments]);
+
   return (
     <>
       <title>Patient Info</title>
@@ -40,6 +55,9 @@ export const PatientInfo = () => {
       ) : (
         <CustomLoader />
       )}
+      <div className={styles.Appointment}>
+        <AppointmentCalendarPatient appointments={patientAppointments} />
+      </div>
     </>
   );
 };

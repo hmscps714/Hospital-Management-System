@@ -17,6 +17,7 @@ import { createAppointment, getAllDoctors, getPractitionerAppointments } from "s
 import styles from "./appointments.module.css";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 import AppointmentButton from "./AppointmentButton";
+import Button from "@mui/material/Button";
 
 interface AppointmentCreatorProps {
   patient: Patient;
@@ -80,6 +81,10 @@ export const AppointmentCreator = (props: AppointmentCreatorProps) => {
     setSelectedDoctor(undefined);
   };
 
+  const showAppointmentsList = () => {
+    setSelectedDoctor(null);
+  };
+
   return (
     <div className={styles.Container}>
       <div className={styles.Card}>
@@ -110,6 +115,9 @@ export const AppointmentCreator = (props: AppointmentCreatorProps) => {
           selectedDoctor && appointments && (
             <Paper>
               <Scheduler data={appointments} height={660}>
+                <Button onClick={showAppointmentsList} variant="outlined">
+                  {"<"} Back to list
+                </Button>
                 <ViewState currentDate={currentDate} onCurrentDateChange={setCurrentDate} />
                 <EditingState onCommitChanges={handleAdd} />
                 <IntegratedEditing />
@@ -120,7 +128,6 @@ export const AppointmentCreator = (props: AppointmentCreatorProps) => {
                 <DateNavigator />
                 <TodayButton />
                 <ConfirmationDialog />
-
                 <Appointments />
                 <AppointmentTooltip showCloseButton />
                 <AppointmentForm />

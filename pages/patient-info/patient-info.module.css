@@ -10,11 +10,11 @@
 }
 
 .Appointment {
-  border: 1px solid #aad0bd;
-  border-radius: 30px;
+  /* border: 1px solid #aad0bd; */
+  /* border-radius: 30px; */
   margin: 30px 40px;
-  height: 300px;
-  padding: 20px;
+  /* height: 300px; */
+  /* padding: 20px; */
 }
 
 .Appointment h2 {
