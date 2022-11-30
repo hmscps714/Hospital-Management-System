@@ -103,3 +103,22 @@ export interface InventoryItemUpdate {
   id: string;
   stock: number;
 }
+
+export interface Transaction {
+  id: string;
+  type: string;
+  name: string;
+  amount: number;
+  date: Date;
+}
+
+export interface Appointment {
+  title: string;
+  startDate: Date;
+  endDate: Date;
+  appointmentId: string;
+  practitionerId: string;
+  patientId: string;
+  allDay?: boolean;
+  notes?: string;
+}

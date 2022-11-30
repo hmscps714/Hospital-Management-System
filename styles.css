@@ -39,6 +39,12 @@ body {
   background: #4e6e48;
 }
 
+.successMessage {
+  color: green;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
 .errorMessage {
   color: red;
   text-align: center;

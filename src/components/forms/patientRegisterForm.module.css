@@ -1,12 +1,21 @@
 /* GENERAL */
+.FormItems {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* gap: 50px; */
+    justify-items: center;
+    margin: 0 5%;
+    gap: 20px
+}
 
 .FormItems label {
     display: inline-block;
-    width: 200px;
+    width: 50%;
     font-family: Inter;
-    margin-left: 2em;
-    font-size: 0.9em;
-    padding-top: 1em;
+    /* margin-left: 2em; */
+    /* font-size: 0.9em; */
+    margin-top: 1em;
   }
 
 .center {
@@ -15,9 +24,9 @@
     align-items: center;
 }
 
-.FormItems input {
-    box-sizing: 20em;
-    width: auto;
+.FormItems input, .FormItems select {
+    display: inline-block;
+    width: 50%;
     height: 2em;
     background: #fdfdfc;
     font-size: 0.8em;
@@ -44,17 +53,6 @@
 }
 
 
-.btnSub {
-    font-family: Inter;
-    background-color: #72B292;
-    color:white;
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
-}
-
 .btnSub1 {
     font-family: Inter;
     background-color: #72B292;
@@ -64,95 +62,59 @@
     -moz-border-radius: 20px;
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
-    margin-left: 25em;
-}
-
-.btnRes {
-    font-family: Inter;
-    background-color: #B27272;
-    color:white;
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
-}
-
-.btnRes:hover {
-    font-family: Inter;
-    background-color: #976262;
-    color:white;
-}
-
-.btnAlign {
-    margin-left: 50%;
 }
 
 /* SPECIFIC */
-.picture {
+.mainDetails, .otherDetails {
     display: block;
-    height: 100%;
-    width: 15%;
-    float: left;
-    margin: 0.5em 1em 2em 2em;
-    padding: 0.5em 0.5em 0.5em 0.5em;
-    font-family: Inter;
-}
-
-.mainDetails {
-    display: block;
-    height: auto;
-    width: auto;
-    float: left;
-    margin: 0.5em 1em 2em 1em;
-    padding: 1.5em 1.5em 1.5em 1.5em;
+    height: fit-content;
+    width: 90%;
+    /* width: 50%; */
+    /* float: left; */
+    /* margin: 0.5em 1em 2em 1em; */
+    /* margin: 0 20px; */
+    padding: 2em 2em 3.5em 2em;
     background-color:white;
     border: 2px solid #AAD0BD;
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
+    border-radius: 20px;    -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
 }
 
-.otherDetails {
-    display: block;
-    height: auto;
-    width: auto;
-    float: left;
-    margin: 0.5em 2em 2em 1em;
-    padding: 1.5em 1.5em 3em 1.5em;
-    background-color:white;
-    border: 2px solid #AAD0BD;
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
+.customFormInput {
+    display: grid;
+    grid-template-columns: 40% 60%;
 }
 
-.info {
-    display: block;
-    height: auto;
-    width: auto;
-    float: left;
-    padding: 0em 1em 1em 1em;
+.successMsg {
+    color: green;
 }
 
-.imageUpload {
-    padding-top: 2em;
-    height: 40rem;
-    width: 35%;
-    margin-left: 1em;
-    text-align: center; 
+.errorMsg {
+    color: red;
 }
 
-.wave {
-    z-index:-30;
-    margin-top: -20%;
-}
+@media only screen and (max-width: 700px) {
+    .FormItems {
+        grid-template-columns: 1fr;
+        margin: 10px 15px;
+    }
 
-.waveBack {
-    background-color: #A3B7B0;
-    z-index: -1;
-}
+    .mainDetails, .otherDetails {
+        /* padding: 0.5em 0.5em 1.5em 0.5em; */
+        width: 100%;
+    }
+
+    .btnSub1 {
+        display: block;
+        width: 90%;
+        margin: 25px auto;
+    }
+
+    /* .FormItems label {
+        display: inline-block;
+        width: 150px;
+      } */
+
+  }

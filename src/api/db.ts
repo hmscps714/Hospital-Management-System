@@ -1,5 +1,6 @@
 import {
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
@@ -15,8 +16,11 @@ import {
   Prescription,
   InventoryItem,
   InventoryItemUpdate,
+  Transaction,
+  Appointment,
 } from "src/config/interfaces";
-import { userIsPractitioner } from "src/api/auth";
+import { userIsPatient, userIsPractitioner } from "src/api/auth";
+import { v4 as uuidv4 } from "uuid";
 
 export const getPatient = async (uid: string): Promise<Patient | null> => {
   const querySnapshot = await getDoc(doc(db, "patient", uid));
@@ -143,6 +147,132 @@ export const updateInventoryItem = async (updateObj: InventoryItemUpdate): Promi
   try {
     const { id, stock } = updateObj;
     await updateDoc(doc(db, "inventory", id), { stock });
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const getAllTransactions = async (): Promise<Transaction[]> => {
+  const querySnapshot = await getDocs(collection(db, "transaction"));
+  return querySnapshot.docs.map((doc) => doc.data() as Transaction);
+};
+
+export const getTransaction = async (transactionId: string): Promise<Transaction | null> => {
+  const querySnapshot = await getDoc(doc(db, "transaction", transactionId));
+  return querySnapshot.data() as Transaction;
+};
+
+export const createTransaction = async (transaction: Transaction): Promise<boolean> => {
+  try {
+    const { id } = transaction;
+    await setDoc(doc(db, "transaction", id), transaction);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const getPractitionerAppointments = async (uid: string): Promise<Appointment[]> => {
+  const q = query(collection(db, "appointment"), where("practitionerId", "==", uid));
+
+  const querySnapshot = await getDocs(q);
+  const appointments = querySnapshot.docs.map((doc) => doc.data() as Appointment);
+  appointments.forEach((appointment) => {
+    // @ts-ignore
+    appointment.startDate = new Date(appointment.startDate.seconds * 1000);
+    // @ts-ignore
+    appointment.endDate = new Date(appointment.endDate.seconds * 1000);
+  });
+
+  return appointments;
+};
+
+export const getPatientAppointments = async (uid: string): Promise<Appointment[]> => {
+  const q = query(collection(db, "appointment"), where("patientId", "==", uid));
+
+  const querySnapshot = await getDocs(q);
+  const appointments = querySnapshot.docs.map((doc) => doc.data() as Appointment);
+  appointments.forEach((appointment) => {
+    // @ts-ignore
+    appointment.startDate = new Date(appointment.startDate.seconds * 1000);
+    // @ts-ignore
+    appointment.endDate = new Date(appointment.endDate.seconds * 1000);
+  });
+
+  return appointments;
+};
+
+export const getCurrentPractitionerAppointments = async (): Promise<Appointment[]> => {
+  const user = auth.currentUser;
+
+  if (user === null) return null;
+
+  return await getPractitionerAppointments(user.uid);
+};
+
+export const getCurrentPatientAppointments = async (): Promise<Appointment[]> => {
+  const user = auth.currentUser;
+
+  if (user === null) return null;
+
+  return await getPatientAppointments(user.uid);
+};
+
+export const createAppointment = async (appointment: Appointment): Promise<boolean> => {
+  if (!userIsPatient()) return false;
+
+  try {
+    const uid = uuidv4();
+    appointment.appointmentId = uid;
+
+    await setDoc(doc(db, "appointment", uid), appointment);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const updatePatient = async (patient: Patient): Promise<boolean> => {
+  try {
+    const { uid } = patient;
+
+    await setDoc(doc(db, "patient", uid), patient);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const updatePractitioner = async (practitioner: Practitioner): Promise<boolean> => {
+  try {
+    const { uid } = practitioner;
+
+    await setDoc(doc(db, "practitioner", uid), practitioner);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const deleteInventoryItem = async (inventoryItemId: string): Promise<boolean> => {
+  try {
+    await deleteDoc(doc(db, "inventory", inventoryItemId));
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const deleteTransactionItem = async (transactionItemId: string): Promise<boolean> => {
+  try {
+    await deleteDoc(doc(db, "transaction", transactionItemId));
     return true;
   } catch (error) {
     console.error(error);

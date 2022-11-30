@@ -4,7 +4,7 @@ import styles from "./Table.module.css";
 import { useRouter } from "next/router";
 import { GlobalFilter } from "./GlobalFilter";
 
-export const Table = ({ tableData, routePath, buttonLabel, tableHeadings }) => {
+export const Table = ({ tableData, routePath, buttonLabel, tableHeadings, buttonRoutePath }) => {
   const router = useRouter();
 
   const columnsFromData = Object.keys(tableData[0]).map((key, id) => {
@@ -37,6 +37,7 @@ export const Table = ({ tableData, routePath, buttonLabel, tableHeadings }) => {
     getTableProps,
     getTableBodyProps,
     headerGroups,
+    footerGroups,
     page,
     nextPage,
     previousPage,
@@ -63,7 +64,7 @@ export const Table = ({ tableData, routePath, buttonLabel, tableHeadings }) => {
         <div className={styles.BtnContainer}>
           <h1 className={styles.Heading}>{tableHeadings}</h1>
           <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
-          <button onClick={() => router.push("/forms")} className={styles.Add}>
+          <button onClick={() => router.push(buttonRoutePath)} className={styles.Add}>
             {buttonLabel}
           </button>
         </div>
@@ -95,7 +96,7 @@ export const Table = ({ tableData, routePath, buttonLabel, tableHeadings }) => {
                   className={styles.tr}
                   onClick={() => {
                     let path = "";
-                    if (routePath === "/item-info/") {
+                    if (routePath === "/item-info/" || routePath === "/transaction-info/") {
                       path = routePath + row.values["id"];
                     } else {
                       path = routePath + row.values["uid"];
@@ -118,6 +119,22 @@ export const Table = ({ tableData, routePath, buttonLabel, tableHeadings }) => {
             })
           }
         </tbody>
+        {tableHeadings == "Financial Transactions" && (
+          <tfoot className={styles.TableFooter}>
+            {footerGroups.map((footerGroup) => (
+              <tr {...footerGroup.getFooterGroupProps()}>
+                <td className={styles.TDfooter} style={{ fontWeight: "800" }}>
+                  Total
+                </td>
+                <td className={styles.TDfooter}></td>
+                <td className={styles.TDfooter}></td>
+                <td className={styles.TDfooter} style={{ fontWeight: "800" }}>
+                  {rows.map((inp) => inp.values.amount).reduce((acc, curval) => acc + curval, 0)}
+                </td>
+              </tr>
+            ))}
+          </tfoot>
+        )}
       </table>
       {rows.length > 10 ? (
         <div className={styles.pagesBtn}>
