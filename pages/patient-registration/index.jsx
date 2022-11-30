@@ -15,7 +15,12 @@ export const PatientRegistration = () => {
       return;
     }
   }, [loading, authUser, authUserType]);
-  return <>{!loading ? <PatientRegisterForm /> : <CustomLoader />}</>;
+  return (
+    <>
+      <title>Patient Registration</title>
+      {!loading ? <PatientRegisterForm /> : <CustomLoader />}
+    </>
+  );
 };
 
 export default PatientRegistration;

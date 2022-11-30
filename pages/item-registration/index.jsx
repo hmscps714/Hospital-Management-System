@@ -16,7 +16,12 @@ export const ItemRegistration = () => {
     }
   }, [loading, authUser, authUserType]);
 
-  return <>{!loading ? <CreateItemForm /> : <CustomLoader />}</>;
+  return (
+    <>
+      <title>Item Registration</title>
+      {!loading ? <CreateItemForm /> : <CustomLoader />}
+    </>
+  );
 };
 
 export default ItemRegistration;

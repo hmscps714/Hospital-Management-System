@@ -18,6 +18,7 @@ export const AdminDashboard = () => {
 
   return (
     <>
+      <title>Admin Dashboard</title>
       {loading && <CustomLoader />}
       {!loading && (
         <div>

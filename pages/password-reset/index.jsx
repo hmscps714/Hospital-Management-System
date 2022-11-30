@@ -16,7 +16,12 @@ const PasswordReset = () => {
     }
   }, [loading, authUser, authUserType]);
 
-  return <>{!loading ? <PasswordResetForm /> : <CustomLoader />}</>;
+  return (
+    <>
+      <title>Password Reset</title>
+      {!loading ? <PasswordResetForm /> : <CustomLoader />}
+    </>
+  );
 };
 
 export default PasswordReset;

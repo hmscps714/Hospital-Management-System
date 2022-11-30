@@ -41,6 +41,7 @@ export const FinancialList = () => {
 
   return (
     <>
+      <title>Financial</title>
       {err && <div className="errorMessage">{err.toString()}</div>}
       {!err && transactionList && !loading ? (
         <Table
