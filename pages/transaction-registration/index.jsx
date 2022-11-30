@@ -16,7 +16,12 @@ export const PriceRegistration = () => {
     }
   }, [loading, authUser, authUserType]);
 
-  return <>{!loading ? <CreateTransactionForm /> : <CustomLoader />}</>;
+  return (
+    <>
+      <title>Transaction Registration</title>
+      {!loading ? <CreateTransactionForm /> : <CustomLoader />}
+    </>
+  );
 };
 
 export default PriceRegistration;

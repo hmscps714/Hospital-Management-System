@@ -4,9 +4,14 @@ import styles from "./PatDashboard.module.css";
 import AppointmentCalendarPatient from "../appointments/AppointmentCalendarPatient";
 import AppointmentCreator from "../appointments/AppointmentCreator";
 import { getPatientAppointments } from "src/api/db";
+import { Patient } from "src/config/interfaces";
 
 export const PatientDash = ({ patientData }) => {
-  const { basicInformation } = patientData;
+  const { basicInformation,
+    personalContactInformation,
+    emergencyContactInformation,
+    physicianInformation,
+  } = patientData;
 
   const {
     firstName = "None",
@@ -15,6 +20,23 @@ export const PatientDash = ({ patientData }) => {
     healthCardNumber = "None",
     gender = "None",
   } = basicInformation;
+
+  const { email = "None", phoneNumber = "None", homeAddress = "None" } = personalContactInformation;
+
+  const {
+    name: eName = "None",
+    relationshipToPatient = "None",
+    phoneNumber: ePhone = "None",
+    email: eEmail = "None",
+  } = emergencyContactInformation;
+
+  const {
+    physicianName = "None",
+    clinicName = "None",
+    clinicAddress = "None",
+    clinicPhone = "None",
+    clinicEmail = "None",
+  } = physicianInformation;
 
   // keeps track of patient appointments
   const [patientAppointments, setPatientAppointments] = useState();
@@ -52,8 +74,32 @@ export const PatientDash = ({ patientData }) => {
       </h3>
       <hr className={styles.line}></hr>
       <div className={styles.form}>
-          <AppointmentCalendarPatient appointments={patientAppointments} />
-          <AppointmentCreator patient={patientData} addPatientAppointment={addPatientAppointment} />
+        <AppointmentCalendarPatient appointments={patientAppointments} />
+        <AppointmentCreator patient={patientData} addPatientAppointment={addPatientAppointment} />
+        <div></div>
+        <div className={styles.card} > 
+            <h2>Contact Information</h2>
+            <ul>
+              <li>Email: {email}</li>
+              <li>Phone: {phoneNumber}</li>
+              <li>Address: {homeAddress}</li>
+            </ul>
+            <h2>Emergency Contact</h2>
+            <ul>
+              <li>Name: {eName}</li>
+              <li>Relationship to patient: {relationshipToPatient}</li>
+              <li>Phone: {ePhone}</li>
+              <li>Email: {eEmail}</li>
+            </ul>
+            <h2>Physician Information</h2>
+            <ul>
+              <li>Physician name: {physicianName}</li>
+              <li>Clinic name: {clinicName}</li>
+              <li>Clinic address: {clinicAddress}</li>
+              <li>Clinic phone: {clinicPhone}</li>
+              <li>Clinic email: {clinicEmail}</li>
+            </ul>
+        </div>
       </div>
 
 

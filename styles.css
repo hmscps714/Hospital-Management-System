@@ -22,17 +22,26 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 0.5em;
+  width: 0.4em;
+  height: 0.4em;
 }
 
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px grey;
-  border-radius: 1em;
+  border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  -ms-border-radius: 0.5em;
+  -o-border-radius: 0.5em;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #a4b3a1;
-  border-radius: 2em;
+  border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  -ms-border-radius: 0.5em;
+  -o-border-radius: 0.5em;
 }
 
 ::-webkit-scrollbar-thumb:hover {

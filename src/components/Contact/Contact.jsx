@@ -59,7 +59,7 @@ export const Contact = () => {
 
   return (
     <div className={styles.Contact}>
-      <title>Contact us Page</title>
+      <title>Contact us</title>
       <div className={styles.contents}>
         <h1>Contact Us</h1>
         <div className={styles.block}>

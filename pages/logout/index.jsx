@@ -24,6 +24,7 @@ export const Logout = () => {
 
   return (
     <>
+      <title>Logout</title>
       <CustomLoader />
     </>
   );

@@ -7,7 +7,7 @@ export const Landing = () => {
 
   return (
     <div className={styles.Landing}>
-      <title>Landing Page</title>
+      <title>MedSuite Home</title>
       <div className={styles.Left}>
         <h1>
           Making your lives <strong>better.</strong>
