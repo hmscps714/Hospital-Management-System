@@ -83,6 +83,8 @@ export const AppointmentCreator = (props: AppointmentCreatorProps) => {
   return (
     <div className={styles.Container}>
       <div className={styles.Card}>
+        <h2>&nbsp;&nbsp;&nbsp;&nbsp; Doctor's appointments</h2>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;</div>
         {
           // pick doctor buttons
           !selectedDoctor && doctorList && (

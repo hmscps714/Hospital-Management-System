@@ -93,14 +93,7 @@ export const DetailedPatientInfo = ({ patientData }) => {
         </ul>
       </div>
       <div className={styles.Card}>
-        <h2>Physician Information</h2>
-        <ul>
-          <li>Physician name: {physicianName}</li>
-          <li>Clinic name: {clinicName}</li>
-          <li>Clinic address: {clinicAddress}</li>
-          <li>Clinic phone: {clinicPhone}</li>
-          <li>Clinic email: {clinicEmail}</li>
-        </ul>
+   
 
         <h2>Pharmacy Information</h2>
         <ul>

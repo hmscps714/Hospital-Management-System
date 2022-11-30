@@ -32,6 +32,7 @@ export const AppointmentCalendarPractitioner = () => {
   return (
     <div className={styles.Container}>
       <div className={styles.Card}>
+      
         {appointments ? (
           <Paper>
             <Scheduler data={appointments} height={660}>
