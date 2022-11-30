@@ -12,6 +12,11 @@
   /* padding: 20px; */
   /* margin: 0 20px; */
   padding: 30px;
+  /* height: 900px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; */
 }
 
 .Card h2 {
@@ -23,6 +28,12 @@
   padding-left: 0;
 }
 
+.DoctorsList {
+   display: flex; 
+   flex-direction: column;
+   height: 660px; 
+   overflow-y: auto;
+}
 /* .Card ul > li > span {
     display: inline-block;
     width: 50%;

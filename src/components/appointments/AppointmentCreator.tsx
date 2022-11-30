@@ -88,12 +88,18 @@ export const AppointmentCreator = (props: AppointmentCreatorProps) => {
   return (
     <div className={styles.Container}>
       <div className={styles.Card}>
-        <h2>&nbsp;&nbsp;&nbsp;&nbsp; Doctor's appointments</h2>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <h2>Doctor's appointments</h2>
+        {selectedDoctor ? (
+          <Button onClick={showAppointmentsList} variant="outlined">
+            {"<"} Back to list
+          </Button>
+        ) : (
+          <div style={{ height: "36.5px" }}></div>
+        )}
         {
           // pick doctor buttons
           !selectedDoctor && doctorList && (
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            <div className={styles.DoctorsList}>
               {doctorList.map((doctor: Practitioner, i) => (
                 <AppointmentButton
                   key={i}
@@ -109,15 +115,14 @@ export const AppointmentCreator = (props: AppointmentCreatorProps) => {
           // spinner
           !selectedDoctor && !doctorList && <CustomLoader />
         }
-
         {
           // appointment picker
           selectedDoctor && appointments && (
             <Paper>
               <Scheduler data={appointments} height={660}>
-                <Button onClick={showAppointmentsList} variant="outlined">
+                {/* <Button onClick={showAppointmentsList} variant="outlined">
                   {"<"} Back to list
-                </Button>
+                </Button> */}
                 <ViewState currentDate={currentDate} onCurrentDateChange={setCurrentDate} />
                 <EditingState onCommitChanges={handleAdd} />
                 <IntegratedEditing />

@@ -9,6 +9,7 @@ import { useAuth } from "src/context/AuthUserContext";
 import { getPatientAppointments } from "src/api/db";
 import { Appointment } from "src/config/interfaces";
 import AppointmentCalendarPatient from "src/components/appointments/AppointmentCalendarPatient";
+import AppointmentCreator from "src/components/appointments/AppointmentCreator";
 
 export const PatientInfo = () => {
   const { authUser, loading, authUserType } = useAuth();
@@ -19,6 +20,8 @@ export const PatientInfo = () => {
 
   // keeps track of patient appointments
   const [patientAppointments, setPatientAppointments] = useState<Appointment[]>();
+  const addPatientAppointment = (appointment) =>
+    setPatientAppointments([...patientAppointments, appointment]);
 
   useEffect(() => {
     if (loading || !patientID) return;
@@ -32,31 +35,27 @@ export const PatientInfo = () => {
         console.error(e);
         setErr(e);
       });
-  }, [loading, authUser, authUserType]);
 
-  useEffect(() => {
-    if (loading || !patientID) return;
-    if (patientAppointments === undefined) {
-      getPatientAppointments(patientID as string)
-        .then((data) => setPatientAppointments(data))
-        .catch((e) => console.error(e));
-    }
-  }, [patientAppointments]);
+    getPatientAppointments(patientID as string)
+      .then((data) => setPatientAppointments(data))
+      .catch((e) => console.error(e));
+  }, [loading, authUser, authUserType]);
 
   return (
     <>
       <title>Patient Info</title>
       <h1 className={styles.Title}>Patient Information</h1>
-      {err && <div className="errorMessage">{err.toString()}</div>}
-      {!err && patient && !loading ? (
-        <div>
+      <div className={styles.InfoContainer}>
+        {err && <div className="errorMessage">{err.toString()}</div>}
+        {!err && patient && !loading ? (
           <DetailedPatientInfo patientData={patient} />
+        ) : (
+          <CustomLoader />
+        )}
+        <div className={styles.Appointment}>
+          <AppointmentCalendarPatient appointments={patientAppointments} />
+          <AppointmentCreator patient={patient} addPatientAppointment={addPatientAppointment} />
         </div>
-      ) : (
-        <CustomLoader />
-      )}
-      <div className={styles.Appointment}>
-        <AppointmentCalendarPatient appointments={patientAppointments} />
       </div>
     </>
   );
