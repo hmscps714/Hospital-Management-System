@@ -1,16 +1,12 @@
 .Container {
   display: grid;
-  /* width: 100%; */
-  grid-template-columns: 1fr 1fr;
-  margin: 0 40px;
+  grid-template-columns: 1fr 1fr;  
   grid-gap: 20px;
 }
 
 .Card {
   border: 1px solid #aad0bd;
   border-radius: 30px;
-  /* padding: 20px; */
-  /* margin: 0 20px; */
   padding: 30px;
 }
 
@@ -24,11 +20,8 @@
   padding-left: 0;
 }
 
-/* .Card ul > li > span {
-  display: inline-block;
-  width: 50%;
-} */
-
-/* .Card ul > li > span:nth-child(2) {
-  text-align: right;
-} */
+@media only screen and (max-width: 600px) {
+  .Container {
+    grid-template-columns: 1fr;
+  }
+}
