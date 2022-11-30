@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Patient } from "src/config/interfaces";
 import { useRouter } from "next/router";
 import moment from "moment";
-import styles from "./DocDashboard.module.css";
+import styles from "./PatDashboard.module.css";
+import AppointmentCalendarPractitioner from "../appointments/AppointmentCalendarPatient";
+import { getPractitionerAppointments } from "src/api/db";
+
 
 export const DoctorDash = ({ doctorData }) => {
 
     const router = useRouter();
 
     const {
-        basicInformation,
+      basicInformation,
+      personalContactInformation,
+      emergencyContactInformation,
+      fieldSpecialty = "None",
       } = doctorData;
 
       const {
@@ -18,7 +24,30 @@ export const DoctorDash = ({ doctorData }) => {
         dob = "None",
         healthCardNumber = "None",
         gender = "None",
-    } = basicInformation;
+        maritalStatus = "None",
+        drugAllergies = "None",
+        foodAllergies = "None",
+      } = basicInformation;
+    
+      const { email = "None", phoneNumber = "None", homeAddress = "None" } = personalContactInformation;
+    
+      const {
+        name: eName = "None",
+        relationshipToPatient = "None",
+        phoneNumber: ePhone = "None",
+        email: eEmail = "None",
+      } = emergencyContactInformation;
+  
+  const [patientAppointments, setPatientAppointments] = useState();
+  
+  useEffect(() => {
+    if (patientAppointments === undefined) {
+      getPractitionerAppointments(doctorData.uid)
+        .then((data) => { console.log(doctorData.uid); console.log(data); setPatientAppointments(data) })
+        .catch((e) => console.error(e));
+    }
+  
+  }, [patientAppointments]);
     
     return (
       <React.Fragment>
@@ -30,9 +59,28 @@ export const DoctorDash = ({ doctorData }) => {
         </h3>
         <hr className={styles.line}></hr>
         <div className={styles.form}>
-          <div className={styles.rect}></div>
-          <div className={styles.rect}></div>
-          <div className={styles.rect}></div>
+        <AppointmentCalendarPractitioner appointments={patientAppointments}/>
+        <div className={styles.card}>
+          <h2>Basic Information</h2>
+          <ul>
+            <li>Marital status: {maritalStatus}</li>
+            <li>Drug allergies: {drugAllergies}</li>
+            <li>Food allergies: {foodAllergies}</li>
+          </ul>
+          <h2>Contact Information</h2>
+          <ul>
+            <li>Email: {email}</li>
+            <li>Phone: {phoneNumber}</li>
+            <li>Address: {homeAddress}</li>
+          </ul>
+          <h2>Emergency Contact</h2>
+          <ul>
+            <li>Name: {eName}</li>
+            <li>Relationship to patient: {relationshipToPatient}</li>
+            <li>Phone: {ePhone}</li>
+            <li>Email: {eEmail}</li>
+          </ul>
+        </div>
         </div>
       </React.Fragment>
 )};
