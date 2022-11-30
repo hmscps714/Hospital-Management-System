@@ -106,6 +106,14 @@ export const userIsPractitioner = async (): Promise<boolean> => {
   return querySnapshot.exists();
 };
 
+export const getCurrentUserId = (): string | null => {
+  const user = auth.currentUser;
+
+  if (user === null) return null;
+
+  return user.uid;
+};
+
 export const signInUser = async (loginObject: Login): Promise<boolean> => {
   try {
     const { email, password } = loginObject;

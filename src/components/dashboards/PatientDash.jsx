@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
-import styles from "./dashboard.module.css";
+import styles from "./PatDashboard.module.css";
 import AppointmentCalendarPatient from "../appointments/AppointmentCalendarPatient";
 import AppointmentCreator from "../appointments/AppointmentCreator";
 import { getPatientAppointments } from "src/api/db";
@@ -52,15 +52,11 @@ export const PatientDash = ({ patientData }) => {
       </h3>
       <hr className={styles.line}></hr>
       <div className={styles.form}>
-        <div className={styles.rect}></div>
-        <div className={styles.rect}></div>
-        <div className={styles.rect}></div>
+          <AppointmentCalendarPatient appointments={patientAppointments} />
+          <AppointmentCreator patient={patientData} addPatientAppointment={addPatientAppointment} />
       </div>
 
-      <div className={styles.form2}>
-        <AppointmentCalendarPatient appointments={patientAppointments} />
-        <AppointmentCreator patient={patientData} addPatientAppointment={addPatientAppointment} />
-      </div>
+
     </>
   );
 };
