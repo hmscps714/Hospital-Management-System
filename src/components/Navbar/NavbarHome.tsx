@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -11,16 +11,53 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Image from "next/image";
 import { useRouter } from "next/router";
-
-const pages = [
-  { name: "Home", href: "/" },
-  { name: "About us", href: "/about" },
-  { name: "Contact us", href: "/contact" },
-  { name: "Login", href: "/login" },
-];
+import { useAuth } from "src/context/AuthUserContext";
 
 export const NavbarHome = () => {
   const router = useRouter();
+  const { authUser, loading, authUserType } = useAuth();
+
+  const default_pages = [
+    { name: "About us", href: "/about" },
+    { name: "Contact us", href: "/contact" },
+    { name: "Login", href: "/login" },
+  ];
+  const [pages, setPages] = useState(default_pages);
+
+  useEffect(() => {
+    if (loading) return;
+    if (!authUser) {
+      setPages(default_pages);
+      return;
+    }
+    switch (authUserType) {
+      case "practitioner":
+        setPages([
+          { name: "Dashboard", href: "/login" },
+          { name: "Patients List", href: "/patients-list" },
+          { name: "Inventory List", href: "/inventory-list" },
+          { name: "Logout", href: "/logout" },
+        ]);
+        break;
+      case "admin":
+        setPages([
+          { name: "Dashboard", href: "/login" },
+          { name: "Patients List", href: "/patients-list" },
+          { name: "Doctors List", href: "/doctors-list" },
+          { name: "Nurses List", href: "/nurses-list" },
+          { name: "Inventory List", href: "/inventory-list" },
+          { name: "Financial", href: "/financial" },
+          { name: "Logout", href: "/logout" },
+        ]);
+        break;
+      default:
+        setPages([
+          { name: "Dashboard", href: "/login" },
+          { name: "Logout", href: "/logout" },
+        ]);
+        break;
+    }
+  }, [loading, authUser, authUserType]);
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
@@ -41,7 +78,10 @@ export const NavbarHome = () => {
             width="150px"
             height="80px"
             objectFit="contain"
-            onClick={() => router.push("/")}
+            onClick={() => {
+              if (!authUser) router.push("/");
+              else router.push("/login");
+            }}
             style={{ cursor: "pointer" }}
           />
           <Box

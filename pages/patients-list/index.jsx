@@ -1,26 +1,29 @@
-import React from "react";
-import { ThemeProvider } from "@mui/material";
-import theme from "src/config/theme";
-import NavbarHome from "src/components/Navbar/NavbarHome";
+import React, { useState, useEffect } from "react";
 import Table from "src/components/Tables/Table";
-import { useState, useEffect } from "react";
 import { getAllPatients } from "src/api/db";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
+import { useAuth } from "src/context/AuthUserContext";
+import { useRouter } from "next/router";
 
 export const PatientList = () => {
+  const { authUser, loading, authUserType } = useAuth();
+  const router = useRouter();
   const [patientList, setPatientList] = useState(null);
   const [err, setErr] = useState(null);
 
   useEffect(() => {
-    if (!patientList) {
-      getAllPatients()
-        .then((x) => setPatientList(x))
-        .catch((e) => {
-          console.error(e);
-          setErr(e);
-        });
+    if (loading) return;
+    if (!authUser || (authUserType !== "admin" && authUserType !== "practitioner")) {
+      router.replace("/401");
+      return;
     }
-  }, [patientList]);
+    getAllPatients()
+      .then((x) => setPatientList(x))
+      .catch((e) => {
+        console.error(e);
+        setErr(e);
+      });
+  }, [loading, authUser, authUserType]);
 
   const extractInfo = () => {
     const getName = (patientData) => {
@@ -52,11 +55,9 @@ export const PatientList = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <NavbarHome />
-      {err ? (
-        <div className="errorMessage">{err.toString()}</div>
-      ) : patientList ? (
+    <>
+      {err && <div className="errorMessage">{err.toString()}</div>}
+      {!err && patientList && !loading ? (
         <Table
           buttonLabel={"Add Patient"}
           tableData={extractInfo()}
@@ -67,7 +68,7 @@ export const PatientList = () => {
       ) : (
         <CustomLoader />
       )}
-    </ThemeProvider>
+    </>
   );
 };
 

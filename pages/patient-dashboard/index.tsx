@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Patient } from "src/config/interfaces";
-import { DetailedPatientInfo } from "src/components/PatientInfo/DetailedPatientInfo";
-import styles from "./patient-info.module.css";
+import { PatientDash } from "src/components/dashboards/PatientDash";
 import { getPatient } from "src/api/db";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 import { useAuth } from "src/context/AuthUserContext";
+import { ButtonList } from "src/components/ButtonList/ButtonList";
 
-export const PatientInfo = () => {
+export const PatientDashBoard = () => {
   const { authUser, loading, authUserType } = useAuth();
   const router = useRouter();
-  const { patientID } = router.query;
   const [patient, setPatient] = useState<Patient>(null);
   const [err, setErr] = useState<Error>(null);
 
   useEffect(() => {
-    if (loading || !patientID) return;
-    if (!authUser || (authUserType !== "admin" && authUserType !== "practitioner")) {
+    if (loading) return;
+    if (!authUser || authUserType !== "patient") {
       router.replace("/401");
       return;
     }
-    getPatient(patientID as string)
+
+    getPatient(authUser.uid as string)
       .then((p) => setPatient(p))
       .catch((e) => {
         console.error(e);
@@ -30,15 +30,11 @@ export const PatientInfo = () => {
 
   return (
     <>
-      <h1 className={styles.Title}>Patient Information</h1>
+      <ButtonList />
       {err && <div className="errorMessage">{err.toString()}</div>}
       {!err && patient && !loading ? (
         <div>
-          <DetailedPatientInfo patientData={patient} />
-          <div className={styles.Appointment}>
-            <h2>Appointment information</h2>
-            WIP
-          </div>
+          <PatientDash patientData={patient} />
         </div>
       ) : (
         <CustomLoader />
@@ -47,4 +43,4 @@ export const PatientInfo = () => {
   );
 };
 
-export default PatientInfo;
+export default PatientDashBoard;

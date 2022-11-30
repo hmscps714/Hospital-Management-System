@@ -74,10 +74,10 @@ export const DetailedItemInfo = ({ itemData }: { itemData: InventoryItem }) => {
       </div>
       <div className={styles.Card}>
         <h2>Item actions</h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           <FormInput {...FormInputProps} onChange={onChange}></FormInput>
           <div className={styles.BtnContainer}>
-            <button onClick={handleSubmit} className={styles.UpdateBtn}>
+            <button type="submit" className={styles.UpdateBtn}>
               Update
             </button>
             <button onClick={handleDelete} className={styles.DeleteBtn}>

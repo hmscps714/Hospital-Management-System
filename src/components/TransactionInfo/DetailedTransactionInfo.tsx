@@ -1,15 +1,15 @@
 import React from "react";
 import { Transaction } from "src/config/interfaces";
 import moment from "moment";
-import styles from "./DetailedPatientInfo.module.css";
+import styles from "./DetailedTransactionInfo.module.css";
 
-export const DetailedTransactiontInfo = ({ transactionData }) => {
+export const DetailedTransactionInfo = ({ transactionData }) => {
   const {
-    id= "None",
-    type= "None",
-    name= "None",
-    amount= "None",
-    date= "None",
+    id = "None",
+    type = "None",
+    name = "None",
+    amount = "None",
+    date = "None",
   } = transactionData;
 
   return (

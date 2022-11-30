@@ -1,21 +1,22 @@
 import React, { useEffect } from "react";
-import PatientRegisterForm from "src/components/forms/PatientRegisterForm";
+import CreateTransactionForm from "src/components/forms/TransactionForm";
 import { useAuth } from "src/context/AuthUserContext";
 import { useRouter } from "next/router";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 
-export const PatientRegistration = () => {
+export const PriceRegistration = () => {
   const { authUser, loading, authUserType } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
     if (loading) return;
-    if (!authUser || (authUserType !== "admin" && authUserType !== "practitioner")) {
+    if (!authUser || authUserType !== "admin") {
       router.replace("/401");
       return;
     }
   }, [loading, authUser, authUserType]);
-  return <>{!loading ? <PatientRegisterForm /> : <CustomLoader />}</>;
+
+  return <>{!loading ? <CreateTransactionForm /> : <CustomLoader />}</>;
 };
 
-export default PatientRegistration;
+export default PriceRegistration;

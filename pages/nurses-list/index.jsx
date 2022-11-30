@@ -1,28 +1,31 @@
-import React from "react";
-import { ThemeProvider } from "@mui/material";
-import theme from "src/config/theme";
-import NavbarHome from "src/components/Navbar/NavbarHome";
+import React, { useState, useEffect } from "react";
 import Table from "src/components/Tables/Table";
-import { useState, useEffect } from "react";
 import { getAllNurses } from "src/api/db";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
+import { useAuth } from "src/context/AuthUserContext";
+import { useRouter } from "next/router";
 
 export const NursesList = () => {
+  const { authUser, loading, authUserType } = useAuth();
+  const router = useRouter();
   const [nursesList, setNursesList] = useState(null);
   const [err, setErr] = useState(null);
 
   useEffect(() => {
-    if (!nursesList) {
-      getAllNurses()
-        .then((x) => {
-          setNursesList(x);
-        })
-        .catch((e) => {
-          console.error(e);
-          setErr(e);
-        });
+    if (loading) return;
+    if (!authUser || authUserType !== "admin") {
+      router.replace("/401");
+      return;
     }
-  }, [nursesList]);
+    getAllNurses()
+      .then((x) => {
+        setNursesList(x);
+      })
+      .catch((e) => {
+        console.error(e);
+        setErr(e);
+      });
+  }, [loading, authUser, authUserType]);
 
   const extractInfo = () => {
     const getName = (nurseData) => {
@@ -54,11 +57,9 @@ export const NursesList = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <NavbarHome />
-      {err ? (
-        <div className="errorMessage">{err.toString()}</div>
-      ) : nursesList ? (
+    <>
+      {err && <div className="errorMessage">{err.toString()}</div>}
+      {!err && nursesList && !loading ? (
         <Table
           buttonLabel={"Add Nurse"}
           tableData={extractInfo()}
@@ -69,7 +70,7 @@ export const NursesList = () => {
       ) : (
         <CustomLoader />
       )}
-    </ThemeProvider>
+    </>
   );
 };
 

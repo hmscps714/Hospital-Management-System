@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from "react";
 import Table from "src/components/Tables/Table.js";
-import { getAllInventoryItems } from "src/api/db";
+import { getAllTransactions } from "src/api/db";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 import { useAuth } from "src/context/AuthUserContext";
 import { useRouter } from "next/router";
 
-export const InventoryList = () => {
+export const FinancialList = () => {
   const { authUser, loading, authUserType } = useAuth();
   const router = useRouter();
-  const [inventoryList, setInventoryList] = useState(null);
+  const [transactionList, setTransactionList] = useState(null);
   const [err, setErr] = useState(null);
 
   useEffect(() => {
     if (loading) return;
-    if (!authUser || (authUserType !== "admin" && authUserType !== "practitioner")) {
+    if (!authUser || authUserType !== "admin") {
       router.replace("/401");
       return;
     }
-    getAllInventoryItems()
+    getAllTransactions()
       .then((x) => {
-        setInventoryList(x);
+        setTransactionList(x);
       })
       .catch((e) => {
         console.error(e);
@@ -28,12 +28,12 @@ export const InventoryList = () => {
   }, [loading, authUser, authUserType]);
 
   const extractInfo = () => {
-    return inventoryList.map((item) => {
+    return transactionList.map((item) => {
       const itemObj = {
         id: item["id"],
         name: item["name"],
-        price: item["price"],
-        stock: item["stock"],
+        type: item["type"],
+        amount: item["amount"],
       };
       return itemObj;
     });
@@ -42,13 +42,13 @@ export const InventoryList = () => {
   return (
     <>
       {err && <div className="errorMessage">{err.toString()}</div>}
-      {!err && inventoryList && !loading ? (
+      {!err && transactionList && !loading ? (
         <Table
-          buttonLabel={"Add Item"}
+          buttonLabel={"Add Transaction"}
           tableData={extractInfo()}
-          routePath={"/item-info/"}
-          tableHeadings={"Inventory List"}
-          buttonRoutePath={"/item-registration"}
+          routePath={"/transaction-info/"}
+          tableHeadings={"Financial Transactions"}
+          buttonRoutePath={"/transaction-registration"}
         />
       ) : (
         <CustomLoader />
@@ -57,4 +57,4 @@ export const InventoryList = () => {
   );
 };
 
-export default InventoryList;
+export default FinancialList;

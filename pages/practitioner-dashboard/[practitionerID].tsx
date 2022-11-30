@@ -9,6 +9,7 @@ import { Practitioner } from "src/config/interfaces";
 import { DoctorDash } from "src/components/dashboards/DoctorDash";
 import { getPractitioner } from "src/api/db";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
+import ButtonList from "src/components/ButtonList/ButtonList";
 
 export const DoctorInfo = () => {
   const router = useRouter();
@@ -29,20 +30,16 @@ export const DoctorInfo = () => {
   }, [practitionerID]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <NavbarHome />
-      <>{ console.log({practitionerID, practitioner, err}) }</>
-      <div>
-        {err ? (
-          <div className="errorMessage">{err.toString()}</div>
-        ) : practitioner && !err ? (
-            <DoctorDash doctorData={practitioner} />
-        ) 
-         : (
-          <CustomLoader />
-        )}
-      </div>
-    </ThemeProvider>
+    <>
+      <ButtonList />
+      {err ? (
+        <div className="errorMessage">{err.toString()}</div>
+      ) : practitioner && !err ? (
+        <DoctorDash doctorData={practitioner} />
+      ) : (
+        <CustomLoader />
+      )}
+    </>
   );
 };
 

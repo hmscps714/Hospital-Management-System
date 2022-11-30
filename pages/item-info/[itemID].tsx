@@ -1,44 +1,44 @@
-import React, { useState } from "react";
-import { ThemeProvider } from "@mui/material";
-import theme from "src/config/theme";
-import NavbarHome from "src/components/Navbar/NavbarHome";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 import { DetailedItemInfo } from "src/components/ItemInfo/DetailedItemInfo";
 import { InventoryItem } from "src/config/interfaces";
 import { getInventoryItem } from "src/api/db";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
+import { useAuth } from "src/context/AuthUserContext";
 
 export const ItemInfo = () => {
+  const { authUser, loading, authUserType } = useAuth();
   const router = useRouter();
   const { itemID } = router.query;
   const [item, setItem] = useState<InventoryItem>(null);
   const [err, setErr] = useState<Error>(null);
 
   useEffect(() => {
-    if (!itemID) return;
-
+    if (loading || !itemID) return;
+    if (!authUser || (authUserType !== "admin" && authUserType !== "practitioner")) {
+      router.replace("/401");
+      return;
+    }
     getInventoryItem(itemID as string)
       .then((i) => setItem(i))
       .catch((e) => {
         console.error(e);
         setErr(e);
       });
-  }, [itemID]);
+  }, [loading, authUser, authUserType]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <NavbarHome />
+    <>
       <h1 style={{ textAlign: "center" }}>Item Details</h1>
       <div>
-        {err ? <div>Error</div> : null}
-        {!err && item ? (
+        {err && <div className="errorMessage">{err.toString()}</div>}
+        {!err && item && !loading ? (
           <DetailedItemInfo itemData={item}></DetailedItemInfo>
         ) : (
-          <CustomLoader></CustomLoader>
+          <CustomLoader />
         )}
       </div>
-    </ThemeProvider>
+    </>
   );
 };
 

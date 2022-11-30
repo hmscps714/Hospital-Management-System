@@ -1,16 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Login.module.css";
 import { FormInput } from "src/components/forms/FormInput";
+<<<<<<< HEAD
 import { signInPatient, signInPractitioner, getCurrentUserId } from "src/api/auth";
+=======
+import { signInUser } from "src/api/auth";
+>>>>>>> origin/master
 import { useRouter } from "next/router";
+import { useAuth } from "src/context/AuthUserContext";
 
 export const Login = () => {
   const router = useRouter();
+  const { authUser, loading, authUserType } = useAuth();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
+  // const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!loading && authUser && authUserType) {
+      console.log("redirecting!");
+      if (authUserType === "patient") router.push("/patient-dashboard");
+      else if (authUserType === "practitioner") router.push("/practitioner-dashboard");
+      else if (authUserType === "admin") router.push("/admin-dashboard"); //TODO: Admin dashboard
+    }
+  }, [authUser, loading, authUserType]);
 
   const [formVals, setFormVals] = useState({
     email: "",
     password: "",
-    userType: "Patient",
+    // userType: "Patient",
   });
 
   const inputs = [
@@ -38,21 +56,8 @@ export const Login = () => {
 
     const { email, password, userType } = formVals;
 
-    console.log(formVals);
-
-    if (userType === "Patient") {
-      const hasLoggedIn = await signInPatient({ email, password });
-      if (hasLoggedIn) {
-        const uid = getCurrentUserId();
-        router.push(`/patient-dashboard/${uid}`);
-      }
-    } else if (userType === "Practitioner") {
-      const hasLoggedIn = await signInPractitioner({ email, password });
-      if (hasLoggedIn) {
-        const uid = getCurrentUserId();
-        router.push(`/practitioner-dashboard/${uid}`);
-      }
-    }
+    const res = await signInUser({ email, password });
+    setIsLoggedIn(res);
   };
 
   const onChange = (e) => {
@@ -67,13 +72,19 @@ export const Login = () => {
           {inputs.map((input) => (
             <FormInput key={input.id} {...input} value={formVals[input.name]} onChange={onChange} />
           ))}
-          <label htmlFor="userType">Sign in as:</label>
+          {/* <label htmlFor="userType">Sign in as:</label>
           <select name="userType" onChange={onChange} required>
             <option value={"Patient"}>Patient</option>
             <option value={"Practitioner"}>Practitioner</option>
             <option value={"Admin"}>Admin</option>
-          </select>
-          <button onClick={handleSubmit}>Sign in</button>
+          </select> */}
+          <button type="submit">Sign in</button>
+          {isLoggedIn === false && (
+            <span className="errorMessage">
+              The email and password you entered does not match any account in the system. Please
+              try again!
+            </span>
+          )}
         </form>
       </div>
     </div>

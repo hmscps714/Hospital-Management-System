@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import PractitionerRegisterForm from "src/components/forms/PractitionerRegisterForm";
-import { useAuth } from "src/context/AuthUserContext";
 import { useRouter } from "next/router";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
+import { useAuth } from "src/context/AuthUserContext";
+import { ButtonList } from "src/components/ButtonList/ButtonList";
 
-export const PractitionerRegistration = () => {
+export const AdminDashboard = () => {
   const { authUser, loading, authUserType } = useAuth();
   const router = useRouter();
 
@@ -16,7 +16,17 @@ export const PractitionerRegistration = () => {
     }
   }, [loading, authUser, authUserType]);
 
-  return <>{!loading ? <PractitionerRegisterForm /> : <CustomLoader />}</>;
+  return (
+    <>
+      {loading && <CustomLoader />}
+      {!loading && (
+        <div>
+          <h1>Admin dashboard</h1>
+          <ButtonList />
+        </div>
+      )}
+    </>
+  );
 };
 
-export default PractitionerRegistration;
+export default AdminDashboard;
