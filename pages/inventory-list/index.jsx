@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Table from "src/components/Tables/Table.js";
+import Table from "src/components/Tables/Table";
 import { getAllInventoryItems } from "src/api/db";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 import { useAuth } from "src/context/AuthUserContext";
