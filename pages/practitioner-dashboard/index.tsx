@@ -30,7 +30,6 @@ export const PractitionerDashboard = () => {
 
   return (
     <>
-      <ButtonList />
       {err && <div className="errorMessage">{err.toString()}</div>}
       {!err && practitioner && !loading ? (
         <div>
