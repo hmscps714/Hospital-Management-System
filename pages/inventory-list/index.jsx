@@ -41,6 +41,7 @@ export const InventoryList = () => {
 
   return (
     <>
+      <title>Inventory List</title>
       {err && <div className="errorMessage">{err.toString()}</div>}
       {!err && inventoryList && !loading ? (
         <Table

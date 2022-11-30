@@ -20,7 +20,7 @@ export const ButtonList = () => {
     //Detail pages
     "/patient-info/KW1mLcpUbgQ669yxr6euotqCiKH3",
     "/practitioner-info/6fRlNQooQKejpJCQYxSiO6eVEJ02",
-    "/item-info/Mask_ABC",
+    "/item-info/INV_00001",
     "/transaction-info/DON_52374",
 
     //Registration pages
