@@ -35,10 +35,6 @@ export const PatientInfo = () => {
       {!err && patient && !loading ? (
         <div>
           <DetailedPatientInfo patientData={patient} />
-          <div className={styles.Appointment}>
-            <h2>Appointment information</h2>
-            WIP
-          </div>
         </div>
       ) : (
         <CustomLoader />

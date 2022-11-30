@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { FormInput } from "src/components/forms/FormInput";
 import styles from "./DetailedItemInfo.module.css";
 import { InventoryItem } from "src/config/interfaces";
-import { updateInventoryItem } from "src/api/db";
+import { updateInventoryItem, deleteInventoryItem } from "src/api/db";
+import { useRouter } from "next/router";
 
 export const DetailedItemInfo = ({ itemData }: { itemData: InventoryItem }) => {
+  const route = useRouter();
   const { name, id, stock, price } = itemData;
 
   //Set initial state as item's inventory
@@ -56,8 +58,14 @@ export const DetailedItemInfo = ({ itemData }: { itemData: InventoryItem }) => {
     e.preventDefault();
     const msg = "Are you sure you want to delete this item? Note: this action cannot be undone.";
     if (confirm(msg) == true) {
-      //TODO: delete data
-      alert("Deleted!");
+      deleteInventoryItem(id).then((res) => {
+        if (res) {
+          alert("Item deleted!");
+          route.push("/inventory-list");
+        } else {
+          alert("Error: Failed to delete item");
+        }
+      });
     }
   };
 
