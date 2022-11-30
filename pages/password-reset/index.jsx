@@ -10,7 +10,7 @@ const PasswordReset = () => {
 
   useEffect(() => {
     if (loading) return;
-    if (!authUser || (authUserType !== "admin" && authUserType !== "practitioner")) {
+    if (!authUser || authUserType !== "admin") {
       router.replace("/401");
       return;
     }
