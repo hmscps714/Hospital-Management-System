@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Login.module.css";
 import { FormInput } from "src/components/forms/FormInput";
-<<<<<<< HEAD
-import { signInPatient, signInPractitioner, getCurrentUserId } from "src/api/auth";
-=======
 import { signInUser } from "src/api/auth";
->>>>>>> origin/master
 import { useRouter } from "next/router";
 import { useAuth } from "src/context/AuthUserContext";
 
