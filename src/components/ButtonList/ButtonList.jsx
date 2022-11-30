@@ -34,6 +34,7 @@ export const ButtonList = () => {
   return (
     <>
       <div className={styles.ButtonContainer}>
+        <h1>NOTE: this section is meant for testing. Will be removed in final version</h1>
         {routeList.map((r, i) => {
           return (
             <button className={styles.Button} onClick={() => router.push(r)} key={i}>
