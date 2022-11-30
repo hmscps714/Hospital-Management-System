@@ -6,6 +6,7 @@ export const page401 = () => {
   const router = useRouter();
   return (
     <>
+      <title>Error 401: Access Denied</title>
       <div className={styles.page401}>
         <div className={styles.contents}>
           <img src="401/error.png" alt="" />
