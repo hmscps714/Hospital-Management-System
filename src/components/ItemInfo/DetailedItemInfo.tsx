@@ -69,7 +69,7 @@ export const DetailedItemInfo = ({ itemData }: { itemData: InventoryItem }) => {
           <li>ID: {id}</li>
           <li>Name: {name}</li>
           <li>Quantity: {dbItemQuantity}</li>
-          <li>Price: {price}</li>
+          <li>Price per item: {price}</li>
         </ul>
       </div>
       <div className={styles.Card}>

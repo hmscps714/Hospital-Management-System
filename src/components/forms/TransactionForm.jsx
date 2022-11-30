@@ -112,7 +112,7 @@ export const CreatePriceForm = () => {
                 onChange={onChange}
               />
             ))}
-            <label htmlFor="type">Equipment Type</label>
+            <label htmlFor="type">Type</label>
             <select id="type" name="type" onChange={onChange} required>
               <option value="Equipment Repair">Equipment Repair</option>
               <option value="Salary">Salary</option>
