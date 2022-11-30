@@ -4,6 +4,7 @@
   align-items: center;
   min-width: 100vw;
   min-height: 90vh;
+  background-color: rgba(229, 239, 231, 0.692);
 }
 
 .contents {
