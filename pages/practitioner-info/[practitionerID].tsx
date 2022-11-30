@@ -39,7 +39,7 @@ export const PractitionerInfo = () => {
           <div style={{ textAlign: "center", marginTop: 50 }}>
             <Button
               variant="contained"
-              onClick={() => router.push(`/edit-practitioners/${practitionerID}`)}
+              onClick={() => router.push(`/edit-practitioner/${practitionerID}`)}
             >
               Edit
             </Button>
