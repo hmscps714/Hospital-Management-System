@@ -71,7 +71,7 @@ export const DetailedPractitionerInfo = ({ practitionerData }) => {
         <h2>Emergency Contact</h2>
         <ul>
           <li>Name: {eName}</li>
-          <li>Relationship to patient: {relationshipToPatient}</li>
+          <li>Relationship to practitioner: {relationshipToPatient}</li>
           <li>Phone: {ePhone}</li>
           <li>Email: {eEmail}</li>
         </ul>

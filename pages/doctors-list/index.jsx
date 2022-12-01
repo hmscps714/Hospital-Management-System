@@ -58,6 +58,7 @@ export const DoctorsList = () => {
 
   return (
     <>
+      <title>Doctors List</title>
       {err && <div className="errorMessage">{err.toString()}</div>}
       {!err && doctorsList && !loading ? (
         <Table

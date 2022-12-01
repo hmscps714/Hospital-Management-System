@@ -29,6 +29,7 @@ export const ItemInfo = () => {
 
   return (
     <>
+      <title>Item Info</title>
       <h1 style={{ textAlign: "center" }}>Item Details</h1>
       <div>
         {err && <div className="errorMessage">{err.toString()}</div>}

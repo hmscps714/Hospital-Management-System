@@ -17,6 +17,7 @@ import { createAppointment, getAllDoctors, getPractitionerAppointments } from "s
 import styles from "./appointments.module.css";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 import AppointmentButton from "./AppointmentButton";
+import Button from "@mui/material/Button";
 
 interface AppointmentCreatorProps {
   patient: Patient;
@@ -80,15 +81,35 @@ export const AppointmentCreator = (props: AppointmentCreatorProps) => {
     setSelectedDoctor(undefined);
   };
 
+  const showAppointmentsList = () => {
+    setSelectedDoctor(null);
+  };
+
   return (
     <div className={styles.Container}>
       <div className={styles.Card}>
-        <h2>&nbsp;&nbsp;&nbsp;&nbsp; Doctor's appointments</h2>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <h2>Doctor's appointments</h2>
+        {selectedDoctor ? (
+          <div>
+            <Button onClick={showAppointmentsList} variant="outlined">
+              {"<"} Back to list
+            </Button>
+            <div className={styles.tooltip}>
+              Hover me for instructions
+              <span className={styles.tooltipText}>
+                Double click on any available time slot to create appointment
+              </span>
+            </div>
+          </div>
+        ) : (
+          <div style={{ height: "36.5px" }}>
+            Please select a doctor below to create an appointment
+          </div>
+        )}
         {
           // pick doctor buttons
           !selectedDoctor && doctorList && (
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            <div className={styles.DoctorsList}>
               {doctorList.map((doctor: Practitioner, i) => (
                 <AppointmentButton
                   key={i}
@@ -104,12 +125,14 @@ export const AppointmentCreator = (props: AppointmentCreatorProps) => {
           // spinner
           !selectedDoctor && !doctorList && <CustomLoader />
         }
-
         {
           // appointment picker
           selectedDoctor && appointments && (
             <Paper>
               <Scheduler data={appointments} height={660}>
+                {/* <Button onClick={showAppointmentsList} variant="outlined">
+                  {"<"} Back to list
+                </Button> */}
                 <ViewState currentDate={currentDate} onCurrentDateChange={setCurrentDate} />
                 <EditingState onCommitChanges={handleAdd} />
                 <IntegratedEditing />
@@ -120,7 +143,6 @@ export const AppointmentCreator = (props: AppointmentCreatorProps) => {
                 <DateNavigator />
                 <TodayButton />
                 <ConfirmationDialog />
-
                 <Appointments />
                 <AppointmentTooltip showCloseButton />
                 <AppointmentForm />

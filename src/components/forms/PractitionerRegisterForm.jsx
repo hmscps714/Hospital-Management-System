@@ -123,9 +123,9 @@ export const PractitionerRegisterForm = () => {
       name: "relationshipToPatient",
       type: "text",
       pattern: "^[a-zA-Z ]*$",
-      placeholder: "Relationship to Patient",
-      errorMessage: "Please provide their relationship to patient",
-      label: "Relationship to Patient",
+      placeholder: "Relationship to practitioner",
+      errorMessage: "Please provide their relationship to practitioner",
+      label: "Relationship to practitioner",
       required: true,
     },
     {
@@ -243,7 +243,7 @@ export const PractitionerRegisterForm = () => {
       basicInformation: {
         firstName,
         lastName,
-        dob: new Date(dob),
+        dob: new Date(dob.split("-")),
         healthCardNumber,
         gender,
       },

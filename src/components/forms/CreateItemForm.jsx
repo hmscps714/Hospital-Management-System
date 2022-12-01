@@ -57,7 +57,7 @@ export const CreateItemForm = () => {
       max: "10000",
       placeholder: "Stock",
       errorMessage: "Please provide item stock",
-      label: "Stock",
+      label: "Quantity",
       required: true,
     },
   ];

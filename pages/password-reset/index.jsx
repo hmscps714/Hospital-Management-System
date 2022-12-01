@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
-import CreateItemForm from "src/components/forms/CreateItemForm";
+import PasswordResetForm from "../../src/components/forms/PasswordResetForm";
 import { useAuth } from "src/context/AuthUserContext";
 import { useRouter } from "next/router";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 
-export const ItemRegistration = () => {
+const PasswordReset = () => {
   const { authUser, loading, authUserType } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
     if (loading) return;
-    if (!authUser || (authUserType !== "admin" && authUserType !== "practitioner")) {
+    if (!authUser || authUserType !== "admin") {
       router.replace("/401");
       return;
     }
@@ -18,10 +18,10 @@ export const ItemRegistration = () => {
 
   return (
     <>
-      <title>Item Registration</title>
-      {!loading ? <CreateItemForm /> : <CustomLoader />}
+      <title>Password Reset</title>
+      {!loading ? <PasswordResetForm /> : <CustomLoader />}
     </>
   );
 };
 
-export default ItemRegistration;
+export default PasswordReset;

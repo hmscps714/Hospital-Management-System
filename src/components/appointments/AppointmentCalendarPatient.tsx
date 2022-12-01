@@ -28,10 +28,10 @@ export const AppointmentCalendarPatient = (props: AppointmentCalendarPatientProp
   return (
     <div className={styles.Container}>
       <div className={styles.Card}>
-        <h2>&nbsp;&nbsp;&nbsp;&nbsp; My appointments </h2>
+        <h2>Patient's appointments</h2>
+        <div style={{ height: "36.5px" }}></div>
         {appointments ? (
           <Paper>
-            
             <Scheduler data={appointments} height={660}>
               <ViewState currentDate={currentDate} onCurrentDateChange={setCurrentDate} />
               <WeekView startDayHour={9} endDayHour={19} excludedDays={[0, 6]} />
