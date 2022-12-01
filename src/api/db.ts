@@ -135,6 +135,10 @@ export const getInventoryItem = async (inventoryId: string): Promise<InventoryIt
 export const createInventoryItem = async (item: InventoryItem): Promise<boolean> => {
   try {
     const { id } = item;
+
+    const querySnapshot = await getDoc(doc(db, "inventory", id));
+    if (querySnapshot.exists()) return false;
+
     await setDoc(doc(db, "inventory", id), item);
     return true;
   } catch (error) {
@@ -167,6 +171,10 @@ export const getTransaction = async (transactionId: string): Promise<Transaction
 export const createTransaction = async (transaction: Transaction): Promise<boolean> => {
   try {
     const { id } = transaction;
+
+    const querySnapshot = await getDoc(doc(db, "transaction", id));
+    if (querySnapshot.exists()) return false;
+
     await setDoc(doc(db, "transaction", id), transaction);
     return true;
   } catch (error) {
