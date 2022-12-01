@@ -4,6 +4,7 @@
   align-items: center;
   min-width: 100vw;
   min-height: 90vh;
+  background-color: rgba(229, 239, 231, 0.692);
 }
 
 .contents {
@@ -14,6 +15,7 @@
   width: 60%;
   text-align: center;
   font-size: 30px;
+  background-color: rgba(207, 228, 211, 0.692);
 }
 
 .contents img {
