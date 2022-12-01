@@ -3,6 +3,11 @@ import { useRouter } from "next/router";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 import { useAuth } from "src/context/AuthUserContext";
 import { ButtonList } from "src/components/ButtonList/ButtonList";
+<<<<<<< Updated upstream
+import { PatientDash } from "src/components/dashboards/PatientDash";
+=======
+import { AdminDash } from "src/components/dashboards/AdminDash";
+>>>>>>> Stashed changes
 
 export const AdminDashboard = () => {
   const { authUser, loading, authUserType } = useAuth();
@@ -21,8 +26,12 @@ export const AdminDashboard = () => {
       {loading && <CustomLoader />}
       {!loading && (
         <div>
-          <h1>Admin dashboard</h1>
-          <ButtonList />
+<<<<<<< Updated upstream
+          {/* <h1>Admin dashboard</h1>
+          <ButtonList /> */}
+=======
+          <AdminDash />
+>>>>>>> Stashed changes
         </div>
       )}
     </>
