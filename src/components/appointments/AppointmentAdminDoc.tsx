@@ -18,13 +18,13 @@ import styles from "./appointments.module.css";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 import AppointmentButton from "./AppointmentButton";
 
-interface AppointmentCreatorProps {
-  patient: Patient;
-  addPatientAppointment: (appointment: Appointment) => void;
-}
+// interface AppointmentCreatorProps {
+//   patient: Patient;
+//   addPatientAppointment: (appointment: Appointment) => void;
+// }
 
-export const AppointmentAdmin = (props: AppointmentCreatorProps) => {
-  const { patient, addPatientAppointment } = props;
+export const AppointmentAdminDoc = () => {
+  // const { patient, addPatientAppointment } = props;
 
   const today = new Date(Date.now());
 
@@ -66,12 +66,12 @@ export const AppointmentAdmin = (props: AppointmentCreatorProps) => {
     const appointment: Appointment = {
       ...added,
       appointmentId: "",
-      patientId: patient.uid,
+      // patientId: patient.uid,
       practitionerId: selectedDoctor.uid,
     };
 
     await createAppointment(appointment);
-    addPatientAppointment(appointment);
+    // addPatientAppointment(appointment);
     fetchAppointments();
 
     // reset states
@@ -138,4 +138,4 @@ export const AppointmentAdmin = (props: AppointmentCreatorProps) => {
   );
 };
 
-export default AppointmentAdmin;
+export default AppointmentAdminDoc;
