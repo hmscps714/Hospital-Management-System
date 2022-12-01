@@ -7,7 +7,7 @@ export const About = () => {
 
   return (
     <div className={styles.About}>
-      <title>About us Page</title>
+      <title>About us</title>
       <div className={styles.contents}>
         <h1>
           Hospital Management. <strong>Redefined.</strong>

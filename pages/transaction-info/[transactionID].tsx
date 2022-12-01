@@ -29,6 +29,7 @@ export const PatientInfo = () => {
 
   return (
     <>
+      <title>Transaction Info</title>
       {err && <div className="errorMessage">{err.toString()}</div>}
       {!err && transaction && !loading ? (
         <DetailedTransactionInfo transactionData={transaction} />

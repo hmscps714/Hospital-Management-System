@@ -28,6 +28,8 @@ export const AppointmentCalendarPatient = (props: AppointmentCalendarPatientProp
   return (
     <div className={styles.Container}>
       <div className={styles.Card}>
+        <h2>Patient's appointments</h2>
+        <div style={{ height: "36.5px" }}></div>
         {appointments ? (
           <Paper>
             <Scheduler data={appointments} height={660}>

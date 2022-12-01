@@ -16,7 +16,12 @@ export const PractitionerRegistration = () => {
     }
   }, [loading, authUser, authUserType]);
 
-  return <>{!loading ? <PractitionerRegisterForm /> : <CustomLoader />}</>;
+  return (
+    <>
+      <title>Practitioner Registration</title>
+      {!loading ? <PractitionerRegisterForm /> : <CustomLoader />}
+    </>
+  );
 };
 
 export default PractitionerRegistration;

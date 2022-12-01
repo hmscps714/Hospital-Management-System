@@ -243,7 +243,7 @@ export const PractitionerRegisterForm = () => {
       basicInformation: {
         firstName,
         lastName,
-        dob: new Date(dob),
+        dob: new Date(dob.split("-")),
         healthCardNumber,
         gender,
       },

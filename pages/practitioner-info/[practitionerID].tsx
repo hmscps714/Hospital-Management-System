@@ -31,6 +31,7 @@ export const PractitionerInfo = () => {
 
   return (
     <>
+      <title>Practitioner Info</title>
       <h1 className={styles.Title}>Practitioner Information</h1>
       {err && <div className="errorMessage">{err.toString()}</div>}
       {!err && practitioner && !loading ? (
