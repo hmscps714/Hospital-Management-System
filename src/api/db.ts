@@ -135,6 +135,10 @@ export const getInventoryItem = async (inventoryId: string): Promise<InventoryIt
 export const createInventoryItem = async (item: InventoryItem): Promise<boolean> => {
   try {
     const { id } = item;
+
+    const querySnapshot = await getDoc(doc(db, "inventory", id));
+    if (querySnapshot.exists()) return false;
+
     await setDoc(doc(db, "inventory", id), item);
     return true;
   } catch (error) {
