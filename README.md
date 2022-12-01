@@ -1,7 +1,7 @@
 # Medsuite
 The purpose of this project is to develop a functioning hospital management system, complete with a database of patients. This management system will simplify the process for  doctors, nurses and medical staff to be able to access patient records, and provide them with the specific care they require as soon as possible. The system will also allow for patients to set up appointments with their preferred practitioner. Hosptial administration is also able to manage all staff and patients through the system, and manage inventory, logistics and financial information as well.
 
-#Usage Guidelines
+# Usage Guidelines
 To use our system, users are first encouraged to sign in to the admin account with the following credentials:
 Email:admin@admin.com
 Password:
