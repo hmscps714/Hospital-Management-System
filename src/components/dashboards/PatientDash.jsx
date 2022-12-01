@@ -76,7 +76,6 @@ export const PatientDash = ({ patientData }) => {
       <div className={styles.form}>
         <AppointmentCalendarPatient appointments={patientAppointments} />
         <AppointmentCreator patient={patientData} addPatientAppointment={addPatientAppointment} />
-        <div></div>
         <div className={styles.card} > 
             <h2>Contact Information</h2>
             <ul>

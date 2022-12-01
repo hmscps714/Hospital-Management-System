@@ -1,22 +1,22 @@
 import React from "react";
-import { Practitioner } from "src/config/interfaces";
+import { Patient } from "src/config/interfaces";
 import Button from "@mui/material/Button";
 
 interface AppointmentButtonProps {
-  doctor: Practitioner;
+  patient: Patient;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export const AppointmentButton = (props: AppointmentButtonProps) => {
-  const { doctor, onClick } = props;
-  const { firstName, lastName } = doctor.basicInformation;
+  const { patient, onClick } = props;
+  const { firstName, lastName } = patient.basicInformation;
 
   return (
     <Button
       variant="outlined"
       disableElevation
       onClick={onClick}
-    >{`Dr. ${firstName} ${lastName}`}</Button>
+    >{`${firstName} ${lastName}`}</Button>
   );
 };
 

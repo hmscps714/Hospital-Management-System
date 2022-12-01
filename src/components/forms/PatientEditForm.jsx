@@ -1,40 +1,14 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router";
 import { FormInput } from "src/components/forms/FormInput";
 import styles from "./patientRegisterForm.module.css";
 import Button from "@mui/material/Button";
-import { registerPatient } from "src/api/auth";
+import { updatePatient } from "src/api/db";
 
-export const PatientRegisterForm = () => {
-  const router = useRouter();
-  const [hasRegistered, setHasRegistered] = useState(null);
-  const [formVals, setFormVals] = useState({
-    firstName: "",
-    lastName: "",
-    dob: "",
-    healthCardNumber: "",
-    gender: "",
-    email: "",
-    phoneNumber: "",
-    homeAddress: "",
-    //Emergency contact below
-    eName: "",
-    relationshipToPatient: "",
-    ePhone: "",
-    eEmail: "",
-    //Physician info
-    physicianName: "",
-    clinicName: "",
-    clinicAddress: "",
-    clinicPhone: "",
-    clinicEmail: "",
-    //Pharmacy info
-    pName: "",
-    pPhone: "",
-    fax: "",
-    pEmail: "",
-    pAddress: "",
-  });
+export const PatientEditForm = (props) => {
+  const { formValsDefault } = props;
+
+  const [hasFinished, setHasFinished] = useState(null);
+  const [formVals, setFormVals] = useState(formValsDefault);
 
   const basicInformation = [
     {
@@ -133,9 +107,9 @@ export const PatientRegisterForm = () => {
       name: "relationshipToPatient",
       type: "text",
       pattern: "^[a-zA-Z ]*$",
-      placeholder: "Relationship to patient",
+      placeholder: "Relationship to Patient",
       errorMessage: "Please provide their relationship to patient",
-      label: "Relationship to patient",
+      label: "Relationship to Patient",
       required: true,
     },
     {
@@ -264,23 +238,28 @@ export const PatientRegisterForm = () => {
       relationshipToPatient,
       ePhone,
       eEmail,
-      physicianName,
-      clinicName,
-      clinicAddress,
-      clinicPhone,
-      clinicEmail,
-      pName,
-      pPhone,
-      fax,
-      pEmail,
-      pAddress,
-    } = formVals;
 
+      //Physician and clinic info (optional)
+      physicianName = "",
+      clinicName = "",
+      clinicAddress = "",
+      clinicPhone = "",
+      clinicEmail = "",
+
+      //Pharmacy info (optional)
+      pName = "",
+      pPhone = "",
+      fax = "",
+      pEmail = "",
+      pAddress = "",
+      uid,
+    } = formVals;
     const patient = {
+      uid,
       basicInformation: {
         firstName,
         lastName,
-        dob: new Date(dob.split("-")),
+        dob: new Date(dob),
         healthCardNumber,
         gender,
       },
@@ -311,22 +290,18 @@ export const PatientRegisterForm = () => {
       },
     };
 
-    const login = {
-      email,
-      password: dob.toString().replaceAll("-", ""),
-    };
-
-    const status = await registerPatient(login, patient);
-    setHasRegistered(status);
+    const status = await updatePatient(patient);
+    setHasFinished(status);
   };
 
-  const onChange = (e) => {
+  const handleChange = (e) => {
     setFormVals({ ...formVals, [e.target.name]: e.target.value });
+    setHasFinished(null);
   };
 
   return (
-    <React.Fragment>
-      <h3 className={styles.h3}>Patient Enrollment Form</h3>
+    <>
+      <h3 className={styles.h3}>Edit Patient</h3>
       <div className={styles.center}>
         <form onSubmit={handleSubmit} className={styles.FormItems}>
           <div className={styles.mainDetails}>
@@ -337,7 +312,7 @@ export const PatientRegisterForm = () => {
                 key={basicInformations.id}
                 {...basicInformations}
                 value={formVals[basicInformations.name]}
-                onChange={onChange}
+                onChange={handleChange}
               />
             ))}
             <h4 className={styles.h4}>Personal Contact Information</h4>
@@ -346,7 +321,7 @@ export const PatientRegisterForm = () => {
                 key={personalContactInformations.id}
                 {...personalContactInformations}
                 value={formVals[personalContactInformations.name]}
-                onChange={onChange}
+                onChange={handleChange}
               />
             ))}
             <h4 className={styles.h4}>Emergency Contact Information</h4>
@@ -355,7 +330,7 @@ export const PatientRegisterForm = () => {
                 key={emergencyContactInformations.id}
                 {...emergencyContactInformations}
                 value={formVals[emergencyContactInformations.name]}
-                onChange={onChange}
+                onChange={handleChange}
               />
             ))}{" "}
           </div>
@@ -366,7 +341,7 @@ export const PatientRegisterForm = () => {
                 key={physicianInformations.id}
                 {...physicianInformations}
                 value={formVals[physicianInformations.name]}
-                onChange={onChange}
+                onChange={handleChange}
               />
             ))}
             <h4 className={styles.h4}>Preferred Pharmacy</h4>
@@ -375,19 +350,19 @@ export const PatientRegisterForm = () => {
                 key={pharmac.id}
                 {...pharmac}
                 value={formVals[pharmac.name]}
-                onChange={onChange}
+                onChange={handleChange}
               />
             ))}
           </div>
           <Button type="submit" className={styles.btnSub1} variant="contained">
             Submit
           </Button>
-          {hasRegistered && <span className="successMessage">Registration successful!</span>}
-          {hasRegistered === false && <span className="errorMessage">Registration failed!</span>}
+          {hasFinished && <span className="successMessage">Edit successful!</span>}
+          {hasFinished === false && <span className="errorMessage">Edit failed!</span>}
         </form>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 
-export default PatientRegisterForm;
+export default PatientEditForm;

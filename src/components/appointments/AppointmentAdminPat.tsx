@@ -13,108 +13,103 @@ import {
 } from "@devexpress/dx-react-scheduler-material-ui";
 import { ViewState, EditingState, IntegratedEditing } from "@devexpress/dx-react-scheduler";
 import { Appointment, Patient, Practitioner } from "src/config/interfaces";
-import { createAppointment, getAllDoctors, getPractitionerAppointments } from "src/api/db";
+import { createAppointment, getAllPatients, getPatientAppointments } from "src/api/db";
 import styles from "./appointments.module.css";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
-import AppointmentButton from "./AppointmentButton";
+import AppointmentButton from "./AppointmentButtonPat";
 import Button from "@mui/material/Button";
+import { patient } from "src/config/dummy";
 
-interface AppointmentCreatorProps {
-  patient: Patient;
-  addPatientAppointment: (appointment: Appointment) => void;
-}
+// interface AppointmentCreatorProps {
+//   patient: Patient;
+//   addPatientAppointment: (appointment: Appointment) => void;
+// }
 
-export const AppointmentCreator = (props: AppointmentCreatorProps) => {
-  const { patient, addPatientAppointment } = props;
+export const AppointmentAdminPat = () => {
+  // const { patient, addPatientAppointment } = props;
 
   const today = new Date(Date.now());
 
   const [currentDate, setCurrentDate] = useState<Date>(today);
   const [appointments, setAppointments] = useState<Appointment[]>();
 
-  const [selectedDoctor, setSelectedDoctor] = useState<Practitioner>();
-  const [doctorList, setDoctorList] = useState<Practitioner[]>();
+  const [selectedPatient, setSelectedPatient] = useState<Patient>();
+  const [patientList, setPatientList] = useState<Patient[]>();
 
   // fetches and removes sensitive data
   const fetchAppointments = () =>
-    getPractitionerAppointments(selectedDoctor.uid)
+    getPatientAppointments(selectedPatient.uid)
       .then((data) => {
         data.forEach((appointment) => {
-          appointment.notes = "";
-          appointment.title = "";
+          // appointment.notes;
+          // appointment.title;
         });
         setAppointments(data);
       })
       .catch((e) => console.error(e));
 
   useEffect(() => {
-    if (doctorList === undefined) {
-      getAllDoctors()
-        .then((data) => setDoctorList(data))
+    if (patientList === undefined) {
+      getAllPatients()
+        .then((data) => setPatientList(data))
         .catch((e) => console.error(e));
     }
-  }, [doctorList]);
+  }, [patientList]);
 
   useEffect(() => {
-    if (selectedDoctor) {
+    if (selectedPatient) {
       fetchAppointments();
     }
-  }, [selectedDoctor]);
+  }, [selectedPatient]);
 
-  const handleAdd = async ({ added }) => {
-    if (!added) return;
+  // const handleAdd = async ({ added }) => {
+  //   if (!added) return;
 
-    const appointment: Appointment = {
-      ...added,
-      appointmentId: "",
-      patientId: patient.uid,
-      practitionerId: selectedDoctor.uid,
-    };
+  //   const appointment: Appointment = {
+  //     ...added,
+  //     appointmentId: "",
+  //     patientId: selectedPatient.uid,
+  //     // practitionerId: selectedDoctor.uid,
+  //   };
 
-    await createAppointment(appointment);
-    addPatientAppointment(appointment);
-    fetchAppointments();
+  //   await createAppointment(appointment);
+  //   // addPatientAppointment(appointment);
+  //   fetchAppointments();
 
-    // reset states
-    setDoctorList(undefined);
-    setAppointments(undefined);
-    setSelectedDoctor(undefined);
-  };
+  //   // reset states
+  //   setPatientList(undefined);
+  //   setAppointments(undefined);
+  //   setSelectedPatient(undefined);
+  // };
 
   const showAppointmentsList = () => {
-    setSelectedDoctor(null);
+    setSelectedPatient(null);
   };
 
   return (
     <div className={styles.Container}>
       <div className={styles.Card}>
-        <h2>Doctor's appointments</h2>
-        {selectedDoctor ? (
+        <h2>Patient's appointments</h2>
+        {selectedPatient ? (
           <div>
             <Button onClick={showAppointmentsList} variant="outlined">
               {"<"} Back to list
             </Button>
-            <div className={styles.tooltip}>
-              Hover me for instructions
-              <span className={styles.tooltipText}>
-                Double click on any available time slot to create appointment
-              </span>
-            </div>
           </div>
         ) : (
           <div style={{ height: "36.5px" }}>
-            Please select a doctor below to create an appointment
+            Please select a patient below to see their appointments
           </div>
         )}
         {
           // pick doctor buttons
-          !selectedDoctor && doctorList && (
+          !selectedPatient && patientList && (
             <div className={styles.DoctorsList}>
-              {doctorList.map((doctor: Practitioner, i) => (
+              {patientList.map((patient: Patient, i) => (
                 <AppointmentButton
                   key={i}
-                  doctor={doctor}
-                  onClick={() => setSelectedDoctor(doctor)}
+                  patient={patient}
+                  onClick={() => setSelectedPatient(patient)}
                 />
               ))}
             </div>
@@ -123,29 +118,28 @@ export const AppointmentCreator = (props: AppointmentCreatorProps) => {
 
         {
           // spinner
-          !selectedDoctor && !doctorList && <CustomLoader />
+          !selectedPatient && !patientList && <CustomLoader />
         }
+
         {
           // appointment picker
-          selectedDoctor && appointments && (
+          selectedPatient && appointments && (
             <Paper>
               <Scheduler data={appointments} height={660}>
-                {/* <Button onClick={showAppointmentsList} variant="outlined">
-                  {"<"} Back to list
-                </Button> */}
                 <ViewState currentDate={currentDate} onCurrentDateChange={setCurrentDate} />
-                <EditingState onCommitChanges={handleAdd} />
-                <IntegratedEditing />
+                {/* <EditingState onCommitChanges={handleAdd} /> */}
+                {/* <IntegratedEditing /> */}
 
                 <WeekView startDayHour={9} endDayHour={19} excludedDays={[0, 6]} />
 
                 <Toolbar />
                 <DateNavigator />
                 <TodayButton />
-                <ConfirmationDialog />
+                {/* <ConfirmationDialog /> */}
+
                 <Appointments />
                 <AppointmentTooltip showCloseButton />
-                <AppointmentForm />
+                {/* <AppointmentForm />} */}
               </Scheduler>
             </Paper>
           )
@@ -153,11 +147,11 @@ export const AppointmentCreator = (props: AppointmentCreatorProps) => {
 
         {
           // spinner
-          selectedDoctor && !appointments && <CustomLoader />
+          selectedPatient && !appointments && <CustomLoader />
         }
       </div>
     </div>
   );
 };
 
-export default AppointmentCreator;
+export default AppointmentAdminPat;

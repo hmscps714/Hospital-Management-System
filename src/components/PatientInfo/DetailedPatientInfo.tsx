@@ -10,20 +10,9 @@ export const DetailedPatientInfo = ({ patientData }) => {
     emergencyContactInformation,
     physicianInformation,
     pharmacy = {},
-    insurance = {},
   } = patientData;
 
-  const {
-    firstName = "None",
-    middleName = "None",
-    lastName = "None",
-    dob = "None",
-    healthCardNumber = "None",
-    gender = "None",
-    maritalStatus = "None",
-    drugAllergies = "None",
-    foodAllergies = "None",
-  } = basicInformation;
+  const { firstName, lastName, dob, healthCardNumber, gender } = basicInformation;
 
   const { email = "None", phoneNumber = "None", homeAddress = "None" } = personalContactInformation;
 
@@ -50,13 +39,13 @@ export const DetailedPatientInfo = ({ patientData }) => {
     address: pAddress = "None",
   } = pharmacy;
 
-  const {
-    memberName = "None",
-    providerName = "None",
-    planName = "None",
-    planNumber = "None",
-    planExpiryDate,
-  } = insurance;
+  // const {
+  //   memberName = "None",
+  //   providerName = "None",
+  //   planName = "None",
+  //   planNumber = "None",
+  //   planExpiryDate,
+  // } = insurance;
 
   return (
     <div className={styles.Container}>
@@ -67,14 +56,14 @@ export const DetailedPatientInfo = ({ patientData }) => {
             <span>First name:</span>
             <span>{firstName}</span>
           </li>
-          <li>Middle name: {middleName}</li>
+          {/* <li>Middle name: {middleName}</li> */}
           <li>Last name: {lastName}</li>
           <li>DOB: {moment(new Date(dob.toDate())).format("YYYY-MM-DD").toString()}</li>
           <li>Heath card #: {healthCardNumber}</li>
           <li>Gender: {gender}</li>
-          <li>Marital status: {maritalStatus}</li>
+          {/* <li>Marital status: {maritalStatus}</li>
           <li>Drug allergies: {drugAllergies}</li>
-          <li>Food allergies: {foodAllergies}</li>
+          <li>Food allergies: {foodAllergies}</li> */}
         </ul>
 
         <h2>Contact Information</h2>
@@ -93,7 +82,14 @@ export const DetailedPatientInfo = ({ patientData }) => {
         </ul>
       </div>
       <div className={styles.Card}>
-   
+        <h2>Family Physician Information</h2>
+        <ul>
+          <li>Physician name: {physicianName}</li>
+          <li>Clinic name: {clinicName}</li>
+          <li>Clinic address: {clinicAddress}</li>
+          <li>Clinic phone: {clinicPhone}</li>
+          <li>Clinic email: {clinicEmail}</li>
+        </ul>
 
         <h2>Pharmacy Information</h2>
         <ul>
@@ -104,7 +100,7 @@ export const DetailedPatientInfo = ({ patientData }) => {
           <li>Address: {pAddress}</li>
         </ul>
 
-        <h2>Insurance Information</h2>
+        {/* <h2>Insurance Information</h2>
         <ul>
           <li>Member name: {memberName}</li>
           <li>Provider name: {providerName}</li>
@@ -114,7 +110,7 @@ export const DetailedPatientInfo = ({ patientData }) => {
             Plan expiry date:
             {planExpiryDate ? moment(planExpiryDate).format("YYYY-MM-DD").toString() : "None"}
           </li>
-        </ul>
+        </ul> */}
       </div>
     </div>
   );

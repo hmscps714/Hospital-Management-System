@@ -6,6 +6,7 @@ import styles from "./patient-info.module.css";
 import { getPatient } from "src/api/db";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 import { useAuth } from "src/context/AuthUserContext";
+import Button from "@mui/material/Button";
 import { getPatientAppointments } from "src/api/db";
 import { Appointment } from "src/config/interfaces";
 import AppointmentCalendarPatient from "src/components/appointments/AppointmentCalendarPatient";
@@ -48,14 +49,21 @@ export const PatientInfo = () => {
       <div className={styles.InfoContainer}>
         {err && <div className="errorMessage">{err.toString()}</div>}
         {!err && patient && !loading ? (
-          <DetailedPatientInfo patientData={patient} />
+          <>
+            <DetailedPatientInfo patientData={patient} />
+            <div className={styles.Appointment}>
+              <AppointmentCalendarPatient appointments={patientAppointments} />
+              <AppointmentCreator patient={patient} addPatientAppointment={addPatientAppointment} />
+            </div>
+            <div style={{ textAlign: "center", marginTop: 50 }}>
+              <Button variant="contained" onClick={() => router.push(`/edit-patient/${patientID}`)}>
+                Edit
+              </Button>
+            </div>
+          </>
         ) : (
           <CustomLoader />
         )}
-        <div className={styles.Appointment}>
-          <AppointmentCalendarPatient appointments={patientAppointments} />
-          <AppointmentCreator patient={patient} addPatientAppointment={addPatientAppointment} />
-        </div>
       </div>
     </>
   );

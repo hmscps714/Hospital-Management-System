@@ -19,13 +19,13 @@ import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 import AppointmentButton from "./AppointmentButton";
 import Button from "@mui/material/Button";
 
-interface AppointmentCreatorProps {
-  patient: Patient;
-  addPatientAppointment: (appointment: Appointment) => void;
-}
+// interface AppointmentCreatorProps {
+//   patient: Patient;
+//   addPatientAppointment: (appointment: Appointment) => void;
+// }
 
-export const AppointmentCreator = (props: AppointmentCreatorProps) => {
-  const { patient, addPatientAppointment } = props;
+export const AppointmentAdminDoc = () => {
+  // const { patient, addPatientAppointment } = props;
 
   const today = new Date(Date.now());
 
@@ -40,8 +40,8 @@ export const AppointmentCreator = (props: AppointmentCreatorProps) => {
     getPractitionerAppointments(selectedDoctor.uid)
       .then((data) => {
         data.forEach((appointment) => {
-          appointment.notes = "";
-          appointment.title = "";
+          // appointment.notes;
+          // appointment.title;
         });
         setAppointments(data);
       })
@@ -61,25 +61,25 @@ export const AppointmentCreator = (props: AppointmentCreatorProps) => {
     }
   }, [selectedDoctor]);
 
-  const handleAdd = async ({ added }) => {
-    if (!added) return;
+  // const handleAdd = async ({ added }) => {
+  //   if (!added) return;
 
-    const appointment: Appointment = {
-      ...added,
-      appointmentId: "",
-      patientId: patient.uid,
-      practitionerId: selectedDoctor.uid,
-    };
+  //   const appointment: Appointment = {
+  //     ...added,
+  //     appointmentId: "",
+  //     // patientId: patient.uid,
+  //     practitionerId: selectedDoctor.uid,
+  //   };
 
-    await createAppointment(appointment);
-    addPatientAppointment(appointment);
-    fetchAppointments();
+  //   await createAppointment(appointment);
+  //   // addPatientAppointment(appointment);
+  //   fetchAppointments();
 
-    // reset states
-    setDoctorList(undefined);
-    setAppointments(undefined);
-    setSelectedDoctor(undefined);
-  };
+  //   // reset states
+  //   setDoctorList(undefined);
+  //   setAppointments(undefined);
+  //   setSelectedDoctor(undefined);
+  // };
 
   const showAppointmentsList = () => {
     setSelectedDoctor(null);
@@ -94,16 +94,10 @@ export const AppointmentCreator = (props: AppointmentCreatorProps) => {
             <Button onClick={showAppointmentsList} variant="outlined">
               {"<"} Back to list
             </Button>
-            <div className={styles.tooltip}>
-              Hover me for instructions
-              <span className={styles.tooltipText}>
-                Double click on any available time slot to create appointment
-              </span>
-            </div>
           </div>
         ) : (
           <div style={{ height: "36.5px" }}>
-            Please select a doctor below to create an appointment
+            Please select a doctor below to see their appointment
           </div>
         )}
         {
@@ -125,27 +119,26 @@ export const AppointmentCreator = (props: AppointmentCreatorProps) => {
           // spinner
           !selectedDoctor && !doctorList && <CustomLoader />
         }
+
         {
           // appointment picker
           selectedDoctor && appointments && (
             <Paper>
               <Scheduler data={appointments} height={660}>
-                {/* <Button onClick={showAppointmentsList} variant="outlined">
-                  {"<"} Back to list
-                </Button> */}
                 <ViewState currentDate={currentDate} onCurrentDateChange={setCurrentDate} />
-                <EditingState onCommitChanges={handleAdd} />
-                <IntegratedEditing />
+                {/* <EditingState onCommitChanges={handleAdd} /> */}
+                {/* <IntegratedEditing /> */}
 
                 <WeekView startDayHour={9} endDayHour={19} excludedDays={[0, 6]} />
 
                 <Toolbar />
                 <DateNavigator />
                 <TodayButton />
-                <ConfirmationDialog />
+                {/* <ConfirmationDialog /> */}
+
                 <Appointments />
                 <AppointmentTooltip showCloseButton />
-                <AppointmentForm />
+                {/* <AppointmentForm /> */}
               </Scheduler>
             </Paper>
           )
@@ -160,4 +153,4 @@ export const AppointmentCreator = (props: AppointmentCreatorProps) => {
   );
 };
 
-export default AppointmentCreator;
+export default AppointmentAdminDoc;

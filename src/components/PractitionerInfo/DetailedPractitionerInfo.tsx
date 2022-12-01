@@ -48,17 +48,17 @@ export const DetailedPractitionerInfo = ({ practitionerData }) => {
         <h2>Basic Information</h2>
         <ul>
           <li>
-            <span>First name:</span>
+            <span>First name: </span>
             <span>{firstName}</span>
           </li>
-          <li>Middle name: {middleName}</li>
+          {/* <li>Middle name: {middleName}</li> */}
           <li>Last name: {lastName}</li>
           <li>DOB: {moment(new Date(dob.toDate())).format("YYYY-MM-DD").toString()}</li>
           <li>Heath card #: {healthCardNumber}</li>
           <li>Gender: {gender}</li>
-          <li>Marital status: {maritalStatus}</li>
+          {/* <li>Marital status: {maritalStatus}</li>
           <li>Drug allergies: {drugAllergies}</li>
-          <li>Food allergies: {foodAllergies}</li>
+          <li>Food allergies: {foodAllergies}</li> */}
         </ul>
 
         <h2>Contact Information</h2>
@@ -71,13 +71,13 @@ export const DetailedPractitionerInfo = ({ practitionerData }) => {
         <h2>Emergency Contact</h2>
         <ul>
           <li>Name: {eName}</li>
-          <li>Relationship to patient: {relationshipToPatient}</li>
+          <li>Relationship to practitioner: {relationshipToPatient}</li>
           <li>Phone: {ePhone}</li>
           <li>Email: {eEmail}</li>
         </ul>
       </div>
       <div className={styles.Card}>
-        <h2>Insurance Information</h2>
+        {/* <h2>Insurance Information</h2>
         <ul>
           <li>Member name: {memberName}</li>
           <li>Provider name: {providerName}</li>
@@ -87,9 +87,9 @@ export const DetailedPractitionerInfo = ({ practitionerData }) => {
             Plan expiry date:
             {planExpiryDate ? moment(planExpiryDate).format("YYYY-MM-DD").toString() : "None"}
           </li>
-        </ul>
+        </ul> */}
 
-        <h2>Field information</h2>
+        <h2>Field Information</h2>
         <ul>
           <li>Field specialty: {fieldSpecialty}</li>
         </ul>

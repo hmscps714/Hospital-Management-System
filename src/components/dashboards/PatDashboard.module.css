@@ -1,6 +1,6 @@
 .h1,
 .h3 {
-  padding: 0 14%;
+  padding: 0 40px;
 }
 
 .green {
@@ -14,7 +14,7 @@
 
 .line {
   margin-top: 2em;
-  width: 80%;
+  width: 98%;
   height: 5px;
   border-width: 0;
   border: 3px solid #a7afad;
@@ -27,7 +27,7 @@
 
 .form {
   display: grid;
-  grid-template-columns: 45% 45%;
+  grid-template-columns: repeat(2, minmax(0,1fr));
   row-gap: 20px;
   column-gap: 20px;
   padding: 20px 40px;
@@ -42,7 +42,19 @@
 
 @media only screen and (max-width: 1100px) {
   .form {
-    grid-template-columns: 95%;
+    grid-template-columns: minmax(0,1fr);
+  }
+
+}
+
+@media only screen and (max-width: 600px) {
+  .form {
+    grid-template-columns: minmax(0,1fr);
+    padding: 20px;
+  }
+
+  .h1, .h3 {
+    padding: 0 20px;
   }
 
 }
