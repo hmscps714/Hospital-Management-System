@@ -28,7 +28,7 @@
   padding-left: 0;
 }
 
-.DoctorsList {
+.DoctorsList, .PatientList {
    display: flex; 
    flex-direction: column;
    height: 660px; 
