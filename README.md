@@ -24,7 +24,7 @@ $ cd Hospital-Management-System
 # 3. Place in the provided .env.local file
 # The location of the file should be top level
 
-# Install packages
+# 4. Install packages
 $ npm install
 ```
 
