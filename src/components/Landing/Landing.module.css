@@ -120,6 +120,7 @@
 
   .contents {
     display: block;
+    margin-top: 10%;
   }
   .Left {
     width: 100%;
@@ -139,5 +140,10 @@
   .img2 {
     left: 2vw;
     height: calc(15vw + 3vh + 30px);
+  }
+}
+@media only screen and (max-width: 500px) {
+  .Right {
+    padding-top: 10vh;
   }
 }

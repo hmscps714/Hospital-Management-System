@@ -73,7 +73,7 @@
 
   .contents p {
     letter-spacing: normal;
-    font-size: calc(0.8vw + 7px);
+    font-size: calc(0.8vw + 0.5vh + 7px);
   }
 }
 
