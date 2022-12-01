@@ -61,25 +61,25 @@ export const AppointmentAdminDoc = () => {
     }
   }, [selectedDoctor]);
 
-  const handleAdd = async ({ added }) => {
-    if (!added) return;
+  // const handleAdd = async ({ added }) => {
+  //   if (!added) return;
 
-    const appointment: Appointment = {
-      ...added,
-      appointmentId: "",
-      // patientId: patient.uid,
-      practitionerId: selectedDoctor.uid,
-    };
+  //   const appointment: Appointment = {
+  //     ...added,
+  //     appointmentId: "",
+  //     // patientId: patient.uid,
+  //     practitionerId: selectedDoctor.uid,
+  //   };
 
-    await createAppointment(appointment);
-    // addPatientAppointment(appointment);
-    fetchAppointments();
+  //   await createAppointment(appointment);
+  //   // addPatientAppointment(appointment);
+  //   fetchAppointments();
 
-    // reset states
-    setDoctorList(undefined);
-    setAppointments(undefined);
-    setSelectedDoctor(undefined);
-  };
+  //   // reset states
+  //   setDoctorList(undefined);
+  //   setAppointments(undefined);
+  //   setSelectedDoctor(undefined);
+  // };
 
   const showAppointmentsList = () => {
     setSelectedDoctor(null);
@@ -126,19 +126,19 @@ export const AppointmentAdminDoc = () => {
             <Paper>
               <Scheduler data={appointments} height={660}>
                 <ViewState currentDate={currentDate} onCurrentDateChange={setCurrentDate} />
-                <EditingState onCommitChanges={handleAdd} />
-                <IntegratedEditing />
+                {/* <EditingState onCommitChanges={handleAdd} /> */}
+                {/* <IntegratedEditing /> */}
 
                 <WeekView startDayHour={9} endDayHour={19} excludedDays={[0, 6]} />
 
                 <Toolbar />
                 <DateNavigator />
                 <TodayButton />
-                <ConfirmationDialog />
+                {/* <ConfirmationDialog /> */}
 
-                { <Appointments />
-                /* <AppointmentTooltip showCloseButton />
-                <AppointmentForm /> */}
+                <Appointments />
+                { /* <AppointmentTooltip showCloseButton /> */
+                <AppointmentForm />}
               </Scheduler>
             </Paper>
           )

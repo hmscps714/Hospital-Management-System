@@ -62,25 +62,25 @@ export const AppointmentAdminPat = () => {
     }
   }, [selectedPatient]);
 
-  const handleAdd = async ({ added }) => {
-    if (!added) return;
+  // const handleAdd = async ({ added }) => {
+  //   if (!added) return;
 
-    const appointment: Appointment = {
-      ...added,
-      appointmentId: "",
-      patientId: selectedPatient.uid,
-      // practitionerId: selectedDoctor.uid,
-    };
+  //   const appointment: Appointment = {
+  //     ...added,
+  //     appointmentId: "",
+  //     patientId: selectedPatient.uid,
+  //     // practitionerId: selectedDoctor.uid,
+  //   };
 
-    await createAppointment(appointment);
-    // addPatientAppointment(appointment);
-    fetchAppointments();
+  //   await createAppointment(appointment);
+  //   // addPatientAppointment(appointment);
+  //   fetchAppointments();
 
-    // reset states
-    setPatientList(undefined);
-    setAppointments(undefined);
-    setSelectedPatient(undefined);
-  };
+  //   // reset states
+  //   setPatientList(undefined);
+  //   setAppointments(undefined);
+  //   setSelectedPatient(undefined);
+  // };
 
   const showAppointmentsList = () => {
     setSelectedPatient(null);
@@ -127,19 +127,19 @@ export const AppointmentAdminPat = () => {
             <Paper>
               <Scheduler data={appointments} height={660}>
                 <ViewState currentDate={currentDate} onCurrentDateChange={setCurrentDate} />
-                <EditingState onCommitChanges={handleAdd} />
-                <IntegratedEditing />
+                {/* <EditingState onCommitChanges={handleAdd} /> */}
+                {/* <IntegratedEditing /> */}
 
                 <WeekView startDayHour={9} endDayHour={19} excludedDays={[0, 6]} />
 
                 <Toolbar />
                 <DateNavigator />
                 <TodayButton />
-                <ConfirmationDialog />
+                {/* <ConfirmationDialog /> */}
 
                 <Appointments />
-                {/* <AppointmentTooltip showCloseButton />
-                <AppointmentForm /> */}
+                {/* <AppointmentTooltip showCloseButton /> */
+                <AppointmentForm />}
               </Scheduler>
             </Paper>
           )
