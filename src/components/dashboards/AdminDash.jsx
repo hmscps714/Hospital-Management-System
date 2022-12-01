@@ -3,6 +3,7 @@ import moment from "moment";
 import styles from "./PatDashboard.module.css";
 // import AppointmentCalendarPatient from "../appointments/AppointmentCalendarPatient";
 import AppointmentAdminDoc from "../appointments/AppointmentAdminDoc";
+import AppointmentAdminPat from "../appointments/AppointmentAdminPat";
 import { getPatientAppointments } from "src/api/db";
 
 export const AdminDash = () => {
@@ -24,6 +25,7 @@ export const AdminDash = () => {
       <hr className={styles.line}></hr>
       <div className={styles.form}>
         <AppointmentAdminDoc />
+        <AppointmentAdminPat />
       </div>
 
 
