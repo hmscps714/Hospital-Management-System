@@ -1,23 +1,34 @@
 # Hospital Management System
 
-### Requirements
-Node = 18.4.0 
+## Stack
+- NextJS, TypeScript
+- Firebase backend
 
-npm = 8.12.1
-### Installation
+## Requirements
+[Node](https://nodejs.org/en/) = 18.4.0 
+
+[npm](https://www.npmjs.com/) = 8.12.1
+
+## Important note
+In order to access our database, there needs to be an environment variable file. Due to security practices, we cannot share this file online. 
+
+## Installation
 
 ```zsh
-# Clone the repo
-$ git clone https://github.com/ncheungg/Hospital-Management-System.git
+# 1. Clone the project
+$ git clone https://github.com/hmscps714/Hospital-Management-System
 
-# Go into the root folder
+# 2. Go into the root folder
 $ cd Hospital-Management-System
+
+# 3. Place in the provided .env.local file
+# The location of the file should be top level
 
 # Install packages
 $ npm install
 ```
 
-### Start local server
+## Start local server
 
 ```zsh
 $ npm run dev
