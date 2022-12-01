@@ -238,19 +238,22 @@ export const PatientEditForm = (props) => {
       relationshipToPatient,
       ePhone,
       eEmail,
-      physicianName,
-      clinicName,
-      clinicAddress,
-      clinicPhone,
-      clinicEmail,
-      pName,
-      pPhone,
-      fax,
-      pEmail,
-      pAddress,
+
+      //Physician and clinic info (optional)
+      physicianName = "",
+      clinicName = "",
+      clinicAddress = "",
+      clinicPhone = "",
+      clinicEmail = "",
+
+      //Pharmacy info (optional)
+      pName = "",
+      pPhone = "",
+      fax = "",
+      pEmail = "",
+      pAddress = "",
       uid,
     } = formVals;
-
     const patient = {
       uid,
       basicInformation: {
