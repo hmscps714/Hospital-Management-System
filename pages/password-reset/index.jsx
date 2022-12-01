@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
+import PasswordResetForm from "../../src/components/forms/PasswordResetForm";
+import { useAuth } from "src/context/AuthUserContext";
 import { useRouter } from "next/router";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
-import { useAuth } from "src/context/AuthUserContext";
-import { ButtonList } from "src/components/ButtonList/ButtonList";
 
-export const AdminDashboard = () => {
+const PasswordReset = () => {
   const { authUser, loading, authUserType } = useAuth();
   const router = useRouter();
 
@@ -18,16 +18,10 @@ export const AdminDashboard = () => {
 
   return (
     <>
-      <title>Admin Dashboard</title>
-      {loading && <CustomLoader />}
-      {!loading && (
-        <div>
-          <h1>Admin dashboard</h1>
-          <ButtonList />
-        </div>
-      )}
+      <title>Password Reset</title>
+      {!loading ? <PasswordResetForm /> : <CustomLoader />}
     </>
   );
 };
 
-export default AdminDashboard;
+export default PasswordReset;

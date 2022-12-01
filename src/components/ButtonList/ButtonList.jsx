@@ -20,7 +20,7 @@ export const ButtonList = () => {
     //Detail pages
     "/patient-info/KW1mLcpUbgQ669yxr6euotqCiKH3",
     "/practitioner-info/6fRlNQooQKejpJCQYxSiO6eVEJ02",
-    "/item-info/Mask_ABC",
+    "/item-info/INV_00001",
     "/transaction-info/DON_52374",
 
     //Registration pages
@@ -28,11 +28,13 @@ export const ButtonList = () => {
     "/practitioner-registration",
     "/item-registration",
     "/transaction-registration",
+    "/password-reset",
   ];
 
   return (
     <>
       <div className={styles.ButtonContainer}>
+        <h1>NOTE: this section is meant for testing. Will be removed in final version</h1>
         {routeList.map((r, i) => {
           return (
             <button className={styles.Button} onClick={() => router.push(r)} key={i}>

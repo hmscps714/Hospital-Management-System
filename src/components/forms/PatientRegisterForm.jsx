@@ -280,7 +280,7 @@ export const PatientRegisterForm = () => {
       basicInformation: {
         firstName,
         lastName,
-        dob: new Date(dob),
+        dob: new Date(dob.split("-")),
         healthCardNumber,
         gender,
       },
@@ -316,16 +316,8 @@ export const PatientRegisterForm = () => {
       password: dob.toString().replaceAll("-", ""),
     };
 
-    // console.log(patient);
-    // console.log(login);
-
     const status = await registerPatient(login, patient);
     setHasRegistered(status);
-    // if (hasRegistered) {
-    //   router.push("/practitioner-home");
-    // } else {
-    //   alert("Sorry it has failed : ( Please try again!");
-    // }
   };
 
   const onChange = (e) => {

@@ -17,4 +17,7 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const auth = getAuth(app);
 
+const detachedApp = initializeApp(firebaseConfig, "detachedApp");
+export const secondaryAuth = getAuth(detachedApp);
+
 export default app;

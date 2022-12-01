@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Table from "src/components/Tables/Table.js";
+import Table from "src/components/Tables/Table";
 import { getAllTransactions } from "src/api/db";
 import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 import { useAuth } from "src/context/AuthUserContext";
@@ -41,6 +41,7 @@ export const FinancialList = () => {
 
   return (
     <>
+      <title>Financial</title>
       {err && <div className="errorMessage">{err.toString()}</div>}
       {!err && transactionList && !loading ? (
         <Table
