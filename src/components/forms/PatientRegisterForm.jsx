@@ -133,9 +133,9 @@ export const PatientRegisterForm = () => {
       name: "relationshipToPatient",
       type: "text",
       pattern: "^[a-zA-Z ]*$",
-      placeholder: "Relationship to Patient",
+      placeholder: "Relationship to patient",
       errorMessage: "Please provide their relationship to patient",
-      label: "Relationship to Patient",
+      label: "Relationship to patient",
       required: true,
     },
     {

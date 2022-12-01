@@ -16,7 +16,7 @@ export const AppointmentButton = (props: AppointmentButtonProps) => {
       variant="outlined"
       disableElevation
       onClick={onClick}
-    >{`${firstName} ${lastName}`}</Button>
+    >{`Dr. ${firstName} ${lastName}`}</Button>
   );
 };
 

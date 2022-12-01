@@ -90,11 +90,21 @@ export const AppointmentCreator = (props: AppointmentCreatorProps) => {
       <div className={styles.Card}>
         <h2>Doctor's appointments</h2>
         {selectedDoctor ? (
-          <Button onClick={showAppointmentsList} variant="outlined">
-            {"<"} Back to list
-          </Button>
+          <div>
+            <Button onClick={showAppointmentsList} variant="outlined">
+              {"<"} Back to list
+            </Button>
+            <div className={styles.tooltip}>
+              Hover me for instructions
+              <span className={styles.tooltipText}>
+                Double click on any available time slot to create appointment
+              </span>
+            </div>
+          </div>
         ) : (
-          <div style={{ height: "36.5px" }}></div>
+          <div style={{ height: "36.5px" }}>
+            Please select a doctor below to create an appointment
+          </div>
         )}
         {
           // pick doctor buttons
