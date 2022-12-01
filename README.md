@@ -3,6 +3,7 @@ The purpose of this project is to develop a functioning hospital management syst
 
 # Usage Guidelines
 To use our system, users are first encouraged to sign in to the admin account with the following credentials:
+
 Email:admin@admin.com
 Password:
 
