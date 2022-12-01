@@ -13,7 +13,6 @@
   margin: 1vw;
   color: white;
   /* border: 1px solid #ccc; */
-  justify-content: center;
   width: 70vw;
 }
 
@@ -102,4 +101,91 @@
 
 .FormItems button:active {
   scale: 90%;
+}
+
+@media only screen and (max-width: 1000px) {
+  .contents h1 {
+    font-size: calc(2vw + 25px);
+  }
+  .contents p {
+    font-size: calc(1.1vw + 1px);
+  }
+
+  .contents .block img {
+    height: 6vw;
+  }
+
+  .contents .box {
+    border-radius: 30px;
+  }
+
+  .contents .box h2 {
+    font-size: calc(1.5vw + 15px);
+    margin: 0;
+    color: rgb(32, 78, 65);
+  }
+
+  .FormItems input {
+    font-size: calc(0.8vw + 7px);
+    padding: 6px;
+    margin-top: 6px;
+    border-radius: 5px;
+  }
+
+  .FormItems button {
+    margin: 6px 6px;
+    border-radius: 10px;
+    font-size: calc(0.6vw + 10px);
+    margin-bottom: 6px;
+    float: right;
+    padding: 6px 15px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .contents {
+    width: 100%;
+  }
+  .contents h1 {
+    font-size: calc(2vw + 10px);
+  }
+  .contents p {
+    font-size: calc(1.1vw + 4px);
+  }
+  .contents .block {
+    display: flex;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .contents .block img {
+    height: calc(3vw + 30px);
+  }
+
+  .contents .box {
+    border-radius: 30px;
+  }
+
+  .contents .box h2 {
+    font-size: calc(1.5vw + 15px);
+    margin: 0;
+    color: rgb(32, 78, 65);
+  }
+
+  .FormItems input {
+    font-size: calc(0.8vw + 7px);
+    padding: 6px;
+    margin-top: 6px;
+    border-radius: 5px;
+  }
+
+  .FormItems button {
+    margin: 6px 6px;
+    border-radius: 10px;
+    font-size: calc(0.6vw + 10px);
+    margin-bottom: 6px;
+    float: right;
+    padding: 6px 15px;
+  }
 }

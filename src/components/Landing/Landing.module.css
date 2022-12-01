@@ -1,34 +1,37 @@
 .Landing {
   background-image: linear-gradient(to bottom, rgba(31, 132, 107, 0.78), rgba(35, 83, 71, 0.78)),
     url("/login_bg.jpg");
-  min-width: 100%;
-  min-height: calc(100vh + 80px);
   background-size: cover;
   background-position: center;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.contents {
+  width: 100vw;
+  /* border: 1px solid #ccc; */
+  display: flex;
+  align-items: center;
 }
 
 .Left {
   float: left;
   width: 50%;
-  box-sizing: border-box;
   padding-left: 5vw;
-  padding-top: 10%;
+  /* border: 1px solid #ccc; */
 }
 
 .Left h1 {
-  padding: 0;
-  margin: 0;
   color: white;
-  font-size: 5vw;
+  font-size: calc(3vw + 3vh + 18px);
   margin: 0;
-  margin-top: 5vw;
 }
 
 .Left p {
   color: white;
-  font-size: 2vw;
+  font-size: calc(1.2vw + 1.2vh + 8px);
 }
 
 .Left strong {
@@ -36,16 +39,33 @@
 }
 
 .Right {
-  float: right;
   width: 50%;
-  padding: 15px;
-  box-sizing: border-box;
+  /* border: 1px solid #ccc; */
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.img1 {
+  position: relative;
+  top: calc(-7vw);
+  left: calc(4vw);
+  height: calc(20vw + 50px);
+  border-radius: 0.7vw;
+}
+
+.img2 {
+  position: relative;
+  top: calc(5vw);
+  left: calc(-4vw);
+  height: calc(15vw + 50px);
+  border-radius: 0.7vw;
 }
 
 .Landing button {
   border-radius: 500vw;
   padding: 1vw 2vw;
-  font-size: 2vw;
+  font-size: calc(1.5vw + 1.5vh + 10px);
 }
 
 .Landing button:active {
@@ -69,22 +89,55 @@
   margin-left: 10px;
 }
 
-.img1 {
-  position: absolute;
-  left: 60%;
-  top: 8vw;
-  padding: 0px;
-  height: 20vw;
-  border-radius: 0.7vw;
-  margin-top: 10%;
+@media only screen and (max-width: 1000px) {
+  .Left h1 {
+    font-size: calc(2vw + 2vh + 12px);
+  }
+  .Left p {
+    font-size: calc(0.8vw + 0.8vh + 5px);
+  }
+  .Landing button {
+    font-size: calc(1vw + 1vh + 6px);
+  }
+
+  .img1 {
+    left: 0;
+  }
+
+  .img2 {
+    left: calc(-8vw);
+  }
 }
 
-.img2 {
-  position: absolute;
-  left: 73%;
-  top: 23vw;
-  padding: 0px;
-  height: 15vw;
-  border-radius: 0.7vw;
-  margin-top: 10%;
+@media only screen and (max-width: 770px) {
+  .Landing {
+    align-items: baseline;
+  }
+
+  .Landing button {
+    font-size: calc(1vw + 1vh + 10px);
+  }
+
+  .contents {
+    display: block;
+  }
+  .Left {
+    width: 100%;
+    margin-top: calc(80px - 5vw);
+  }
+  .Right {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .img1 {
+    top: 2vw;
+    left: -2vw;
+    height: calc(20vw + 3vh + 30px);
+  }
+
+  .img2 {
+    left: 2vw;
+    height: calc(15vw + 3vh + 30px);
+  }
 }
