@@ -19,7 +19,6 @@ import { CustomLoader } from "src/components/CustomLoader/CustomLoader";
 import AppointmentButton from "./AppointmentButton";
 import Button from "@mui/material/Button";
 
-
 // interface AppointmentCreatorProps {
 //   patient: Patient;
 //   addPatientAppointment: (appointment: Appointment) => void;
@@ -89,7 +88,7 @@ export const AppointmentAdminDoc = () => {
   return (
     <div className={styles.Container}>
       <div className={styles.Card}>
-      <h2>Doctor's appointments</h2>
+        <h2>Doctor's appointments</h2>
         {selectedDoctor ? (
           <div>
             <Button onClick={showAppointmentsList} variant="outlined">
@@ -104,7 +103,7 @@ export const AppointmentAdminDoc = () => {
         {
           // pick doctor buttons
           !selectedDoctor && doctorList && (
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            <div className={styles.DoctorsList}>
               {doctorList.map((doctor: Practitioner, i) => (
                 <AppointmentButton
                   key={i}

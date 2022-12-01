@@ -20,7 +20,6 @@ import AppointmentButton from "./AppointmentButtonPat";
 import Button from "@mui/material/Button";
 import { patient } from "src/config/dummy";
 
-
 // interface AppointmentCreatorProps {
 //   patient: Patient;
 //   addPatientAppointment: (appointment: Appointment) => void;
@@ -39,7 +38,7 @@ export const AppointmentAdminPat = () => {
 
   // fetches and removes sensitive data
   const fetchAppointments = () =>
-  getPatientAppointments(selectedPatient.uid)
+    getPatientAppointments(selectedPatient.uid)
       .then((data) => {
         data.forEach((appointment) => {
           // appointment.notes;
@@ -90,7 +89,7 @@ export const AppointmentAdminPat = () => {
   return (
     <div className={styles.Container}>
       <div className={styles.Card}>
-      <h2>Patient's appointments</h2>
+        <h2>Patient's appointments</h2>
         {selectedPatient ? (
           <div>
             <Button onClick={showAppointmentsList} variant="outlined">
@@ -105,7 +104,7 @@ export const AppointmentAdminPat = () => {
         {
           // pick doctor buttons
           !selectedPatient && patientList && (
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            <div className={styles.DoctorsList}>
               {patientList.map((patient: Patient, i) => (
                 <AppointmentButton
                   key={i}
