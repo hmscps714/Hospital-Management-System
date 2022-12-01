@@ -1,5 +1,9 @@
 # Hospital Management System
 
+### Requirements
+Node = 18.4.0 
+
+npm = 8.12.1
 ### Installation
 
 ```zsh
