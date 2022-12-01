@@ -47,6 +47,7 @@ export const NavbarHome = () => {
           { name: "Nurses List", href: "/nurses-list" },
           { name: "Inventory List", href: "/inventory-list" },
           { name: "Financial", href: "/financial" },
+          { name: "Password Reset", href: "/password-reset"},
           { name: "Logout", href: "/logout" },
         ]);
         break;
