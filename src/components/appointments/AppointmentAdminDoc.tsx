@@ -136,9 +136,9 @@ export const AppointmentAdminDoc = () => {
                 <TodayButton />
                 <ConfirmationDialog />
 
-                <Appointments />
-                <AppointmentTooltip showCloseButton />
-                <AppointmentForm />
+                { <Appointments />
+                /* <AppointmentTooltip showCloseButton />
+                <AppointmentForm /> */}
               </Scheduler>
             </Paper>
           )
