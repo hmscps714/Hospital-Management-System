@@ -5,13 +5,6 @@ The purpose of this project is to develop a functioning hospital management syst
 
 For usage guidlines, refer to the doument named "Usage Guidelines" in the shared drive.
 
-Once signed in, the user is then asked to select "Doctors List", located in the top navbar. From there, the user can then add a doctor, and select their password. The username for the doctor will be the email they submitted in the creation form.
-
-The user can then logout of the Admin page, and sign back in with their newly created Doctor account. Similar to how an Admin creates a Doctor account, the Doctor can select 'Patients List', located in the top navbar, and enter the Patient's details. The username of the patient will be the email given to fill out the creation form, with their password being their date of birth ('YYYYMMDD'). The user can then sign out of the Doctor account, and into the newly created Patient account.
-
-The user now has login access to all three views: an Administrator, a Doctor and a Patient
-
-
 
 # Stack
 - NextJS, TypeScript
