@@ -15,19 +15,19 @@ The user now has login access to all three views: an Administrator, a Doctor and
 
 
 
-## Stack
+# Stack
 - NextJS, TypeScript
 - Firebase backend
 
-## Requirements
+# Requirements
 [Node](https://nodejs.org/en/) = 18.4.0 
 
 [npm](https://www.npmjs.com/) = 8.12.1
 
-## Important note
+# Important note
 In order to access our database, there needs to be an environment variable file. Due to security practices, we cannot share this file online. 
 
-## Installation
+# Installation
 
 ```zsh
 # 1. Clone the project
@@ -43,7 +43,7 @@ $ cd Hospital-Management-System
 $ npm install
 ```
 
-## Start local server
+# Start local server
 
 ```zsh
 $ npm run dev
