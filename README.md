@@ -2,10 +2,8 @@
 The purpose of this project is to develop a functioning hospital management system, complete with a database of patients. This management system will simplify the process for  doctors, nurses and medical staff to be able to access patient records, and provide them with the specific care they require as soon as possible. The system will also allow for patients to set up appointments with their preferred practitioner. Hosptial administration is also able to manage all staff and patients through the system, and manage inventory, logistics and financial information as well.
 
 # Usage Guidelines
-To use our system, users are first encouraged to sign in to the admin account with the following credentials:
 
-Email:admin@admin.com
-Password:
+For usage guidlines, refer to the doument named "Usage Guidelines" in the shared drive.
 
 Once signed in, the user is then asked to select "Doctors List", located in the top navbar. From there, the user can then add a doctor, and select their password. The username for the doctor will be the email they submitted in the creation form.
 
